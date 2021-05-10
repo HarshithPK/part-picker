@@ -1,0 +1,136 @@
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+@import "~mdb-angular-ui-kit/assets/scss/mdb.scss";
+
+.title-text {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.authentication-button {
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.authentication-button:hover {
+    background-color: rgb(82, 77, 77);
+}
+
+.build-button {
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.build-button:hover {
+    background-color: rgb(82, 77, 77);
+}
+
+.dropdown-button {
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.dropdown-button:hover {
+    background-color: rgb(82, 77, 77);
+}
+
+.logout-button:hover {
+    background-color: rgb(66, 40, 40);
+}
+
+.img-fluid {
+    max-width: 35%;
+    max-height: 35%;
+}
+
+// .dropdown-menu {
+//     float: center;
+//     display: grid;
+// }
+
+.dropdown-menu {
+    align-items: center;
+    color: white;
+    min-width: 100px;
+    display: inline-block;
+}
+
+.dropdown-menu .col {
+    align-content: center;
+    padding: 5px 5px 5px 5px;
+    display: inline-block;
+}
+
+.cpu-image {
+    max-height: 70x;
+    max-width: 70px;
+    padding-bottom: 3px;
+}
+
+.mobo-image {
+    max-height: 70px;
+    max-width: 70px;
+    padding-bottom: 3px;
+}
+
+.ram-image {
+    max-height: 100px;
+    max-width: 70px;
+    padding-bottom: 3px;
+}
+
+.graphics-card-image {
+    max-height: 100px;
+    max-width: 70px;
+    padding-bottom: 3px;
+}
+
+.cpu-cooler-image {
+    max-height: 100px;
+    max-width: 70px;
+    padding-bottom: 3px;
+}
+
+.power-suppply-image {
+    max-height: 100px;
+    max-width: 70px;
+    padding-bottom: 3px;
+}
+
+.storage-image {
+    max-height: 100px;
+    max-width: 70px;
+    padding-bottom: 3px;
+}
+
+.cabinate-image {
+    max-height: 100px;
+    max-width: 70px;
+    padding-bottom: 3px;
+}
+
+.dropdown-row {
+    background-color: rgb(44, 43, 43);
+}
+
+.row .col .btn:hover {
+    background-color: #07411e;
+}
+
+.fa-user-shield,
+.fa-microchip,
+.fa-database {
+    color: rgb(32, 199, 177);
+}
+
+.fa-sign-out-alt {
+    color: white;
+    font-weight: bold;
+}

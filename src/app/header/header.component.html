@@ -1,0 +1,167 @@
+<div id="menu">
+    <mat-toolbar id="menu">
+        <img class="img-fluid" src="{{ logoImagePath }}" />
+        <span class="title-text"><a href=""></a> PartPicker</span>
+        <span>
+            <button
+                matRipple
+                type="button"
+                class="btn btn-outline-dark authentication-button text-white"
+            >
+                <i class="fas fa-user-shield"></i> Authentication
+            </button>
+            <button
+                matRipple
+                type="button"
+                class="btn btn-outline-dark build-button text-white"
+            >
+                <i class="fas fa-microchip"></i> Build System
+            </button>
+            <span mdbDropdown class="dropdown">
+                <button
+                    class="btn btn-outline-dark dropdown-toggle dropdown-button text-white"
+                    matRipple
+                    type="button"
+                    id="dropdownMenuButton"
+                    mdbDropdownToggle
+                >
+                    <i class="fas fa-database"></i> Products
+                </button>
+
+                <div
+                    mdbDropdownMenu
+                    style="text-align: center"
+                    class="row dropdown-menu dropdown-menu-dark d-flex align-items-centre mb-3 dropdown-row"
+                    aria-labelledby="dropdownMenuButton"
+                >
+                    <div class="col">
+                        <img
+                            class="cpu-image"
+                            src="{{ cpuImagePath }}"
+                            alt="..."
+                        />
+                        <button
+                            matRipple
+                            class="btn btn-outline-success btn-rounded btn-sm"
+                        >
+                            Processor
+                        </button>
+                    </div>
+                    <div class="col">
+                        <img
+                            class="mobo-image"
+                            src="{{ moboImagePath }}"
+                            alt="..."
+                        />
+                        <button
+                            matRipple
+                            class="btn btn-outline-success btn-rounded btn-sm"
+                        >
+                            Motherboard
+                        </button>
+                    </div>
+                    <div class="col">
+                        <img
+                            class="ram-image"
+                            src="{{ ramImagePath }}"
+                            alt="..."
+                        />
+                        <br />
+                        <button
+                            matRipple
+                            class="btn btn-outline-success btn-rounded btn-sm"
+                        >
+                            Memory
+                        </button>
+                    </div>
+                    <div class="col">
+                        <img
+                            class="cpu-cooler-image"
+                            src="{{ cpuCoolerImagePath }}"
+                            alt="..."
+                        />
+                        <br />
+                        <button
+                            matRipple
+                            class="btn btn-outline-success btn-rounded btn-sm"
+                        >
+                            Air Cooler
+                        </button>
+                    </div>
+                </div>
+                <div
+                    mdbDropdownMenu
+                    style="text-align: center"
+                    class="row dropdown-menu dropdown-menu-dark d-flex align-items-centre mb-3 dropdown-row"
+                    aria-labelledby="dropdownMenuButton"
+                >
+                    <div class="col">
+                        <img
+                            class="graphics-card-image"
+                            src="{{ graphicsCardImagePath }}"
+                            alt="..."
+                        />
+                        <br />
+                        <button
+                            matRipple
+                            class="btn btn-outline-success btn-rounded btn-sm"
+                        >
+                            Graphics Card
+                        </button>
+                    </div>
+                    <div class="col">
+                        <img
+                            class="power-suppply-image"
+                            src="{{ powerSupplyImagePath }}"
+                            alt="..."
+                        />
+                        <br />
+                        <button
+                            matRipple
+                            class="btn btn-outline-success btn-rounded btn-sm"
+                        >
+                            Power Supply
+                        </button>
+                    </div>
+                    <div class="col">
+                        <img
+                            class="storage-image"
+                            src="{{ storageImagePath }}"
+                            alt="..."
+                        />
+                        <br />
+                        <button
+                            matRipple
+                            class="btn btn-outline-success btn-rounded btn-sm"
+                        >
+                            Storage
+                        </button>
+                    </div>
+                    <div class="col">
+                        <img
+                            class="cabinate-image"
+                            src="{{ cabinateImagePath }}"
+                            alt="..."
+                        />
+                        <br />
+                        <button
+                            matRipple
+                            class="btn btn-outline-success btn-rounded btn-sm"
+                        >
+                            Case
+                        </button>
+                    </div>
+                </div>
+            </span>
+        </span>
+        <span class="spacer"></span>
+        <button
+            matRipple
+            type="button"
+            class="btn btn-outline-danger logout-button"
+            (click)="onClick()"
+        >
+            <i class="fas fa-sign-out-alt"><span> </span></i> Logout
+        </button>
+    </mat-toolbar>
+</div>
