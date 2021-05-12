@@ -8,9 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from './header/material/material.module';
 import { RouterModule } from '@angular/router';
+import { BuildSystemComponent } from './build-system/build-system.component';
+import { ProductsComponent } from './products/products.component';
 import { ProcessorsComponent } from './products/processors/processors.component';
 import { ProcessorDetailComponent } from './products/processors/processor-detail/processor-detail.component';
-import { BuildSystemComponent } from './build-system/build-system.component';
+import { MotherboardsComponent } from './products/motherboards/motherboards.component';
+import { MotherboardDetailComponent } from './products/motherboards/motherboard-detail/motherboard-detail.component';
 
 export const appRoutes = [];
 
@@ -18,9 +21,12 @@ export const appRoutes = [];
     declarations: [
         AppComponent,
         HeaderComponent,
+        BuildSystemComponent,
+        ProductsComponent,
         ProcessorsComponent,
         ProcessorDetailComponent,
-        BuildSystemComponent,
+        MotherboardsComponent,
+        MotherboardDetailComponent,
     ],
     imports: [
         BrowserModule,

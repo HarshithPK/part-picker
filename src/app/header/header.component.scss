@@ -32,9 +32,17 @@
     background-color: rgb(82, 77, 77);
 }
 
-.dropdown-button {
+.products-button {
     font-size: 0.9rem;
     margin-left: 10px;
+}
+
+.products-button:hover {
+    background-color: rgb(82, 77, 77);
+}
+
+.dropdown-button {
+    font-size: 0.9rem;
 }
 
 .dropdown-button:hover {
