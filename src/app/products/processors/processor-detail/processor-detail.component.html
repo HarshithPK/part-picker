@@ -1,1 +1,31 @@
-<p>processor-detail works!</p>
+<h2>Processor Detail</h2>
+<div class="row">
+    <div class="col-md-6">
+        <img
+            [src]="processor.imagePath"
+            alt="{{ processor.name }}"
+            class="img-responsive"
+            style="max-height: 200px"
+        />
+    </div>
+    <div class="col-md-6">
+        <h2>{{ processor.name }}</h2>
+        <p><strong>Manufacturer: </strong>{{ processor.manufacturer }}</p>
+        <p><strong>Series: </strong>{{ processor.series }}</p>
+        <p><strong>Cores: </strong>{{ processor.cores }}</p>
+        <p><strong>Threads: </strong>{{ processor.threads }}</p>
+        <p><strong>Socket: </strong>{{ processor.socket }}</p>
+        <p><strong>Base Clock: </strong>{{ processor.baseClock }}</p>
+        <p><strong>Boost Clock: </strong>{{ processor.boostClock }}</p>
+        <p><strong>TDP: </strong>{{ processor.tdp }}</p>
+        <p>
+            <strong>Integrated Graphics: </strong
+            >{{ processor.integratedGraphics }}
+        </p>
+        <p><strong>SMT: </strong>{{ processor.smt }}</p>
+        <p><strong>Architecture: </strong>{{ processor.architecture }}</p>
+        <p><strong>L3 Cache: </strong>{{ processor.cache }}</p>
+        <p><strong>Lithograaphy: </strong>{{ processor.lithograaphy }}</p>
+        <p><strong>Price: ₹</strong>{{ processor.price }}</p>
+    </div>
+</div>

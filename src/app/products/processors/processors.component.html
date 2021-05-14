@@ -1,5 +1,93 @@
-<div class="row">
-    <div class="col-xs-12">
-        <app-processor-detail></app-processor-detail>
+<div class="container">
+    <h2>Processors</h2>
+    <div class="row">
+        <div
+            class="col-md-4 d-flex allign-items-start"
+            *ngFor="let processor of processors"
+        >
+            <div
+                class="
+                    card
+                    text-center
+                    border border-primary
+                    shadow-0
+                    text-white
+                "
+                style="background-color: #000000"
+            >
+                <div
+                    class="bg-image hover-overlay ripple"
+                    data-mdb-ripple-color="light"
+                >
+                    <img
+                        [src]="processor.imagePath"
+                        class="img-fluid"
+                        style="max-width: 200px; max-height: 200px"
+                    />
+                    <a href="#!">
+                        <div
+                            class="mask"
+                            style="background-color: rgba(255, 255, 255, 0.349)"
+                        ></div>
+                    </a>
+                </div>
+                <div class="card-header">
+                    <strong class="processor-name">{{ processor.name }}</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-start">
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Cores</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ processor.cores }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Threads</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ processor.threads }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Base Clock</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ processor.baseClock }} GHz
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Boost Clock</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ processor.boostClock }} GHz
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Socket</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ processor.socket }}
+                        </span>
+                    </div>
+
+                    <button
+                        matRipple
+                        type="button"
+                        class="
+                            btn btn-outline-primary
+                            mt-4
+                            load-processor-button
+                            ripple
+                        "
+                    >
+                        <i class="far fa-arrow-alt-circle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<app-processor-detail></app-processor-detail>
