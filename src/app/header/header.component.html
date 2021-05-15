@@ -14,14 +14,16 @@
                 matRipple
                 type="button"
                 class="btn btn-outline-info build-button text-white"
+                (click)="onSelect('build-system')"
             >
                 <i class="fas fa-microchip"></i> Build System
             </button>
             <span mdbDropdown class="dropdown">
                 <button
-                    class="btn btn-outline-info products-button text-white"
                     matRipple
                     type="button"
+                    class="btn btn-outline-info products-button text-white"
+                    (click)="onSelect('products')"
                 >
                     <i class="fas fa-database"></i> Products
                 </button>
@@ -197,7 +199,7 @@
                                 mt-1
                             "
                         >
-                            Case
+                            Cabinate
                         </button>
                     </div>
                 </div>
@@ -208,7 +210,6 @@
             matRipple
             type="button"
             class="btn btn-outline-danger logout-button"
-            (click)="onClick()"
         >
             <i class="fas fa-sign-out-alt"><span> </span></i> Logout
         </button>

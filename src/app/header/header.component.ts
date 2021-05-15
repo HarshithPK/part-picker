@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'app-header',
@@ -16,11 +16,13 @@ export class HeaderComponent implements OnInit {
     storageImagePath = '../../../assets/Storege_Image.png';
     cabinateImagePath = '../../../assets/Cabinate_Image.png';
 
+    @Output() featureSelected = new EventEmitter<string>();
+
     constructor() {}
 
     ngOnInit(): void {}
 
-    onClick(): void {
-        console.log('Button clicked');
+    onSelect(feature: string): void {
+        this.featureSelected.emit(feature);
     }
 }
