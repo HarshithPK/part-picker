@@ -45,6 +45,7 @@ export class ProcessorsComponent implements OnInit {
             'https://sm.pcmag.com/t/pcmag_in/review/i/intel-core/intel-core-i5-11600k_esmw.1920.jpg',
             24000
         ),
+
         new Processor(
             'AMD',
             'AMD Ryzen 9 5950X',

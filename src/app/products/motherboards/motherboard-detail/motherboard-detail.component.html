@@ -1,1 +1,58 @@
-<p>motherboard-detail works!</p>
+<h2>Motherboard Detail</h2>
+<div class="row">
+    <div class="col-md-6">
+        <img
+            [src]="motherboard.imagePath"
+            alt="{{ motherboard.name }}"
+            class="img-responsive"
+            style="max-height: 200px"
+        />
+    </div>
+    <div class="col-md-6">
+        <h2>{{ motherboard.name }}</h2>
+        <p><strong>Manufacturer: </strong>{{ motherboard.manufacturer }}</p>
+        <p><strong>Series: </strong>{{ motherboard.series }}</p>
+        <p><strong>Socket: </strong>{{ motherboard.socket }}</p>
+        <p><strong>Chipset: </strong>{{ motherboard.chipset }}</p>
+        <p><strong>Form Factor: </strong>{{ motherboard.formFactor }}</p>
+        <p>
+            <strong>Supported Processors: </strong
+            >{{ motherboard.processorsSupported }}
+        </p>
+        <p>
+            <strong>Maximum Memory Support: </strong
+            >{{ motherboard.maxMemorySupport }} GB
+        </p>
+        <p><strong>Memory Slots: </strong>{{ motherboard.memorySlots }}</p>
+        <p>
+            <strong>Supported Memory Speeds: </strong
+            >{{ motherboard.supportedMemorySpeed }}
+        </p>
+        <p>
+            <strong>Multi GPU Support: </strong>{{ motherboard.dualGpuSupport }}
+        </p>
+        <p><strong>PCIe x16 Slots: </strong>{{ motherboard.pciex16Slots }}</p>
+        <p><strong>PCIe x8 Slots: </strong>{{ motherboard.pciex8Slots }}</p>
+        <p><strong>PCIe x4 Slots: </strong>{{ motherboard.pciex4Slots }}</p>
+        <p><strong>PCIe x1 Slots: </strong>{{ motherboard.pciex1Slots }}</p>
+        <p><strong>PCI Slots: </strong>{{ motherboard.pciSlots }}</p>
+        <p><strong>M.2 Slots: </strong>{{ motherboard.m2Slots }}</p>
+        <p><strong>SATA 6 Gbps Ports: </strong>{{ motherboard.sata6Gbps }}</p>
+        <p><strong>Ethernet Ports: </strong>{{ motherboard.ethernetPorts }}</p>
+        <p><strong>USB 2.0 Headers: </strong>{{ motherboard.USB2Headers }}</p>
+        <p>
+            <strong>USB 3.2 Gen 1 Headers: </strong
+            >{{ motherboard.USB3Gen1Headers }}
+        </p>
+        <p>
+            <strong>USB 3.2 Gen 2 Headers: </strong
+            >{{ motherboard.USB3Gen2Headers }}
+        </p>
+        <p>
+            <strong>Usb 3.2 Gen 2x2 Headers: </strong
+            >{{ motherboard.USB3Gen2x2Headers }}
+        </p>
+        <p><strong>Wireless: </strong>{{ motherboard.wirelessSupport }}</p>
+        <p><strong>Price: ₹</strong>{{ motherboard.price }}</p>
+    </div>
+</div>
