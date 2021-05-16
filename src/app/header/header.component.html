@@ -14,7 +14,8 @@
                 matRipple
                 type="button"
                 class="btn btn-outline-info build-button text-white"
-                (click)="onSelect('build-system')"
+                routerLink="/build-system"
+                routerLinkActive="active-route"
             >
                 <i class="fas fa-microchip"></i> Build System
             </button>
@@ -23,7 +24,8 @@
                     matRipple
                     type="button"
                     class="btn btn-outline-info products-button text-white"
-                    (click)="onSelect('products')"
+                    routerLink="/products"
+                    routerLinkActive="active-route"
                 >
                     <i class="fas fa-database"></i> Products
                 </button>

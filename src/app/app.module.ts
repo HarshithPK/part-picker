@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from './header/material/material.module';
-import { RouterModule } from '@angular/router';
 import { BuildSystemComponent } from './build-system/build-system.component';
 import { ProductsComponent } from './products/products.component';
 import { ProcessorsComponent } from './products/processors/processors.component';
 import { ProcessorDetailComponent } from './products/processors/processor-detail/processor-detail.component';
 import { MotherboardsComponent } from './products/motherboards/motherboards.component';
 import { MotherboardDetailComponent } from './products/motherboards/motherboard-detail/motherboard-detail.component';
+import { ProductsStartComponent } from './products/products-start/products-start.component';
+import { ProcessorsStartComponent } from './products/processors/processors-start/processors-start.component';
+import { MotherboardsStartComponent } from './products/motherboards/motherboards-start/motherboards-start.component';
 
 export const appRoutes = [];
 
@@ -27,12 +29,14 @@ export const appRoutes = [];
         ProcessorDetailComponent,
         MotherboardsComponent,
         MotherboardDetailComponent,
+        ProductsStartComponent,
+        ProcessorsStartComponent,
+        MotherboardsStartComponent,
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         MaterialModule,
-        RouterModule.forRoot(appRoutes),
         AppRoutingModule,
         MdbModule,
     ],

@@ -1,11 +1,11 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss'],
+    selector: 'app-products-start',
+    templateUrl: './products-start.component.html',
+    styleUrls: ['./products-start.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class ProductsStartComponent implements OnInit {
     logoImagePath = '../../../assets/Logo.PNG';
     cpuImagePath = '../../../assets/Cpu_Image.png';
     moboImagePath = '../../../assets/Mobo_Image.PNG';

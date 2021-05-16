@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
     loadedFeature = 'build-system';
 
-    onNavigate(feature: string) {
+    onNavigate(feature: string): void {
         this.loadedFeature = feature;
     }
 }
