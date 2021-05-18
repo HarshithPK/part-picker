@@ -1,6 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+
 import { BuildSystemComponent } from './build-system/build-system.component';
+import { CoolerDetailComponent } from './products/coolers/cooler-detail/cooler-detail.component';
+import { CoolersStartComponent } from './products/coolers/coolers-start/coolers-start.component';
+import { CoolersComponent } from './products/coolers/coolers.component';
+import { MemoryDetailComponent } from './products/memory/memory-detail/memory-detail.component';
+import { MemoryStartComponent } from './products/memory/memory-start/memory-start.component';
+import { MemoryComponent } from './products/memory/memory.component';
 import { MotherboardDetailComponent } from './products/motherboards/motherboard-detail/motherboard-detail.component';
 import { MotherboardsStartComponent } from './products/motherboards/motherboards-start/motherboards-start.component';
 import { MotherboardsComponent } from './products/motherboards/motherboards.component';
@@ -45,6 +52,36 @@ const appRoutes: Routes = [
                     {
                         path: 'motherboard-datail',
                         component: MotherboardDetailComponent,
+                    },
+                ],
+            },
+            {
+                path: 'memory',
+                component: MemoryComponent,
+                children: [
+                    {
+                        path: '',
+                        component: MemoryStartComponent,
+                        pathMatch: 'full',
+                    },
+                    {
+                        path: 'memory-datail',
+                        component: MemoryDetailComponent,
+                    },
+                ],
+            },
+            {
+                path: 'coolers',
+                component: CoolersComponent,
+                children: [
+                    {
+                        path: '',
+                        component: CoolersStartComponent,
+                        pathMatch: 'full',
+                    },
+                    {
+                        path: 'cooler-datail',
+                        component: CoolerDetailComponent,
                     },
                 ],
             },

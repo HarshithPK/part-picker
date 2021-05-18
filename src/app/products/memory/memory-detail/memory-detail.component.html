@@ -1,0 +1,29 @@
+<h2>Memory Detail</h2>
+<div class="row">
+    <div class="col-md-6">
+        <img
+            [src]="memory.imagePath"
+            alt="{{ memory.name }}"
+            class="img-responsive"
+            style="max-height: 200px"
+        />
+    </div>
+    <div class="col-md-6">
+        <h2>{{ memory.name }}</h2>
+        <p><strong>Manufacturer: </strong>{{ memory.manufacturer }}</p>
+        <p><strong>Series: </strong>{{ memory.series }}</p>
+        <p><strong>Module: </strong>{{ memory.modules }}</p>
+        <p><strong>Memory Speed: </strong>{{ memory.speed }} MHz</p>
+        <p><strong>Memorry Size: </strong>{{ memory.memorySize }} GB</p>
+        <p><strong>Memory Type: </strong>{{ memory.memoryType }}</p>
+
+        <p><strong>Form Factor: </strong>{{ memory.formFactor }}</p>
+        <p><strong>CAS Latency: </strong>{{ memory.casLatency }}</p>
+        <p><strong>Timing: </strong>{{ memory.timing }}</p>
+        <p><strong>Voltage: </strong>{{ memory.voltage }} V</p>
+        <p><strong>Heat Spreader: </strong>{{ memory.heatSpreader }}</p>
+        <p><strong>ECC: </strong>{{ memory.ecc }}</p>
+        <p><strong>Color: </strong>{{ memory.color }}</p>
+        <p><strong>Price: ₹</strong>{{ memory.price }}</p>
+    </div>
+</div>

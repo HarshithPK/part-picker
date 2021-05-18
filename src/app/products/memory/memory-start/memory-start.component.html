@@ -1,0 +1,97 @@
+<div class="container">
+    <h2>Memory</h2>
+    <div class="row">
+        <div
+            class="col-md-4 d-flex allign-items-start"
+            *ngFor="let ram of memory"
+        >
+            <div
+                class="
+                    card
+                    text-center
+                    border border-primary
+                    shadow-0
+                    text-white
+                "
+                style="background-color: #000000"
+            >
+                <div
+                    class="bg-image hover-overlay ripple"
+                    data-mdb-ripple-color="light"
+                >
+                    <img
+                        [src]="ram.imagePath"
+                        class="img-fluid"
+                        style="max-height: 150px"
+                    />
+                    <a routerLink="/products/memory/memory-datail">
+                        <div
+                            class="mask"
+                            style="background-color: rgba(255, 255, 255, 0.349)"
+                        ></div>
+                    </a>
+                </div>
+                <div class="card-header">
+                    <strong class="ram-name">{{ ram.name }}</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-start">
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Manufacturer</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ ram.manufacturer }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Size</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ ram.memorySize }} GB
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Speed</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ ram.speed }} MHz
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Module Type</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ ram.modules }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Memory Type</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ ram.memoryType }}
+                        </span>
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Price</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            ₹ {{ ram.price }}
+                        </span>
+                    </div>
+                    <button
+                        matRipple
+                        type="button"
+                        class="
+                            btn btn-outline-primary
+                            mt-4
+                            load-ram-button
+                            ripple
+                        "
+                        routerLink="/products/memory/memory-datail"
+                    >
+                        <i class="far fa-arrow-alt-circle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

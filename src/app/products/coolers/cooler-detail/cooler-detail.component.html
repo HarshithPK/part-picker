@@ -1,0 +1,34 @@
+<h2>Cooler Detail</h2>
+<div class="row">
+    <div class="col-md-6">
+        <img
+            [src]="cooler.imagePath"
+            alt="{{ cooler.name }}"
+            class="img-responsive"
+            style="max-height: 200px"
+        />
+    </div>
+    <div class="col-md-6">
+        <h2>{{ cooler.name }}</h2>
+        <p><strong>Manufacturer: </strong>{{ cooler.manufacturer }}</p>
+        <p><strong>Series: </strong>{{ cooler.series }}</p>
+        <p><strong>Fan RPM Range: </strong>{{ cooler.fanRPMRange }}</p>
+        <p>
+            <strong>Height Without Fan: </strong
+            >{{ cooler.heightWithoutFan }} mm
+        </p>
+        <p><strong>Height With Fan: </strong>{{ cooler.heightWithFan }} mm</p>
+        <p>
+            <strong>Acoustical Noise Level: </strong
+            >{{ cooler.acousticalNoiseLevel }}
+        </p>
+        <p>
+            <strong>Socket Compatability: </strong
+            >{{ cooler.socketCompatability }}
+        </p>
+        <p><strong>Color: </strong>{{ cooler.color }}</p>
+        <p><strong>Water Cooled: </strong>{{ cooler.waterCooled }}</p>
+        <p><strong>Fanless: </strong>{{ cooler.fanless }}</p>
+        <p><strong>Price: ₹</strong>{{ cooler.price }}</p>
+    </div>
+</div>

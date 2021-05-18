@@ -1,7 +1,21 @@
 <div id="menu">
     <mat-toolbar id="menu">
-        <img class="img-fluid" src="{{ logoImagePath }}" />
-        <span class="title-text"><a href=""></a> PartPicker</span>
+        <div
+            class="bg-image hover-overlay ripple"
+            data-mdb-ripple-color="light"
+            style="max-height: 100px; max-width: 50px"
+        >
+            <img src="{{ logoImagePath }}" class="img-fluid" />
+            <a routerLink="/build-system">
+                <div
+                    class="mask"
+                    style="background-color: rgba(255, 255, 255, 0.178)"
+                ></div>
+            </a>
+        </div>
+        <!-- <img class="img-fluid" src="{{ logoImagePath }}" /> -->
+
+        <span class="title-text">PartPicker</span>
         <span>
             <button
                 matRipple
@@ -68,6 +82,7 @@
                                 btn btn-outline-success btn-rounded btn-sm
                                 mt-1
                             "
+                            routerLink="/products/processors"
                         >
                             Processor
                         </button>
@@ -84,6 +99,7 @@
                                 btn btn-outline-success btn-rounded btn-sm
                                 mt-1
                             "
+                            routerLink="/products/motherboards"
                         >
                             Motherboard
                         </button>
@@ -101,6 +117,7 @@
                                 btn btn-outline-success btn-rounded btn-sm
                                 mt-1
                             "
+                            routerLink="/products/memory"
                         >
                             Memory
                         </button>
@@ -118,6 +135,7 @@
                                 btn btn-outline-success btn-rounded btn-sm
                                 mt-1
                             "
+                            routerLink="/products/coolers"
                         >
                             Air Cooler
                         </button>

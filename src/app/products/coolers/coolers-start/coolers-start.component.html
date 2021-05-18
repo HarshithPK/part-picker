@@ -1,0 +1,91 @@
+<div class="container">
+    <h2>Air Coolers</h2>
+    <div class="row">
+        <div
+            class="col-md-4 d-flex allign-items-start"
+            *ngFor="let cooler of coolers"
+        >
+            <div
+                class="
+                    card
+                    text-center
+                    border border-primary
+                    shadow-0
+                    text-white
+                "
+                style="background-color: #000000"
+            >
+                <div
+                    class="bg-image hover-overlay ripple"
+                    data-mdb-ripple-color="light"
+                >
+                    <img
+                        [src]="cooler.imagePath"
+                        class="img-fluid"
+                        style="max-width: 200px; max-height: 200px"
+                    />
+                    <a routerLink="/products/coolers/cooler-datail">
+                        <div
+                            class="mask"
+                            style="background-color: rgba(255, 255, 255, 0.349)"
+                        ></div>
+                    </a>
+                </div>
+                <div class="card-header">
+                    <strong class="cooler-name">{{ cooler.name }}</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-start">
+                        <span class="col-md-6 spec-headings"
+                            ><strong>RPM Range</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ cooler.fanRPMRange }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Height Without Fan</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ cooler.heightWithoutFan }} mm
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Height With Fan</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ cooler.heightWithFan }} mm
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Color</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ cooler.color }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Price</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            ₹ {{ cooler.price }}
+                        </span>
+                    </div>
+                    <button
+                        matRipple
+                        type="button"
+                        class="
+                            btn btn-outline-primary
+                            mt-4
+                            load-processor-button
+                            ripple
+                        "
+                        routerLink="/products/coolers/cooler-datail"
+                    >
+                        <i class="far fa-arrow-alt-circle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
