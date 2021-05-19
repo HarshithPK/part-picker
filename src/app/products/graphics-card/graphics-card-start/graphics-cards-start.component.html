@@ -1,0 +1,101 @@
+<div class="container">
+    <h2>Graphics Cards</h2>
+    <div class="row">
+        <div
+            class="col-md-4 d-flex allign-items-start"
+            *ngFor="let graphicsCard of graphicsCards"
+        >
+            <div
+                class="
+                    card
+                    text-center
+                    border border-primary
+                    shadow-0
+                    text-white
+                "
+                style="background-color: #000000"
+            >
+                <div
+                    class="bg-image hover-overlay ripple"
+                    data-mdb-ripple-color="light"
+                >
+                    <img
+                        [src]="graphicsCard.imagePath"
+                        class="img-fluid"
+                        style="max-width: 200px; height: 150px"
+                    />
+                    <a
+                        routerLink="/products/graphics-cards/graphics-card-datail"
+                    >
+                        <div
+                            class="mask"
+                            style="background-color: rgba(255, 255, 255, 0.349)"
+                        ></div>
+                    </a>
+                </div>
+                <div class="card-header">
+                    <strong class="graphics-card-name">{{
+                        graphicsCard.name
+                    }}</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-start">
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Manufacturer</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ graphicsCard.manufacturer }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Memory</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ graphicsCard.memory }} GB
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Core Clock</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ graphicsCard.coreClock }} MHz
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Boost Clock</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ graphicsCard.boostClock }} MHz
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Slot Width</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ graphicsCard.slotWidth }}
+                        </span>
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Price</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            ₹ {{ graphicsCard.price }}
+                        </span>
+                    </div>
+                    <button
+                        matRipple
+                        type="button"
+                        class="
+                            btn btn-outline-primary
+                            mt-4
+                            load-graphics-card-button
+                            ripple
+                        "
+                        routerLink="/products/graphics-cards/graphics-card-datail"
+                    >
+                        <i class="far fa-arrow-alt-circle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

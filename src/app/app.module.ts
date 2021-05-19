@@ -22,6 +22,12 @@ import { MemoryDetailComponent } from './products/memory/memory-detail/memory-de
 import { CoolersComponent } from './products/coolers/coolers.component';
 import { CoolersStartComponent } from './products/coolers/coolers-start/coolers-start.component';
 import { CoolerDetailComponent } from './products/coolers/cooler-detail/cooler-detail.component';
+import { GraphicsCardsComponent } from './products/graphics-card/graphics-cards.component';
+import { GraphicsCardsStartComponent } from './products/graphics-card/graphics-card-start/graphics-cards-start.component';
+import { GraphicsCardDetailComponent } from './products/graphics-card/graphics-card-detail/graphics-card-detail.component';
+import { PowerSuppliesComponent } from './products/power-supplies/power-supplies.component';
+import { PowerSuppliesStartComponent } from './products/power-supplies/power-supplies-start/power-supplies-start.component';
+import { PowerSupplyDetailComponent } from './products/power-supplies/power-supply-detail/power-supply-detail.component';
 
 export const appRoutes = [];
 
@@ -44,6 +50,12 @@ export const appRoutes = [];
         CoolersComponent,
         CoolersStartComponent,
         CoolerDetailComponent,
+        GraphicsCardsComponent,
+        GraphicsCardsStartComponent,
+        GraphicsCardDetailComponent,
+        PowerSuppliesComponent,
+        PowerSuppliesStartComponent,
+        PowerSupplyDetailComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,0 +1,46 @@
+<h2>Graphics Card Detail</h2>
+<div class="row">
+    <div class="col-md-6">
+        <img
+            [src]="graphicsCard.imagePath"
+            alt="{{ graphicsCard.name }}"
+            class="img-responsive"
+            style="max-height: 200px"
+        />
+    </div>
+    <div class="col-md-6">
+        <h2>{{ graphicsCard.name }}</h2>
+        <p><strong>Manufacturer: </strong>{{ graphicsCard.manufacturer }}</p>
+        <p><strong>Series: </strong>{{ graphicsCard.series }}</p>
+        <p><strong>Chipset: </strong>{{ graphicsCard.chipset }}</p>
+        <p><strong>Memory: </strong>{{ graphicsCard.memory }} GB</p>
+        <p><strong>Memory Type: </strong>{{ graphicsCard.memoryType }}</p>
+        <p><strong>Core Clock: </strong>{{ graphicsCard.coreClock }} MHz</p>
+        <p><strong>Boost Clock: </strong>{{ graphicsCard.boostClock }} MHz</p>
+        <p>
+            <strong>Effective Memory Clock: </strong
+            >{{ graphicsCard.effectiveMemoryClock }} MHz
+        </p>
+        <p><strong>Card Interface: </strong>{{ graphicsCard.cardInterface }}</p>
+        <p><strong>Frame Sync: </strong>{{ graphicsCard.frameSync }}</p>
+        <p><strong>TDP: </strong>{{ graphicsCard.TDP }} W</p>
+        <p><strong>Length: </strong>{{ graphicsCard.length }} mm</p>
+        <p><strong>DVI Ports: </strong>{{ graphicsCard.DVIPorts }}</p>
+        <p><strong>HDMI Ports: </strong>{{ graphicsCard.HDMIPorts }}</p>
+        <p>
+            <strong>Mini-HDMI Ports: </strong>{{ graphicsCard.MiniHDMIPorts }}
+        </p>
+        <p>
+            <strong>DisplayPort Ports: </strong
+            >{{ graphicsCard.DisplayPortPorts }}
+        </p>
+        <p>
+            <strong>Mini-DisplayPort Ports: </strong
+            >{{ graphicsCard.MiniDisplayPortPorts }}
+        </p>
+        <p><strong>Slot Width: </strong>{{ graphicsCard.slotWidth }}</p>
+        <p><strong>Cooling: </strong>{{ graphicsCard.cooling }}</p>
+        <p><strong>External Power: </strong>{{ graphicsCard.externalPower }}</p>
+        <p><strong>Price: ₹</strong>{{ graphicsCard.price }}</p>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<h2>Power Supply Detail</h2>
+<div class="row">
+    <div class="col-md-6">
+        <img
+            [src]="powerSupply.imagePath"
+            alt="{{ powerSupply.name }}"
+            class="img-responsive"
+            style="max-height: 300px"
+        />
+    </div>
+    <div class="col-md-6">
+        <h2>{{ powerSupply.name }}</h2>
+        <p><strong>Manufacturer: </strong>{{ powerSupply.manufacturer }}</p>
+        <p><strong>Series: </strong>{{ powerSupply.series }}</p>
+        <p><strong>Form Factor: </strong>{{ powerSupply.formFactor }}</p>
+        <p>
+            <strong>Efficiency Rating: </strong
+            >{{ powerSupply.efficiencyRating }}
+        </p>
+        <p><strong>Wattage: </strong>{{ powerSupply.wattage }} W</p>
+        <p><strong>Modularity: </strong>{{ powerSupply.modular }}</p>
+        <p><strong>Length: </strong>{{ powerSupply.length }} mm</p>
+        <p><strong>Color: </strong>{{ powerSupply.color }}</p>
+        <p><strong>Fanless: </strong>{{ powerSupply.fanless }}</p>
+        <p><strong>EPS Connectors: </strong>{{ powerSupply.EPSConnectors }}</p>
+        <p>
+            <strong>PCIe 6+2 Pin Connectors: </strong
+            >{{ powerSupply.PCIe62PinConnectors }}
+        </p>
+        <p>
+            <strong>SATA Connectors: </strong>{{ powerSupply.SATAConnectors }}
+        </p>
+        <p>
+            <strong>Molex 4 Pin Connectors: </strong
+            >{{ powerSupply.Molex4PinConnectors }}
+        </p>
+        <p><strong>Price: ₹</strong>{{ powerSupply.price }}</p>
+    </div>
+</div>
