@@ -47,7 +47,7 @@ const appRoutes: Routes = [
                         pathMatch: 'full',
                     },
                     {
-                        path: 'processor-datail',
+                        path: ':id',
                         component: ProcessorDetailComponent,
                     },
                 ],
@@ -62,7 +62,7 @@ const appRoutes: Routes = [
                         pathMatch: 'full',
                     },
                     {
-                        path: 'motherboard-datail',
+                        path: ':id',
                         component: MotherboardDetailComponent,
                     },
                 ],
@@ -77,7 +77,7 @@ const appRoutes: Routes = [
                         pathMatch: 'full',
                     },
                     {
-                        path: 'memory-datail',
+                        path: ':id',
                         component: MemoryDetailComponent,
                     },
                 ],
@@ -92,7 +92,7 @@ const appRoutes: Routes = [
                         pathMatch: 'full',
                     },
                     {
-                        path: 'cooler-datail',
+                        path: ':id',
                         component: CoolerDetailComponent,
                     },
                 ],
@@ -107,7 +107,7 @@ const appRoutes: Routes = [
                         pathMatch: 'full',
                     },
                     {
-                        path: 'graphics-card-datail',
+                        path: ':id',
                         component: GraphicsCardDetailComponent,
                     },
                 ],
@@ -122,7 +122,7 @@ const appRoutes: Routes = [
                         pathMatch: 'full',
                     },
                     {
-                        path: 'power-supply-datail',
+                        path: ':id',
                         component: PowerSupplyDetailComponent,
                     },
                 ],
@@ -137,7 +137,7 @@ const appRoutes: Routes = [
                         pathMatch: 'full',
                     },
                     {
-                        path: 'storage-datail',
+                        path: ':id',
                         component: StorageDetailComponent,
                     },
                 ],
@@ -152,7 +152,7 @@ const appRoutes: Routes = [
                         pathMatch: 'full',
                     },
                     {
-                        path: 'cabinate-datail',
+                        path: ':id',
                         component: CabinateDetailComponent,
                     },
                 ],

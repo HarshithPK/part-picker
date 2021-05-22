@@ -3,7 +3,7 @@
     <div class="row">
         <div
             class="col-md-4 d-flex allign-items-start"
-            *ngFor="let processor of processors"
+            *ngFor="let processor of processors; let i = index"
         >
             <div
                 class="
@@ -24,7 +24,7 @@
                         class="img-fluid"
                         style="max-width: 300px; max-height: 300px"
                     />
-                    <a routerLink="/products/processors/processor-datail">
+                    <a [routerLink]="[i]">
                         <div
                             class="mask"
                             style="background-color: rgba(255, 255, 255, 0.349)"
@@ -86,7 +86,7 @@
                             load-processor-button
                             ripple
                         "
-                        routerLink="/products/processors/processor-datail"
+                        [routerLink]="[i]"
                     >
                         <i class="far fa-arrow-alt-circle-right"></i>
                     </button>

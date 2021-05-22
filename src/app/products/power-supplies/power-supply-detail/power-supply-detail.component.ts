@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+
 import { PowerSupply } from '../power-supply.model';
+import { PowerSupplyService } from '../power-supply.service';
 
 @Component({
     selector: 'app-power-supply-detail',
@@ -7,26 +10,18 @@ import { PowerSupply } from '../power-supply.model';
     styleUrls: ['./power-supply-detail.component.scss'],
 })
 export class PowerSupplyDetailComponent implements OnInit {
-    powerSupply: PowerSupply = new PowerSupply(
-        'ASUS',
-        'Asus ROG Thor',
-        'Asus ROG Thor 1200P 80+ Platinum Certified Fully Modular',
-        'ATX',
-        '80+ Platinum',
-        1200,
-        'Full-Modular',
-        190,
-        'Black',
-        'No',
-        2,
-        8,
-        12,
-        5,
-        'https://dlcdnwebimgs.asus.com/gain/684DD066-82FC-4C2B-A0DB-7957EA004D40/w1000/h732',
-        32370
-    );
+    id!: number;
+    powerSupply!: PowerSupply;
 
-    constructor() {}
+    constructor(
+        private powerSupplyService: PowerSupplyService,
+        private route: ActivatedRoute
+    ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.route.params.subscribe((params: Params) => {
+            this.id = +params.id;
+            this.powerSupply = this.powerSupplyService.getPowerSupply(this.id);
+        });
+    }
 }

@@ -3,7 +3,7 @@
     <div class="row">
         <div
             class="col-md-4 d-flex allign-items-start"
-            *ngFor="let cabinate of cabinates"
+            *ngFor="let cabinate of cabinates; let i = index"
         >
             <div
                 class="
@@ -24,7 +24,7 @@
                         class="img-fluid"
                         style="max-width: 300px; max-height: 300px"
                     />
-                    <a routerLink="/products/cabinates/cabinate-datail">
+                    <a [routerLink]="[i]">
                         <div
                             class="mask"
                             style="background-color: rgba(255, 255, 255, 0.349)"
@@ -80,7 +80,7 @@
                             load-cabinate-button
                             ripple
                         "
-                        routerLink="/products/cabinates/cabinate-datail"
+                        [routerLink]="[i]"
                     >
                         <i class="far fa-arrow-alt-circle-right"></i>
                     </button>
