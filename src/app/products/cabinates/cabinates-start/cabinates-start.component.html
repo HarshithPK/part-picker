@@ -1,0 +1,91 @@
+<div class="container">
+    <h2>Cabinates</h2>
+    <div class="row">
+        <div
+            class="col-md-4 d-flex allign-items-start"
+            *ngFor="let cabinate of cabinates"
+        >
+            <div
+                class="
+                    card
+                    text-center
+                    border border-primary
+                    shadow-0
+                    text-white
+                "
+                style="background-color: #000000"
+            >
+                <div
+                    class="bg-image hover-overlay ripple"
+                    data-mdb-ripple-color="light"
+                >
+                    <img
+                        [src]="cabinate.imagePath"
+                        class="img-fluid"
+                        style="max-width: 300px; max-height: 300px"
+                    />
+                    <a routerLink="/products/cabinates/cabinate-datail">
+                        <div
+                            class="mask"
+                            style="background-color: rgba(255, 255, 255, 0.349)"
+                        ></div>
+                    </a>
+                </div>
+                <div class="card-header">
+                    <strong class="cabinate-name">{{ cabinate.name }}</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-start">
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Type</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ cabinate.type }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Color</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ cabinate.color }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Side Panel</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ cabinate.sidePanel }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Dimentsions</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ cabinate.dimensions }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Price</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            ₹ {{ cabinate.price }}
+                        </span>
+                    </div>
+                    <button
+                        matRipple
+                        type="button"
+                        class="
+                            btn btn-outline-primary
+                            mt-4
+                            load-cabinate-button
+                            ripple
+                        "
+                        routerLink="/products/cabinates/cabinate-datail"
+                    >
+                        <i class="far fa-arrow-alt-circle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

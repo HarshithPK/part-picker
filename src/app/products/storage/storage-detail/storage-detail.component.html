@@ -1,0 +1,23 @@
+<h2>storage Detail</h2>
+<div class="row">
+    <div class="col-md-6">
+        <img
+            [src]="storage.imagePath"
+            alt="{{ storage.name }}"
+            class="img-responsive"
+            style="max-height: 200px"
+        />
+    </div>
+    <div class="col-md-6">
+        <h2>{{ storage.name }}</h2>
+        <p><strong>Manufacturer: </strong>{{ storage.manufacturer }}</p>
+        <p><strong>Series: </strong>{{ storage.series }}</p>
+        <p><strong>Capacity: </strong>{{ storage.capacity }} TB</p>
+        <p><strong>Type: </strong>{{ storage.type }}</p>
+        <p><strong>Cache: </strong>{{ storage.cache }} MB</p>
+        <p><strong>Form Factor: </strong>{{ storage.formFactor }}</p>
+        <p><strong>Interface: </strong>{{ storage.storageInterface }}</p>
+        <p><strong>NVME: </strong>{{ storage.NVME }}</p>
+        <p><strong>Price: ₹</strong>{{ storage.price }}</p>
+    </div>
+</div>

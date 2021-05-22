@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { BuildSystemComponent } from './build-system/build-system.component';
+import { CabinateDetailComponent } from './products/cabinates/cabinate-detail/cabinate-detail.component';
+import { CabinatesStartComponent } from './products/cabinates/cabinates-start/cabinates-start.component';
+import { CabinatesComponent } from './products/cabinates/cabinates.component';
 import { CoolerDetailComponent } from './products/coolers/cooler-detail/cooler-detail.component';
 import { CoolersStartComponent } from './products/coolers/coolers-start/coolers-start.component';
 import { CoolersComponent } from './products/coolers/coolers.component';
@@ -22,6 +25,9 @@ import { ProcessorsStartComponent } from './products/processors/processors-start
 import { ProcessorsComponent } from './products/processors/processors.component';
 import { ProductsStartComponent } from './products/products-start/products-start.component';
 import { ProductsComponent } from './products/products.component';
+import { StorageDetailComponent } from './products/storage/storage-detail/storage-detail.component';
+import { StorageStartComponent } from './products/storage/storage-start/storage-start.component';
+import { StorageComponent } from './products/storage/storage.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/build-system', pathMatch: 'full' },
@@ -118,6 +124,36 @@ const appRoutes: Routes = [
                     {
                         path: 'power-supply-datail',
                         component: PowerSupplyDetailComponent,
+                    },
+                ],
+            },
+            {
+                path: 'storage',
+                component: StorageComponent,
+                children: [
+                    {
+                        path: '',
+                        component: StorageStartComponent,
+                        pathMatch: 'full',
+                    },
+                    {
+                        path: 'storage-datail',
+                        component: StorageDetailComponent,
+                    },
+                ],
+            },
+            {
+                path: 'cabinates',
+                component: CabinatesComponent,
+                children: [
+                    {
+                        path: '',
+                        component: CabinatesStartComponent,
+                        pathMatch: 'full',
+                    },
+                    {
+                        path: 'cabinate-datail',
+                        component: CabinateDetailComponent,
                     },
                 ],
             },

@@ -1,0 +1,36 @@
+<h2>Cabinate Detail</h2>
+<div class="row">
+    <div class="col-md-6">
+        <img
+            [src]="cabinate.imagePath"
+            alt="{{ cabinate.name }}"
+            class="img-responsive"
+            style="max-height: 200px"
+        />
+    </div>
+    <div class="col-md-6">
+        <h2>{{ cabinate.name }}</h2>
+        <p><strong>Manufacturer: </strong>{{ cabinate.manufacturer }}</p>
+        <p><strong>Series: </strong>{{ cabinate.series }}</p>
+        <p><strong>Type: </strong>{{ cabinate.type }}</p>
+        <p><strong>Power Supply: </strong>{{ cabinate.powerSupply }}</p>
+        <p><strong>Color: </strong>{{ cabinate.color }}</p>
+        <p><strong>Dimensions: </strong>{{ cabinate.dimensions }}</p>
+        <p><strong>IO Ports: </strong>{{ cabinate.IOPorts }}</p>
+        <p>
+            <strong>Motherboard Support: </strong
+            >{{ cabinate.motherboardSupport }}
+        </p>
+        <p><strong>Side Panel: </strong>{{ cabinate.sidePanel }}</p>
+        <p><strong>Material: </strong>{{ cabinate.material }}</p>
+        <p><strong>Max PSU Length: </strong>{{ cabinate.maxPSULength }} mm</p>
+        <p><strong>Max GPU Length: </strong>{{ cabinate.maxGPULength }} mm</p>
+        <p>
+            <strong>Max CPU Clearance: </strong
+            >{{ cabinate.maxCPUClearance }} mm
+        </p>
+        <p><strong>Fan Support: </strong>{{ cabinate.fanSupport }}</p>
+        <p><strong>Dust Filters: </strong>{{ cabinate.dustFilters }}</p>
+        <p><strong>Price: ₹</strong>{{ cabinate.price }}</p>
+    </div>
+</div>

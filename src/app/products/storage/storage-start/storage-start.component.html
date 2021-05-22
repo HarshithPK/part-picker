@@ -1,0 +1,97 @@
+<div class="container">
+    <h2>Storages</h2>
+    <div class="row">
+        <div
+            class="col-md-4 d-flex allign-items-start"
+            *ngFor="let storage of storages"
+        >
+            <div
+                class="
+                    card
+                    text-center
+                    border border-primary
+                    shadow-0
+                    text-white
+                "
+                style="background-color: #000000"
+            >
+                <div
+                    class="bg-image hover-overlay ripple"
+                    data-mdb-ripple-color="light"
+                >
+                    <img
+                        [src]="storage.imagePath"
+                        class="img-fluid"
+                        style="max-width: 200px; height: 150px"
+                    />
+                    <a routerLink="/products/storage/storage-datail">
+                        <div
+                            class="mask"
+                            style="background-color: rgba(255, 255, 255, 0.349)"
+                        ></div>
+                    </a>
+                </div>
+                <div class="card-header">
+                    <strong class="storage-name">{{ storage.name }}</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-start">
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Manufacturer</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ storage.manufacturer }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Capacity</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ storage.capacity }} TB
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Type</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ storage.type }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Form Factor</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ storage.formFactor }}
+                        </span>
+
+                        <span class="col-md-6 spec-headings"
+                            ><strong>NVME</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            {{ storage.NVME }}
+                        </span>
+                        <span class="col-md-6 spec-headings"
+                            ><strong>Price</strong></span
+                        >
+                        <span class="col-md-6 spec-content">
+                            ₹ {{ storage.price }}
+                        </span>
+                    </div>
+                    <button
+                        matRipple
+                        type="button"
+                        class="
+                            btn btn-outline-primary
+                            mt-4
+                            load-storage-button
+                            ripple
+                        "
+                        routerLink="/products/storage/storage-datail"
+                    >
+                        <i class="far fa-arrow-alt-circle-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

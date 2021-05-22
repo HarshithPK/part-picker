@@ -28,6 +28,12 @@ import { GraphicsCardDetailComponent } from './products/graphics-card/graphics-c
 import { PowerSuppliesComponent } from './products/power-supplies/power-supplies.component';
 import { PowerSuppliesStartComponent } from './products/power-supplies/power-supplies-start/power-supplies-start.component';
 import { PowerSupplyDetailComponent } from './products/power-supplies/power-supply-detail/power-supply-detail.component';
+import { StorageComponent } from './products/storage/storage.component';
+import { StorageStartComponent } from './products/storage/storage-start/storage-start.component';
+import { StorageDetailComponent } from './products/storage/storage-detail/storage-detail.component';
+import { CabinatesComponent } from './products/cabinates/cabinates.component';
+import { CabinatesStartComponent } from './products/cabinates/cabinates-start/cabinates-start.component';
+import { CabinateDetailComponent } from './products/cabinates/cabinate-detail/cabinate-detail.component';
 
 export const appRoutes = [];
 
@@ -56,6 +62,12 @@ export const appRoutes = [];
         PowerSuppliesComponent,
         PowerSuppliesStartComponent,
         PowerSupplyDetailComponent,
+        StorageComponent,
+        StorageStartComponent,
+        StorageDetailComponent,
+        CabinatesComponent,
+        CabinatesStartComponent,
+        CabinateDetailComponent,
     ],
     imports: [
         BrowserModule,
