@@ -16,4 +16,10 @@ export class GraphicsCardsStartComponent implements OnInit {
     ngOnInit(): void {
         this.graphicsCards = this.graphicsCardService.getGraphicsCards();
     }
+
+    storeGraphicsCards(): void {
+        this.graphicsCardService.storeGraphicsCards();
+    }
+
+    loadGraphicsCards(): void {}
 }

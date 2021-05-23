@@ -16,4 +16,10 @@ export class StorageStartComponent implements OnInit {
     ngOnInit(): void {
         this.storages = this.storageService.getStorages();
     }
+
+    storeStorages(): void {
+        this.storageService.storeStorages();
+    }
+
+    loadStorages(): void {}
 }

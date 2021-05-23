@@ -1,5 +1,9 @@
+import { Injectable } from '@angular/core';
+
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Processor } from './processor.model';
 
+@Injectable({ providedIn: 'root' })
 export class ProcessorService {
     private processors: Processor[] = [
         new Processor(
@@ -59,11 +63,17 @@ export class ProcessorService {
         ),
     ];
 
+    constructor(private dataStoreService: DataStorageService) {}
+
     getProcessors(): Processor[] {
         return this.processors.slice();
     }
 
     getProcessor(index: number): Processor {
         return this.processors[index];
+    }
+
+    storeProcessors(): void {
+        this.dataStoreService.storeProducts(this.processors, 'processors');
     }
 }

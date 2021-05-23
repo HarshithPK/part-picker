@@ -6,7 +6,6 @@ import { MemoryService } from './memory.service';
     selector: 'app-memory',
     templateUrl: './memory.component.html',
     styleUrls: ['./memory.component.scss'],
-    providers: [MemoryService],
 })
 export class MemoryComponent implements OnInit {
     constructor() {}

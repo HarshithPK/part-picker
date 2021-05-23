@@ -1,5 +1,9 @@
+import { Injectable } from '@angular/core';
+
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { GraphicsCard } from './graphics-card.model';
 
+@Injectable({ providedIn: 'root' })
 export class GraphicsCardService {
     graphicsCards: GraphicsCard[] = [
         new GraphicsCard(
@@ -79,11 +83,20 @@ export class GraphicsCardService {
         ),
     ];
 
+    constructor(private dataStoreService: DataStorageService) {}
+
     getGraphicsCards(): GraphicsCard[] {
         return this.graphicsCards.slice();
     }
 
     getGraphicsCard(index: number): GraphicsCard {
         return this.graphicsCards[index];
+    }
+
+    storeGraphicsCards(): void {
+        this.dataStoreService.storeProducts(
+            this.graphicsCards,
+            'graphicsCards'
+        );
     }
 }

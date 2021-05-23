@@ -1,5 +1,9 @@
+import { Injectable } from '@angular/core';
+
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { PowerSupply } from './power-supply.model';
 
+@Injectable({ providedIn: 'root' })
 export class PowerSupplyService {
     powerSupplies: PowerSupply[] = [
         new PowerSupply(
@@ -58,11 +62,20 @@ export class PowerSupplyService {
         ),
     ];
 
+    constructor(private dataStoreService: DataStorageService) {}
+
     getPowerSupplies(): PowerSupply[] {
         return this.powerSupplies.slice();
     }
 
     getPowerSupply(index: number): PowerSupply {
         return this.powerSupplies[index];
+    }
+
+    storePowerSupply(): void {
+        this.dataStoreService.storeProducts(
+            this.powerSupplies,
+            'powerSupplies'
+        );
     }
 }

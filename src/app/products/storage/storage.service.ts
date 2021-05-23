@@ -1,5 +1,9 @@
+import { Injectable } from '@angular/core';
+
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Storage } from './storage.model';
 
+@Injectable({ providedIn: 'root' })
 export class StorageService {
     storages: Storage[] = [
         new Storage(
@@ -43,11 +47,17 @@ export class StorageService {
         ),
     ];
 
+    constructor(private dataStoreService: DataStorageService) {}
+
     getStorages(): Storage[] {
         return this.storages.slice();
     }
 
     getStorage(index: number): Storage {
         return this.storages[index];
+    }
+
+    storeStorages(): void {
+        this.dataStoreService.storeProducts(this.storages, 'storages');
     }
 }

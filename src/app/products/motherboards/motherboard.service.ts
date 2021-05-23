@@ -1,5 +1,9 @@
+import { Injectable } from '@angular/core';
+
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Motherboard } from './motherboard.model';
 
+@Injectable({ providedIn: 'root' })
 export class MotherboardService {
     motherboards: Motherboard[] = [
         new Motherboard(
@@ -163,11 +167,17 @@ export class MotherboardService {
         ),
     ];
 
+    constructor(private dataStoreService: DataStorageService) {}
+
     getMotherboards(): Motherboard[] {
         return this.motherboards.slice();
     }
 
     getMotherbboard(index: number): Motherboard {
         return this.motherboards[index];
+    }
+
+    storeMotherboards(): void {
+        this.dataStoreService.storeProducts(this.motherboards, 'motherboards');
     }
 }

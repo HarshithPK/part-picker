@@ -1,5 +1,9 @@
+import { Injectable } from '@angular/core';
+
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Cooler } from './cooler.model';
 
+@Injectable({ providedIn: 'root' })
 export class CoolerService {
     coolers: Cooler[] = [
         new Cooler(
@@ -101,11 +105,17 @@ export class CoolerService {
         ),
     ];
 
+    constructor(private dataStorageService: DataStorageService) {}
+
     getCoolers(): Cooler[] {
         return this.coolers.slice();
     }
 
     getCooler(index: number): Cooler {
         return this.coolers[index];
+    }
+
+    storeCoolers(): void {
+        this.dataStorageService.storeProducts(this.coolers, 'coolers');
     }
 }

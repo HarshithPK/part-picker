@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { PowerSupply } from '../power-supply.model';
 import { PowerSupplyService } from '../power-supply.service';
 
@@ -15,4 +16,10 @@ export class PowerSuppliesStartComponent implements OnInit {
     ngOnInit(): void {
         this.powerSupplies = this.powerSupplyService.getPowerSupplies();
     }
+
+    storePowerSupply(): void {
+        this.powerSupplyService.storePowerSupply();
+    }
+
+    loadPowerSupply(): void {}
 }

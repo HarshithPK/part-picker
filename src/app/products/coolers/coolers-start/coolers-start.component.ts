@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 import { Cooler } from '../cooler.model';
 import { CoolerService } from '../cooler.service';
@@ -11,9 +12,18 @@ import { CoolerService } from '../cooler.service';
 export class CoolersStartComponent implements OnInit {
     coolers!: Cooler[];
 
-    constructor(private coolerService: CoolerService) {}
+    constructor(
+        private coolerService: CoolerService,
+        private dataStorageService: DataStorageService
+    ) {}
 
     ngOnInit(): void {
         this.coolers = this.coolerService.getCoolers();
     }
+
+    storeCoolers(): void {
+        this.coolerService.storeCoolers();
+    }
+
+    loadCoolers(): void {}
 }

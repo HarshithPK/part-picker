@@ -6,7 +6,6 @@ import { CabinateService } from './cabinate.service';
     selector: 'app-cabinates',
     templateUrl: './cabinates.component.html',
     styleUrls: ['./cabinates.component.scss'],
-    providers: [CabinateService],
 })
 export class CabinatesComponent implements OnInit {
     constructor() {}

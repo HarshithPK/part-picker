@@ -1,5 +1,9 @@
+import { Injectable } from '@angular/core';
+
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Cabinate } from './cabinate.model';
 
+@Injectable({ providedIn: 'root' })
 export class CabinateService {
     cabinates: Cabinate[] = [
         new Cabinate(
@@ -64,11 +68,17 @@ export class CabinateService {
         ),
     ];
 
+    constructor(private dataStorageService: DataStorageService) {}
+
     getCabinates(): Cabinate[] {
         return this.cabinates.slice();
     }
 
     getCabinate(index: number): Cabinate {
         return this.cabinates[index];
+    }
+
+    storeCabinates(): void {
+        this.dataStorageService.storeProducts(this.cabinates, 'cabinates');
     }
 }

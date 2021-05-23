@@ -16,4 +16,12 @@ export class ProcessorsStartComponent implements OnInit {
     ngOnInit(): void {
         this.processors = this.processorService.getProcessors();
     }
+
+    storeProcessors(): void {
+        this.processorService.storeProcessors();
+    }
+
+    loadProcessors(): void {
+        // this.dataStoreService.loadProcessors();
+    }
 }

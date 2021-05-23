@@ -16,4 +16,10 @@ export class CabinatesStartComponent implements OnInit {
     ngOnInit(): void {
         this.cabinates = this.cabinateService.getCabinates();
     }
+
+    storeCabinates(): void {
+        this.cabinateService.storeCabinates();
+    }
+
+    loadCabinates(): void {}
 }

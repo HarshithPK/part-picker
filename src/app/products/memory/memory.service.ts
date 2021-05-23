@@ -1,5 +1,9 @@
+import { Injectable } from '@angular/core';
+
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Memory } from './momery.model';
 
+@Injectable({ providedIn: 'root' })
 export class MemoryService {
     memory: Memory[] = [
         new Memory(
@@ -58,11 +62,17 @@ export class MemoryService {
         ),
     ];
 
+    constructor(private dataStoreService: DataStorageService) {}
+
     getMemory(): Memory[] {
         return this.memory.slice();
     }
 
     getRAM(index: number): Memory {
         return this.memory[index];
+    }
+
+    storeMemory(): void {
+        this.dataStoreService.storeProducts(this.memory, 'memory');
     }
 }
