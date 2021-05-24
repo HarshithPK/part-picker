@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { Memory } from '../momery.model';
 import { MemoryService } from '../memory.service';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 @Component({
     selector: 'app-memory-start',
