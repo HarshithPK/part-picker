@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Motherboard } from '../motherboard.model';
 import { MotherboardService } from '../motherboard.service';
 
