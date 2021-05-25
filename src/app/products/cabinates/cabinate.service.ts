@@ -71,7 +71,10 @@ export class CabinateService {
     constructor(private dataStorageService: DataStorageService) {}
 
     getCabinates(): Cabinate[] {
+        // this.cabinates = this.dataStorageService.loadProducts('cabinates');
+        // setTimeout(()=> {},3000);
         return this.cabinates.slice();
+        // return this.cabinates.slice();
     }
 
     getCabinate(index: number): Cabinate {
@@ -80,5 +83,9 @@ export class CabinateService {
 
     storeCabinates(): void {
         this.dataStorageService.storeProducts(this.cabinates, 'cabinates');
+    }
+
+    loadCabinates(): void {
+        this.dataStorageService.loadProducts('cabinates');
     }
 }

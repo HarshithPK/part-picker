@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { Motherboard } from '../motherboard.model';
@@ -11,10 +12,13 @@ import { MotherboardService } from '../motherboard.service';
 export class MotherboardsStartComponent implements OnInit {
     motherboards!: Motherboard[];
 
-    constructor(private motherboardService: MotherboardService) {}
+    constructor(private motherboardService: MotherboardService, private http:HttpClient) {}
 
     ngOnInit(): void {
-        this.motherboards = this.motherboardService.getMotherboards();
+        const url = 'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/motherboards.json';
+        this.http.get<Motherboard[]>(url).subscribe(motherboards => {
+            this.motherboards = motherboards;
+        })
     }
 
     storeMotherboards(): void {

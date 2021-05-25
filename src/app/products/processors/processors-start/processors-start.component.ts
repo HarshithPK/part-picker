@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Processor } from '../processor.model';
@@ -11,10 +12,13 @@ import { ProcessorService } from '../processor.service';
 export class ProcessorsStartComponent implements OnInit {
     processors!: Processor[];
 
-    constructor(private processorService: ProcessorService) {}
+    constructor(private processorService: ProcessorService, private http: HttpClient) {}
 
     ngOnInit(): void {
-        this.processors = this.processorService.getProcessors();
+        const url = 'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/processors.json';
+        this.http.get<Processor[]>(url).subscribe(processors => {
+            this.processors = processors;
+        })
     }
 
     storeProcessors(): void {

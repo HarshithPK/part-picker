@@ -15,4 +15,17 @@ export class DataStorageService {
             console.log(response);
         });
     }
+
+    loadProducts(productType: string): any {
+        let product;
+
+        const url = 'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/' +      productType + '.json';
+
+        this.http.get(url).subscribe(product => {
+            console.log(product);
+            product = product;
+        });
+
+        return product;
+    }
 }

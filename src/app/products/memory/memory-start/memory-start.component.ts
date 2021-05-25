@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Memory } from '../momery.model';
 import { MemoryService } from '../memory.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-memory-start',
@@ -11,10 +12,13 @@ import { MemoryService } from '../memory.service';
 export class MemoryStartComponent implements OnInit {
     memory!: Memory[];
 
-    constructor(private memorySeervice: MemoryService) {}
+    constructor(private memorySeervice: MemoryService, private http: HttpClient) {}
 
     ngOnInit(): void {
-        this.memory = this.memorySeervice.getMemory();
+        const url = 'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/memory.json';
+        this.http.get<Memory[]>(url).subscribe(memory => {
+            this.memory = memory;
+        })
     }
 
     storeMemory(): void {
