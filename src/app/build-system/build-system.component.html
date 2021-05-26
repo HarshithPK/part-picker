@@ -1,1 +1,191 @@
 <h1>Build System page</h1>
+<div class="table-responsive">
+    <table class="table table-dark border-light">
+        <thead>
+            <tr class="component-headings">
+                <th scope="col">Components</th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="components">
+                <th scope="row">CPU</th>
+                <td *ngIf="cpuSelected === null">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary btn-rounded"
+                    >
+                        Add CPU
+                    </button>
+                </td>
+                <td *ngIf="cpuSelected !== null">
+                    {{ cpuSelected.imagePath }}
+                </td>
+                <td *ngIf="cpuSelected === null">None</td>
+                <td *ngIf="cpuSelected !== null">
+                    {{ cpuSelected.name }}
+                </td>
+                <td *ngIf="cpuSelected === null">None</td>
+                <td *ngIf="cpuSelected !== null">
+                    {{ cpuSelected.price }}
+                </td>
+            </tr>
+            <tr class="components">
+                <th scope="row">CPU Cooler</th>
+                <td *ngIf="coolerSelected === null">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary btn-rounded"
+                    >
+                        Add Cooler
+                    </button>
+                </td>
+                <td *ngIf="coolerSelected !== null">
+                    {{ coolerSelected.imagePath }}
+                </td>
+                <td *ngIf="coolerSelected === null">None</td>
+                <td *ngIf="coolerSelected !== null">
+                    {{ coolerSelected.name }}
+                </td>
+                <td *ngIf="coolerSelected === null">None</td>
+                <td *ngIf="coolerSelected !== null">
+                    {{ coolerSelected.price }}
+                </td>
+            </tr>
+            <tr class="components">
+                <th scope="row">Motherboard</th>
+                <td *ngIf="motherboardSelected === null">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary btn-rounded"
+                    >
+                        Add Motherboard
+                    </button>
+                </td>
+                <td *ngIf="motherboardSelected !== null">
+                    {{ motherboardSelected.imagePath }}
+                </td>
+                <td *ngIf="motherboardSelected === null">None</td>
+                <td *ngIf="motherboardSelected !== null">
+                    {{ motherboardSelected.name }}
+                </td>
+                <td *ngIf="motherboardSelected === null">None</td>
+                <td *ngIf="motherboardSelected !== null">
+                    {{ motherboardSelected.price }}
+                </td>
+            </tr>
+            <tr class="components">
+                <th scope="row">Memory</th>
+                <td *ngIf="memorySelected === null">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary btn-rounded"
+                    >
+                        Add Memory
+                    </button>
+                </td>
+                <td *ngIf="memorySelected !== null">
+                    {{ memorySelected.imagePath }}
+                </td>
+                <td *ngIf="memorySelected === null">None</td>
+                <td *ngIf="memorySelected !== null">
+                    {{ memorySelected.name }}
+                </td>
+                <td *ngIf="memorySelected === null">None</td>
+                <td *ngIf="memorySelected !== null">
+                    {{ memorySelected.price }}
+                </td>
+            </tr>
+            <tr class="components">
+                <th scope="row">Storage</th>
+                <td *ngIf="storageSelected === null">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary btn-rounded"
+                    >
+                        Add Storage
+                    </button>
+                </td>
+                <td *ngIf="storageSelected !== null">
+                    {{ storageSelected.imagePath }}
+                </td>
+                <td *ngIf="storageSelected === null">None</td>
+                <td *ngIf="storageSelected !== null">
+                    {{ storageSelected.name }}
+                </td>
+                <td *ngIf="storageSelected === null">None</td>
+                <td *ngIf="storageSelected !== null">
+                    {{ storageSelected.price }}
+                </td>
+            </tr>
+            <tr class="components">
+                <th scope="row">Graphics Card</th>
+                <td *ngIf="graphicsCardSelected === null">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary btn-rounded"
+                    >
+                        Add Graphics Card
+                    </button>
+                </td>
+                <td *ngIf="graphicsCardSelected !== null">
+                    {{ graphicsCardSelected.imagePath }}
+                </td>
+                <td *ngIf="graphicsCardSelected === null">None</td>
+                <td *ngIf="graphicsCardSelected !== null">
+                    {{ graphicsCardSelected.name }}
+                </td>
+                <td *ngIf="graphicsCardSelected === null">None</td>
+                <td *ngIf="graphicsCardSelected !== null">
+                    {{ graphicsCardSelected.price }}
+                </td>
+            </tr>
+            <tr class="components">
+                <th scope="row">Cabinate</th>
+                <td *ngIf="cabinateSelected === null">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary btn-rounded"
+                    >
+                        Add Cabinate
+                    </button>
+                </td>
+                <td *ngIf="cabinateSelected !== null">
+                    {{ cabinateSelected.imagePath }}
+                </td>
+                <td *ngIf="cabinateSelected === null">None</td>
+                <td *ngIf="cabinateSelected !== null">
+                    {{ cabinateSelected.name }}
+                </td>
+                <td *ngIf="cabinateSelected === null">None</td>
+                <td *ngIf="cabinateSelected !== null">
+                    {{ cabinateSelected.price }}
+                </td>
+            </tr>
+            <tr class="components">
+                <th scope="row">Power Supply</th>
+                <td *ngIf="powerSupplySelected === null">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary btn-rounded"
+                    >
+                        Add Power Supply
+                    </button>
+                </td>
+                <td *ngIf="powerSupplySelected !== null">
+                    {{ powerSupplySelected.imagePath }}
+                </td>
+                <td *ngIf="powerSupplySelected === null">None</td>
+                <td *ngIf="powerSupplySelected !== null">
+                    {{ powerSupplySelected.name }}
+                </td>
+                <td *ngIf="powerSupplySelected === null">None</td>
+                <td *ngIf="powerSupplySelected !== null">
+                    {{ powerSupplySelected.price }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

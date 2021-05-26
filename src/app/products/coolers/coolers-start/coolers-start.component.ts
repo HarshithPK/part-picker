@@ -11,7 +11,6 @@ import { CoolerService } from '../cooler.service';
 })
 export class CoolersStartComponent implements OnInit {
     coolers!: Cooler[];
-
     constructor(private coolerService: CoolerService, private http: HttpClient) {}
 
     ngOnInit(): void {
