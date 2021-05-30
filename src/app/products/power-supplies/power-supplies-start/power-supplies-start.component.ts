@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { PowerSupply } from '../power-supply.model';
 import { PowerSupplyService } from '../power-supply.service';
 
@@ -10,20 +10,22 @@ import { PowerSupplyService } from '../power-supply.service';
     styleUrls: ['./power-supplies-start.component.scss'],
 })
 export class PowerSuppliesStartComponent implements OnInit {
-    powerSupplies!: PowerSupply[];
+    powerSupplies: PowerSupply[] = null!;
 
-    constructor(private powerSupplyService: PowerSupplyService, private http: HttpClient) {}
+    constructor(
+        private powerSupplyService: PowerSupplyService,
+        private dataStorageService: DataStorageService
+    ) {}
 
     ngOnInit(): void {
-        const url = 'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/powerSupplies.json';
-        this.http.get<PowerSupply[]>(url).subscribe(powerSupplies => {
-            this.powerSupplies = powerSupplies;
-        })
+        this.powerSupplies = this.powerSupplyService.getPowerSupplies();
     }
 
     storePowerSupply(): void {
-        this.powerSupplyService.storePowerSupply();
+        this.dataStorageService.storePowerSupplies();
     }
 
-    loadPowerSupply(): void {}
+    loadPowerSupply(): void {
+        this.dataStorageService.fetchPowerSupplies();
+    }
 }

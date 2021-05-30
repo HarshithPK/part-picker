@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 import { Storage } from '../storage.model';
 import { StorageService } from '../storage.service';
@@ -10,20 +10,22 @@ import { StorageService } from '../storage.service';
     styleUrls: ['./storage-start.component.scss'],
 })
 export class StorageStartComponent implements OnInit {
-    storages!: Storage[];
+    storages: Storage[] = null!;
 
-    constructor(private storageService: StorageService, private http: HttpClient) {}
+    constructor(
+        private storageService: StorageService,
+        private dataStorageService: DataStorageService
+    ) {}
 
     ngOnInit(): void {
-        const url = 'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/storages.json';
-        this.http.get<Storage[]>(url).subscribe(storages => {
-            this.storages = storages;
-        })
+        this.storages = this.storageService.getStorages();
     }
 
     storeStorages(): void {
-        this.storageService.storeStorages();
+        this.dataStorageService.storeStorages();
     }
 
-    loadStorages(): void {}
+    loadStorages(): void {
+        this.dataStorageService.fetchStorages();
+    }
 }

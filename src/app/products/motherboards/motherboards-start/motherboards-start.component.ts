@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Motherboard } from '../motherboard.model';
 import { MotherboardService } from '../motherboard.service';
 
@@ -10,22 +10,22 @@ import { MotherboardService } from '../motherboard.service';
     styleUrls: ['./motherboards-start.component.scss'],
 })
 export class MotherboardsStartComponent implements OnInit {
-    motherboards!: Motherboard[];
+    motherboards: Motherboard[] = null!;
 
-    constructor(private motherboardService: MotherboardService, private http:HttpClient) {}
+    constructor(
+        private motherboardService: MotherboardService,
+        private dataStorageService: DataStorageService
+    ) {}
 
     ngOnInit(): void {
-        const url = 'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/motherboards.json';
-        this.http.get<Motherboard[]>(url).subscribe(motherboards => {
-            this.motherboards = motherboards;
-        })
+        this.motherboards = this.motherboardService.getMotherboards();
     }
 
     storeMotherboards(): void {
-        this.motherboardService.storeMotherboards();
+        this.dataStorageService.storeMotherboards();
     }
 
     loadMotherboards(): void {
-        // this.dataStoreService.loadProcessors();
+        this.dataStorageService.fetchMotherboards();
     }
 }

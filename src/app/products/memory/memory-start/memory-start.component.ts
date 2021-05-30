@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { Memory } from '../momery.model';
 import { MemoryService } from '../memory.service';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 @Component({
     selector: 'app-memory-start',
@@ -10,20 +10,22 @@ import { MemoryService } from '../memory.service';
     styleUrls: ['./memory-start.component.scss'],
 })
 export class MemoryStartComponent implements OnInit {
-    memory!: Memory[];
+    memory: Memory[] = null!;
 
-    constructor(private memorySeervice: MemoryService, private http: HttpClient) {}
+    constructor(
+        private memorySeervice: MemoryService,
+        private dataStorageService: DataStorageService
+    ) {}
 
     ngOnInit(): void {
-        const url = 'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/memory.json';
-        this.http.get<Memory[]>(url).subscribe(memory => {
-            this.memory = memory;
-        })
+        this.memory = this.memorySeervice.getMemory();
     }
 
     storeMemory(): void {
-        this.memorySeervice.storeMemory();
+        this.dataStorageService.storeMemory();
     }
 
-    loadMemory(): void {}
+    loadMemory(): void {
+        this.dataStorageService.fetchMemory();
+    }
 }

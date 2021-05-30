@@ -1,0 +1,63 @@
+<div class="row mt-5">
+    <div class="col-xs-12 col-md-6 mt-3">
+        <div *ngIf="isLoading" style="text-align: center">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        <form
+            class="d-flex flex-column justify-contents-center mt-5"
+            #authForm="ngForm"
+            (ngSubmit)="onSubmit(authForm)"
+            *ngIf="!isLoading"
+        >
+            <h2 class="form-components login-title">
+                {{ isLoginMode ? "Login" : "Sign Up" }}
+            </h2>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input
+                    matInput
+                    type="email"
+                    id="email"
+                    name="email"
+                    ngModel
+                    required
+                    email
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input
+                    matInput
+                    type="password"
+                    id="password"
+                    name="password"
+                    ngModel
+                    required
+                    minlength="6"
+                />
+            </mat-form-field>
+            <div class="alert alert-danger form-components" *ngIf="error">
+                <p style="margin-bottom: 0">{{ error }}</p>
+            </div>
+
+            <div class="form-components">
+                <button
+                    type="submit"
+                    matRipple
+                    class="btn btn-dark btn-rounded signup-button"
+                    [disabled]="!authForm.valid"
+                >
+                    {{ isLoginMode ? "Login" : "Sign Up" }}
+                </button>
+                <button
+                    type="button"
+                    matRipple
+                    class="btn btn-dark btn-rounded login-button"
+                    (click)="onSwitchMode()"
+                >
+                    Switch to {{ isLoginMode ? "Sign Up" : "Login" }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

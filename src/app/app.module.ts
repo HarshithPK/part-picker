@@ -35,6 +35,9 @@ import { StorageDetailComponent } from './products/storage/storage-detail/storag
 import { CabinatesComponent } from './products/cabinates/cabinates.component';
 import { CabinatesStartComponent } from './products/cabinates/cabinates-start/cabinates-start.component';
 import { CabinateDetailComponent } from './products/cabinates/cabinate-detail/cabinate-detail.component';
+import { AuthComponent } from './auth/auth.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 export const appRoutes = [];
 
@@ -69,10 +72,14 @@ export const appRoutes = [];
         CabinatesComponent,
         CabinatesStartComponent,
         CabinateDetailComponent,
+        AuthComponent,
+        LoadingSpinnerComponent,
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
         MaterialModule,
         AppRoutingModule,
         MdbModule,

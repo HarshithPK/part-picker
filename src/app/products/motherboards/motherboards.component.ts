@@ -6,7 +6,6 @@ import { MotherboardService } from './motherboard.service';
     selector: 'app-motherboards',
     templateUrl: './motherboards.component.html',
     styleUrls: ['./motherboards.component.scss'],
-    providers: [MotherboardService],
 })
 export class MotherboardsComponent implements OnInit {
     constructor() {}

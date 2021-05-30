@@ -1,0 +1,58 @@
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+@import "~mdb-angular-ui-kit/assets/scss/mdb.scss";
+
+.login-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: bolder;
+}
+
+.form-components {
+    max-width: 40%;
+    margin-left: 30%;
+}
+
+.signup-button {
+    margin-right: 5px;
+}
+
+.signup-button:hover {
+    background-color: rgba(37, 36, 36, 0.774);
+    color: white;
+}
+
+.login-button:hover {
+    background-color: rgba(37, 36, 36, 0.774);
+    color: white;
+}
+
+.mat-input-element {
+    color: black;
+}
+
+.ng-star-inserted {
+    font-weight: 550;
+    color: black;
+}
+
+.mat-form-field-autofill-control {
+    color: black;
+}
+
+::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: rgb(18, 102, 241);
+    }
+    mat-form-field {
+        .mat-hint,
+        input,
+        ::placeholder,
+        .mat-form-field-label {
+            color: rgb(0, 0, 0);
+        }
+    }
+}

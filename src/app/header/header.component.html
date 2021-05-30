@@ -21,6 +21,9 @@
                 matRipple
                 type="button"
                 class="btn btn-outline-info authentication-button text-white"
+                routerLink="/authentication"
+                routerLinkActive="active-route"
+                *ngIf="!isAuthenticated"
             >
                 <i class="fas fa-user-shield"></i> Authentication
             </button>
@@ -30,6 +33,7 @@
                 class="btn btn-outline-info build-button text-white"
                 routerLink="/build-system"
                 routerLinkActive="active-route"
+                *ngIf="isAuthenticated"
             >
                 <i class="fas fa-microchip"></i> Build System
             </button>
@@ -234,6 +238,7 @@
             matRipple
             type="button"
             class="btn btn-outline-danger logout-button"
+            *ngIf="isAuthenticated"
         >
             <i class="fas fa-sign-out-alt"><span> </span></i> Logout
         </button>

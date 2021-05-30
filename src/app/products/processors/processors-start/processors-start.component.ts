@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Processor } from '../processor.model';
 import { ProcessorService } from '../processor.service';
 
@@ -10,22 +10,22 @@ import { ProcessorService } from '../processor.service';
     styleUrls: ['./processors-start.component.scss'],
 })
 export class ProcessorsStartComponent implements OnInit {
-    processors!: Processor[];
+    processors: Processor[] = null!;
 
-    constructor(private processorService: ProcessorService, private http: HttpClient) {}
+    constructor(
+        private processorService: ProcessorService,
+        private dataStorageService: DataStorageService
+    ) {}
 
     ngOnInit(): void {
-        const url = 'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/processors.json';
-        this.http.get<Processor[]>(url).subscribe(processors => {
-            this.processors = processors;
-        })
+        this.processors = this.processorService.getProcessors();
     }
 
     storeProcessors(): void {
-        this.processorService.storeProcessors();
+        this.dataStorageService.storeProcessors();
     }
 
     loadProcessors(): void {
-        // this.dataStoreService.loadProcessors();
+        this.dataStorageService.fetchProcessors();
     }
 }

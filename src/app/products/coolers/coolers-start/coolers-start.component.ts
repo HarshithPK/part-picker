@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Cooler } from '../cooler.model';
 import { CoolerService } from '../cooler.service';
 
@@ -10,20 +10,22 @@ import { CoolerService } from '../cooler.service';
     styleUrls: ['./coolers-start.component.scss'],
 })
 export class CoolersStartComponent implements OnInit {
-    coolers!: Cooler[];
-    constructor(private coolerService: CoolerService, private http: HttpClient) {}
+    coolers: Cooler[] = null!;
+
+    constructor(
+        private coolerService: CoolerService,
+        private dataStorageService: DataStorageService
+    ) {}
 
     ngOnInit(): void {
-        const url = 'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/coolers.json';
-        this.http.get<Cooler[]>(url).subscribe(coolers => {
-            this.coolers = coolers;
-        })
-        // this.coolers = this.coolerService.getCoolers();
+        this.coolers = this.coolerService.getCoolers();
     }
 
     storeCoolers(): void {
-        this.coolerService.storeCoolers();
+        this.dataStorageService.storeCoolers();
     }
 
-    loadCoolers(): void {}
+    loadCoolers(): void {
+        this.dataStorageService.fetchCoolers();
+    }
 }

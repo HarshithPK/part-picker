@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 import { GraphicsCard } from '../graphics-card.model';
 import { GraphicsCardService } from '../graphics-card.service';
@@ -10,20 +11,22 @@ import { GraphicsCardService } from '../graphics-card.service';
     styleUrls: ['./graphics-cards-start.component.scss'],
 })
 export class GraphicsCardsStartComponent implements OnInit {
-    graphicsCards!: GraphicsCard[];
+    graphicsCards: GraphicsCard[] = null!;
 
-    constructor(private graphicsCardService: GraphicsCardService, private http: HttpClient) {}
+    constructor(
+        private graphicsCardService: GraphicsCardService,
+        private dataStorageService: DataStorageService
+    ) {}
 
     ngOnInit(): void {
-        const url = 'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/graphicsCards.json';
-        this.http.get<GraphicsCard[]>(url).subscribe(graphicsCards => {
-            this.graphicsCards = graphicsCards;
-        })
+        this.graphicsCards = this.graphicsCardService.getGraphicsCards();
     }
 
     storeGraphicsCards(): void {
-        this.graphicsCardService.storeGraphicsCards();
+        this.dataStorageService.storeGraphicsCards();
     }
 
-    loadGraphicsCards(): void {}
+    loadGraphicsCards(): void {
+        this.dataStorageService.fetchGraphicsCards();
+    }
 }

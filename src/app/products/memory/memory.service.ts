@@ -1,11 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
-import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Memory } from './momery.model';
 
 @Injectable({ providedIn: 'root' })
 export class MemoryService {
+    private memoryChanged = new Subject<Memory[]>();
+
     // memory: Memory[] = [
     //     new Memory(
     //         'CORSAIR',
@@ -63,23 +64,20 @@ export class MemoryService {
     //     ),
     // ];
 
-    memory!: Memory[];
-    constructor(private dataStoreService: DataStorageService, private http: HttpClient) {}
+    private memory: Memory[] = [];
+
+    constructor() {}
+
+    setMemory(memory: Memory[]) {
+        this.memory = memory;
+        this.memoryChanged.next(this.memory.slice());
+    }
 
     getMemory(): Memory[] {
-        const url = 'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/memory.json';
-
-        this.http.get<Memory[]>(url).subscribe(memorys => {
-            this.memory = memorys;
-        })
-        return this.memory;
+        return this.memory.slice();
     }
 
     getRAM(index: number): Memory {
         return this.memory[index];
-    }
-
-    storeMemory(): void {
-        this.dataStoreService.storeProducts(this.memory, 'memory');
     }
 }
