@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { BuildSystemComponent } from './build-system/build-system.component';
 import { CabinateDetailComponent } from './products/cabinates/cabinate-detail/cabinate-detail.component';
-import { CabinatesResolverService } from './products/cabinates/cabinates-start/cabinates-resolver.service';
+import { CabinatesResolverService } from './products/cabinates/cabinates-resolver.service';
 import { CabinatesStartComponent } from './products/cabinates/cabinates-start/cabinates-start.component';
 import { CabinatesComponent } from './products/cabinates/cabinates.component';
 import { CoolerDetailComponent } from './products/coolers/cooler-detail/cooler-detail.component';
@@ -12,11 +12,11 @@ import { CoolersResolcerService } from './products/coolers/coolers-resolver.serv
 import { CoolersStartComponent } from './products/coolers/coolers-start/coolers-start.component';
 import { CoolersComponent } from './products/coolers/coolers.component';
 import { GraphicsCardDetailComponent } from './products/graphics-card/graphics-card-detail/graphics-card-detail.component';
-import { GraphicsCardsResolverService } from './products/graphics-card/graphics-card-start/graphics-cards-resolver.service';
+import { GraphicsCardsResolverService } from './products/graphics-card/graphics-cards-resolver.service';
 import { GraphicsCardsStartComponent } from './products/graphics-card/graphics-card-start/graphics-cards-start.component';
 import { GraphicsCardsComponent } from './products/graphics-card/graphics-cards.component';
 import { MemoryDetailComponent } from './products/memory/memory-detail/memory-detail.component';
-import { MemoryResolverService } from './products/memory/memory-start/memory-resolver.service';
+import { MemoryResolverService } from './products/memory/memory-resolver.service';
 import { MemoryStartComponent } from './products/memory/memory-start/memory-start.component';
 import { MemoryComponent } from './products/memory/memory.component';
 import { MotherboardDetailComponent } from './products/motherboards/motherboard-detail/motherboard-detail.component';
@@ -37,13 +37,19 @@ import { StorageDetailComponent } from './products/storage/storage-detail/storag
 import { StorageStartComponent } from './products/storage/storage-start/storage-start.component';
 import { StorageComponent } from './products/storage/storage.component';
 import { StoragesResolverService } from './products/storage/storages-resolver.service';
+import { AuthGuard } from './auth/auth.guard';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/build-system', pathMatch: 'full' },
-    { path: 'build-system', component: BuildSystemComponent },
+    {
+        path: 'build-system',
+        component: BuildSystemComponent,
+        canActivate: [AuthGuard],
+    },
     {
         path: 'products',
         component: ProductsComponent,
+        canActivate: [AuthGuard],
         children: [
             { path: '', component: ProductsStartComponent, pathMatch: 'full' },
             {

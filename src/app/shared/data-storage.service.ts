@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { exhaustMap, take, tap } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 import { Cabinate } from '../products/cabinates/cabinate.model';
 import { CabinateService } from '../products/cabinates/cabinate.service';
@@ -24,6 +25,7 @@ import { StorageService } from '../products/storage/storage.service';
 export class DataStorageService {
     constructor(
         private http: HttpClient,
+        private authService: AuthService,
         private processorService: ProcessorService,
         private cabinateService: CabinateService,
         private coolerService: CoolerService,
@@ -36,201 +38,170 @@ export class DataStorageService {
 
     storeProcessors() {
         const processors = this.processorService.getProcessors();
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/processors.json';
 
-        this.http
-            .put(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/processors.json',
-                processors
-            )
-            .subscribe((response) => {
-                console.log(response);
-            });
+        this.http.put(url, processors).subscribe((response) => {
+            console.log(response);
+        });
     }
 
     fetchProcessors() {
-        return this.http
-            .get<Processor[]>(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/processors.json'
-            )
-            .pipe(
-                tap((processors) => {
-                    this.processorService.setProcessors(processors);
-                })
-            );
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/processors.json';
+
+        return this.http.get<Processor[]>(url).pipe(
+            tap((processors) => {
+                this.processorService.setProcessors(processors);
+            })
+        );
     }
 
     storeCabinates() {
         const cabinates = this.cabinateService.getCabinates();
 
-        this.http
-            .put(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/cabinates.json',
-                cabinates
-            )
-            .subscribe((response) => {
-                console.log(response);
-            });
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/cabinates.json';
+
+        this.http.put(url, cabinates).subscribe((response) => {
+            console.log(response);
+        });
     }
 
     fetchCabinates() {
-        return this.http
-            .get<Cabinate[]>(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/cabinates.json'
-            )
-            .pipe(
-                tap((cabinates) => {
-                    this.cabinateService.setCabinates(cabinates);
-                })
-            );
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/cabinates.json';
+
+        return this.http.get<Cabinate[]>(url).pipe(
+            tap((cabinates) => {
+                this.cabinateService.setCabinates(cabinates);
+            })
+        );
     }
 
     storeCoolers() {
         const coolers = this.coolerService.getCoolers();
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/coolers.json';
 
-        this.http
-            .put(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/coolers.json',
-                coolers
-            )
-            .subscribe((response) => {
-                console.log(response);
-            });
+        this.http.put(url, coolers).subscribe((response) => {
+            console.log(response);
+        });
     }
 
     fetchCoolers() {
-        return this.http
-            .get<Cooler[]>(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/coolers.json'
-            )
-            .pipe(
-                tap((coolers) => {
-                    this.coolerService.setCoolers(coolers);
-                })
-            );
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/coolers.json';
+
+        return this.http.get<Cooler[]>(url).pipe(
+            tap((coolers) => {
+                this.coolerService.setCoolers(coolers);
+            })
+        );
     }
 
     storeGraphicsCards() {
         const graphicsCards = this.graphicsCardService.getGraphicsCards();
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/graphicsCards.json';
 
-        this.http
-            .put(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/graphicsCards.json',
-                graphicsCards
-            )
-            .subscribe((response) => {
-                console.log(response);
-            });
+        this.http.put(url, graphicsCards).subscribe((response) => {
+            console.log(response);
+        });
     }
 
     fetchGraphicsCards() {
-        return this.http
-            .get<GraphicsCard[]>(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/graphicsCards.json'
-            )
-            .pipe(
-                tap((graphicsCards) => {
-                    this.graphicsCardService.setGraphicsCards(graphicsCards);
-                })
-            );
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/graphicsCards.json';
+
+        return this.http.get<GraphicsCard[]>(url).pipe(
+            tap((graphicsCards) => {
+                this.graphicsCardService.setGraphicsCards(graphicsCards);
+            })
+        );
     }
 
     storeMemory() {
         const memory = this.memoryService.getMemory();
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/memory.json';
 
-        this.http
-            .put(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/memory.json',
-                memory
-            )
-            .subscribe((response) => {
-                console.log(response);
-            });
+        this.http.put(url, memory).subscribe((response) => {
+            console.log(response);
+        });
     }
 
     fetchMemory() {
-        return this.http
-            .get<Memory[]>(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/memory.json'
-            )
-            .pipe(
-                tap((memory) => {
-                    this.memoryService.setMemory(memory);
-                })
-            );
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/memory.json';
+
+        return this.http.get<Memory[]>(url).pipe(
+            tap((memory) => {
+                this.memoryService.setMemory(memory);
+            })
+        );
     }
 
     storeMotherboards() {
         const motherboards = this.motherboardService.getMotherboards();
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/motherboards.json';
 
-        this.http
-            .put(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/motherboards.json',
-                motherboards
-            )
-            .subscribe((response) => {
-                console.log(response);
-            });
+        this.http.put(url, motherboards).subscribe((response) => {
+            console.log(response);
+        });
     }
 
     fetchMotherboards() {
-        return this.http
-            .get<Motherboard[]>(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/motherboards.json'
-            )
-            .pipe(
-                tap((motherboards) => {
-                    this.motherboardService.setMotherboards(motherboards);
-                })
-            );
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/motherboards.json';
+
+        return this.http.get<Motherboard[]>(url).pipe(
+            tap((motherboards) => {
+                this.motherboardService.setMotherboards(motherboards);
+            })
+        );
     }
 
     storePowerSupplies() {
         const powerSupplies = this.powerSuplyService.getPowerSupplies();
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/powerSupplies.json';
 
-        this.http
-            .put(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/powerSupplies.json',
-                powerSupplies
-            )
-            .subscribe((response) => {
-                console.log(response);
-            });
+        this.http.put(url, powerSupplies).subscribe((response) => {
+            console.log(response);
+        });
     }
 
     fetchPowerSupplies() {
-        return this.http
-            .get<PowerSupply[]>(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/powerSupplies.json'
-            )
-            .pipe(
-                tap((powerSupplies) => {
-                    this.powerSuplyService.setPowerSupplies(powerSupplies);
-                })
-            );
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/powerSupplies.json';
+
+        return this.http.get<PowerSupply[]>(url).pipe(
+            tap((powerSupplies) => {
+                this.powerSuplyService.setPowerSupplies(powerSupplies);
+            })
+        );
     }
 
     storeStorages() {
         const storages = this.storageService.getStorages();
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/storages.json';
 
-        this.http
-            .put(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/storages.json',
-                storages
-            )
-            .subscribe((response) => {
-                console.log(response);
-            });
+        this.http.put(url, storages).subscribe((response) => {
+            console.log(response);
+        });
     }
 
     fetchStorages() {
-        return this.http
-            .get<Storage[]>(
-                'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/storages.json'
-            )
-            .pipe(
-                tap((storages) => {
-                    this.storageService.setStorages(storages);
-                })
-            );
+        const url =
+            'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/storages.json';
+
+        return this.http.get<Storage[]>(url).pipe(
+            tap((storages) => {
+                this.storageService.setStorages(storages);
+            })
+        );
     }
 }

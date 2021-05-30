@@ -4,24 +4,25 @@ import {
     Resolve,
     RouterStateSnapshot,
 } from '@angular/router';
+
 import { DataStorageService } from 'src/app/shared/data-storage.service';
-import { Storage } from './storage.model';
-import { StorageService } from './storage.service';
+import { Cabinate } from './cabinate.model';
+import { CabinateService } from './cabinate.service';
 
 @Injectable({ providedIn: 'root' })
-export class StoragesResolverService implements Resolve<Storage[]> {
+export class CabinatesResolverService implements Resolve<Cabinate[]> {
     constructor(
         private dataStorageService: DataStorageService,
-        private storageService: StorageService
+        private cabinateService: CabinateService
     ) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const storages = this.storageService.getStorages();
+        const cabinates = this.cabinateService.getCabinates();
 
-        if (storages.length === 0) {
-            return this.dataStorageService.fetchStorages();
+        if (cabinates.length === 0) {
+            return this.dataStorageService.fetchCabinates();
         } else {
-            return storages;
+            return cabinates;
         }
     }
 }

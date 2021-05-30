@@ -8,11 +8,21 @@
     z-index: 50;
 }
 
+p {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-style: inset;
+    border-width: 1px;
+}
+
 .alert-box {
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
     position: fixed;
     top: 30vh;
-    left: 20vw;
-    width: 60vw;
+    left: 30vw;
+    width: 40vw;
     padding: 16px;
     z-index: 100;
     background: white;

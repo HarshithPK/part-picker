@@ -6,8 +6,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./alert.component.scss'],
 })
 export class AlertComponent {
-    @Input() message: string | undefined;
-    // tslint:disable-next-line: no-output-native
+    @Input() message!: string;
     @Output() close = new EventEmitter<void>();
 
     onClose(): void {

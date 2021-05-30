@@ -44,6 +44,7 @@
                     class="btn btn-outline-info products-button text-white"
                     routerLink="/products"
                     routerLinkActive="active-route"
+                    *ngIf="isAuthenticated"
                 >
                     <i class="fas fa-database"></i> Products
                 </button>
@@ -74,7 +75,7 @@
                     "
                     aria-labelledby="dropdownMenuButton"
                 >
-                    <div class="col">
+                    <div class="col" *ngIf="isAuthenticated">
                         <img
                             class="cpu-image"
                             src="{{ cpuImagePath }}"
@@ -91,7 +92,7 @@
                             Processor
                         </button>
                     </div>
-                    <div class="col">
+                    <div class="col" *ngIf="isAuthenticated">
                         <img
                             class="mobo-image"
                             src="{{ moboImagePath }}"
@@ -108,7 +109,7 @@
                             Motherboard
                         </button>
                     </div>
-                    <div class="col">
+                    <div class="col" *ngIf="isAuthenticated">
                         <img
                             class="ram-image"
                             src="{{ ramImagePath }}"
@@ -126,7 +127,7 @@
                             Memory
                         </button>
                     </div>
-                    <div class="col">
+                    <div class="col" *ngIf="isAuthenticated">
                         <img
                             class="cpu-cooler-image"
                             src="{{ cpuCoolerImagePath }}"
@@ -158,7 +159,7 @@
                     "
                     aria-labelledby="dropdownMenuButton"
                 >
-                    <div class="col">
+                    <div class="col" *ngIf="isAuthenticated">
                         <img
                             class="graphics-card-image"
                             src="{{ graphicsCardImagePath }}"
@@ -176,7 +177,7 @@
                             Graphics Card
                         </button>
                     </div>
-                    <div class="col">
+                    <div class="col" *ngIf="isAuthenticated">
                         <img
                             class="power-suppply-image"
                             src="{{ powerSupplyImagePath }}"
@@ -194,7 +195,7 @@
                             Power Supply
                         </button>
                     </div>
-                    <div class="col">
+                    <div class="col" *ngIf="isAuthenticated">
                         <img
                             class="storage-image"
                             src="{{ storageImagePath }}"
@@ -212,7 +213,7 @@
                             Storage
                         </button>
                     </div>
-                    <div class="col">
+                    <div class="col" *ngIf="isAuthenticated">
                         <img
                             class="cabinate-image"
                             src="{{ cabinateImagePath }}"
@@ -238,6 +239,7 @@
             matRipple
             type="button"
             class="btn btn-outline-danger logout-button"
+            (click)="onLogout()"
             *ngIf="isAuthenticated"
         >
             <i class="fas fa-sign-out-alt"><span> </span></i> Logout

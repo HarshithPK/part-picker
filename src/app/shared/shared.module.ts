@@ -6,8 +6,17 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { PlaceholderDirective } from './placeholder/placeholder.directive';
 
 NgModule({
-    declarations: [AlertComponent, PlaceholderDirective],
+    declarations: [
+        AlertComponent,
+        PlaceholderDirective,
+        LoadingSpinnerComponent,
+    ],
     imports: [CommonModule],
-    exports: [CommonModule, AlertComponent, PlaceholderDirective],
+    exports: [
+        CommonModule,
+        AlertComponent,
+        PlaceholderDirective,
+        LoadingSpinnerComponent,
+    ],
 });
 export class SharedModule {}
