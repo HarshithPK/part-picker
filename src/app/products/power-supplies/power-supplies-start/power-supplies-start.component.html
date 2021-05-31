@@ -85,9 +85,26 @@
                         class="
                             btn btn-outline-primary
                             mt-4
+                            add-power-supply-button
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Power Supply"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button
+                        matRipple
+                        type="button"
+                        class="
+                            btn btn-outline-primary
+                            mt-4
                             load-power-supply-button
                             ripple
                         "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="View Power Supply"
                         [routerLink]="[i]"
                     >
                         <i class="far fa-arrow-alt-circle-right"></i>
@@ -96,10 +113,19 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" (click)="storePowerSupply()">
+    <button
+        type="button"
+        class="btn btn-primary mt-2"
+        (click)="storePowerSupply()"
+        style="margin-right: 5px"
+    >
         Store Power Supply
     </button>
-    <button type="button" class="btn btn-primary" (click)="loadPowerSupply()">
+    <button
+        type="button"
+        class="btn btn-primary mt-2"
+        (click)="loadPowerSupply()"
+    >
         Load Power Supply
     </button>
 </div>

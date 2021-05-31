@@ -80,12 +80,25 @@
                     <button
                         matRipple
                         type="button"
+                        class="btn btn-outline-primary mt-4 add-storage-button"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Storage"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button
+                        matRipple
+                        type="button"
                         class="
                             btn btn-outline-primary
                             mt-4
                             load-storage-button
                             ripple
                         "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="View Storage"
                         [routerLink]="[i]"
                     >
                         <i class="far fa-arrow-alt-circle-right"></i>
@@ -94,10 +107,15 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" (click)="storeStorages()">
+    <button
+        type="button"
+        class="btn btn-primary mt-2"
+        (click)="storeStorages()"
+        style="margin-right: 5px"
+    >
         Store Storages
     </button>
-    <button type="button" class="btn btn-primary" (click)="loadStorages()">
+    <button type="button" class="btn btn-primary mt-2" (click)="loadStorages()">
         Load Storages
     </button>
 </div>

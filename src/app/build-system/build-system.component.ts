@@ -10,9 +10,9 @@ import { Processor } from '../products/processors/processor.model';
 import { Storage } from '../products/storage/storage.model';
 
 @Component({
-  selector: 'app-build-system',
-  templateUrl: './build-system.component.html',
-  styleUrls: ['./build-system.component.scss']
+    selector: 'app-build-system',
+    templateUrl: './build-system.component.html',
+    styleUrls: ['./build-system.component.scss'],
 })
 export class BuildSystemComponent implements OnInit {
     cpuSelected: Processor | null = null;
@@ -24,9 +24,7 @@ export class BuildSystemComponent implements OnInit {
     cabinateSelected: Cabinate | null = null;
     powerSupplySelected: PowerSupply | null = null;
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit(): void {
-    }
-
+    ngOnInit(): void {}
 }

@@ -74,12 +74,25 @@
                     <button
                         matRipple
                         type="button"
+                        class="btn btn-outline-primary mt-4 add-cabinate-button"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Cabinate"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button
+                        matRipple
+                        type="button"
                         class="
                             btn btn-outline-primary
                             mt-4
                             load-cabinate-button
                             ripple
                         "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="View Cabinate"
                         [routerLink]="[i]"
                     >
                         <i class="far fa-arrow-alt-circle-right"></i>
@@ -88,10 +101,19 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" (click)="storeCabinates()">
+    <button
+        type="button"
+        class="btn btn-primary mt-2"
+        style="margin-right: 5px"
+        (click)="storeCabinates()"
+    >
         Store Cabinates
     </button>
-    <button type="button" class="btn btn-primary" (click)="loadCabinates()">
+    <button
+        type="button"
+        class="btn btn-primary mt-2"
+        (click)="loadCabinates()"
+    >
         Load Cabinates
     </button>
 </div>

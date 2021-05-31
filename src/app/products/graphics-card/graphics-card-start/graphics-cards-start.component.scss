@@ -1,6 +1,23 @@
 .far {
     font-size: 1.5rem;
-    padding: 0 20px 0 20px;
+    padding: 0 3.5px 0 3.5px;
+}
+
+.fas {
+    font-size: 1.5rem;
+    padding: 0 5px 0 5px;
+}
+
+.add-graphics-card-button {
+    margin-right: 5px;
+}
+
+.add-graphics-card-button:hover {
+    background-color: rgb(51, 51, 56);
+}
+
+.load-graphics-card-button {
+    margin-left: 5px;
 }
 
 .load-graphics-card-button:hover {

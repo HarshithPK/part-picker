@@ -83,9 +83,25 @@
                         class="
                             btn btn-outline-primary
                             mt-4
-                            load-processor-button
-                            ripple
+                            add-processor-button
                         "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Processor"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button
+                        matRipple
+                        type="button"
+                        class="
+                            btn btn-outline-primary
+                            mt-4
+                            load-processor-button
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="View Processor"
                         [routerLink]="[i]"
                     >
                         <i class="far fa-arrow-alt-circle-right"></i>
@@ -94,10 +110,19 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" (click)="storeProcessors()">
+    <button
+        type="button"
+        class="btn btn-primary mt-2"
+        (click)="storeProcessors()"
+        style="margin-right: 5px"
+    >
         Store Processors
     </button>
-    <button type="button" class="btn btn-primary" (click)="loadProcessors()">
+    <button
+        type="button"
+        class="btn btn-primary mt-2"
+        (click)="loadProcessors()"
+    >
         Load Processors
     </button>
 </div>

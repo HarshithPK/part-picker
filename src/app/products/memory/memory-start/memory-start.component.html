@@ -80,12 +80,25 @@
                     <button
                         matRipple
                         type="button"
+                        class="btn btn-outline-primary mt-4 add-ram-button"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add RAM"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button
+                        matRipple
+                        type="button"
                         class="
                             btn btn-outline-primary
                             mt-4
                             load-ram-button
                             ripple
                         "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="View RAM"
                         [routerLink]="[i]"
                     >
                         <i class="far fa-arrow-alt-circle-right"></i>
@@ -94,10 +107,15 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" (click)="storeMemory()">
+    <button
+        type="button"
+        class="btn btn-primary mt-2"
+        (click)="storeMemory()"
+        style="margin-right: 5px"
+    >
         Store Memory
     </button>
-    <button type="button" class="btn btn-primary" (click)="loadMemory()">
+    <button type="button" class="btn btn-primary mt-2" (click)="loadMemory()">
         Load Memory
     </button>
 </div>

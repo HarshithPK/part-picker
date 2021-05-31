@@ -7,7 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
-import { MaterialModule } from './header/material/material.module';
+import { MaterialModule } from './shared/material/material.module';
 import { BuildSystemComponent } from './build-system/build-system.component';
 import { ProductsComponent } from './products/products.component';
 import { ProcessorsComponent } from './products/processors/processors.component';
@@ -42,6 +42,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { SharedModule } from './shared/shared.module';
 import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
+import { DevExtremeModule } from 'devextreme-angular';
 
 export const appRoutes = [];
 
@@ -84,6 +85,7 @@ export const appRoutes = [];
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        DevExtremeModule,
         FormsModule,
         ReactiveFormsModule,
         MaterialModule,
