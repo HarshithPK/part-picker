@@ -8,6 +8,7 @@ import { Motherboard } from '../products/motherboards/motherboard.model';
 import { PowerSupply } from '../products/power-supplies/power-supply.model';
 import { Processor } from '../products/processors/processor.model';
 import { Storage } from '../products/storage/storage.model';
+import { BuildSystemService } from './build-system.service';
 
 @Component({
     selector: 'app-build-system',
@@ -15,16 +16,33 @@ import { Storage } from '../products/storage/storage.model';
     styleUrls: ['./build-system.component.scss'],
 })
 export class BuildSystemComponent implements OnInit {
-    cpuSelected: Processor | null = null;
-    coolerSelected: Cooler | null = null;
-    motherboardSelected: Motherboard | null = null;
-    memorySelected: Memory | null = null;
-    storageSelected: Storage | null = null;
-    graphicsCardSelected: GraphicsCard | null = null;
-    cabinateSelected: Cabinate | null = null;
-    powerSupplySelected: PowerSupply | null = null;
+    // tslint:disable-next-line: no-non-null-assertion
+    cpuSelected: Processor = null!;
+    // tslint:disable-next-line: no-non-null-assertion
+    coolerSelected: Cooler = null!;
+    // tslint:disable-next-line: no-non-null-assertion
+    motherboardSelected: Motherboard = null!;
+    // tslint:disable-next-line: no-non-null-assertion
+    memorySelected: Memory = null!;
+    // tslint:disable-next-line: no-non-null-assertion
+    storageSelected: Storage = null!;
+    // tslint:disable-next-line: no-non-null-assertion
+    graphicsCardSelected: GraphicsCard = null!;
+    // tslint:disable-next-line: no-non-null-assertion
+    cabinateSelected: Cabinate = null!;
+    // tslint:disable-next-line: no-non-null-assertion
+    powerSupplySelected: PowerSupply = null!;
 
-    constructor() {}
+    constructor(private buildSystemService: BuildSystemService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.cpuSelected = this.buildSystemService.getCPU();
+        this.coolerSelected = this.buildSystemService.getCooler();
+        this.motherboardSelected = this.buildSystemService.getMotherboard();
+        this.memorySelected = this.buildSystemService.getMemory();
+        this.storageSelected = this.buildSystemService.getStorage();
+        this.graphicsCardSelected = this.buildSystemService.getGraphicsCard();
+        this.cabinateSelected = this.buildSystemService.getCabinate();
+        this.powerSupplySelected = this.buildSystemService.getPowerSupply();
+    }
 }

@@ -1,5 +1,7 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { BuildSystemService } from 'src/app/build-system/build-system.service';
 
 import { GraphicsCard } from '../graphics-card.model';
 import { GraphicsCardService } from '../graphics-card.service';
@@ -15,7 +17,9 @@ export class GraphicsCardDetailComponent implements OnInit {
 
     constructor(
         private graphicsCardService: GraphicsCardService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private buildSystemService: BuildSystemService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -25,5 +29,10 @@ export class GraphicsCardDetailComponent implements OnInit {
                 this.id
             );
         });
+    }
+
+    addGraphicsCard(): void {
+        this.buildSystemService.addGraphicsCard(this.graphicsCard);
+        this.router.navigate(['/build-system']);
     }
 }

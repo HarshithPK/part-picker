@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
+import { BuildSystemService } from 'src/app/build-system/build-system.service';
 import { Cabinate } from '../cabinate.model';
 import { CabinateService } from '../cabinate.service';
 
@@ -15,7 +16,9 @@ export class CabinateDetailComponent implements OnInit {
 
     constructor(
         private cabinateService: CabinateService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private buildSystemService: BuildSystemService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -23,5 +26,10 @@ export class CabinateDetailComponent implements OnInit {
             this.id = +params.id;
             this.cabinate = this.cabinateService.getCabinate(this.id);
         });
+    }
+
+    addCabinate(): void {
+        this.buildSystemService.addCabinate(this.cabinate);
+        this.router.navigate(['/build-system']);
     }
 }

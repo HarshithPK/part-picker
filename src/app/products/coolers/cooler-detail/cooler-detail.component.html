@@ -30,5 +30,16 @@
         <p><strong>Water Cooled: </strong>{{ cooler.waterCooled }}</p>
         <p><strong>Fanless: </strong>{{ cooler.fanless }}</p>
         <p><strong>Price: ₹</strong>{{ cooler.price }}</p>
+        <button
+            matRipple
+            type="button"
+            class="btn btn-primary mt-2 mb-4 add-cooler-button"
+            data-mdb-toggle="tooltip"
+            data-mdb-placement="top"
+            title="Add Cooler"
+            (click)="addCooler()"
+        >
+            Add To Build
+        </button>
     </div>
 </div>

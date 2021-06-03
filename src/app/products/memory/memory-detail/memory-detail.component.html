@@ -25,5 +25,16 @@
         <p><strong>ECC: </strong>{{ memory.ecc }}</p>
         <p><strong>Color: </strong>{{ memory.color }}</p>
         <p><strong>Price: ₹</strong>{{ memory.price }}</p>
+        <button
+            matRipple
+            type="button"
+            class="btn btn-primary mt-2 mb-4 add-ram-button"
+            data-mdb-toggle="tooltip"
+            data-mdb-placement="top"
+            title="Add RAM"
+            (click)="addRAM()"
+        >
+            Add To Build
+        </button>
     </div>
 </div>

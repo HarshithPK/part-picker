@@ -42,5 +42,16 @@
         <p><strong>Cooling: </strong>{{ graphicsCard.cooling }}</p>
         <p><strong>External Power: </strong>{{ graphicsCard.externalPower }}</p>
         <p><strong>Price: ₹</strong>{{ graphicsCard.price }}</p>
+        <button
+            matRipple
+            type="button"
+            class="btn btn-primary mt-2 mb-4 add-graphics-card-button"
+            data-mdb-toggle="tooltip"
+            data-mdb-placement="top"
+            title="Add Graphics Card"
+            (click)="addGraphicsCard()"
+        >
+            Add To Build
+        </button>
     </div>
 </div>

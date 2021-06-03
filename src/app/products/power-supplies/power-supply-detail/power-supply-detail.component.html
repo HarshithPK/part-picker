@@ -35,5 +35,16 @@
             >{{ powerSupply.Molex4PinConnectors }}
         </p>
         <p><strong>Price: ₹</strong>{{ powerSupply.price }}</p>
+        <button
+            matRipple
+            type="button"
+            class="btn btn-primary mt-2 mb-4 add-power-supply-button"
+            data-mdb-toggle="tooltip"
+            data-mdb-placement="top"
+            title="Add Power Supply"
+            (click)="addPowerSupply()"
+        >
+            Add To Build
+        </button>
     </div>
 </div>

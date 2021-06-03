@@ -74,7 +74,7 @@ export class CabinateService {
 
     constructor() {}
 
-    setCabinates(cabinates: Cabinate[]) {
+    setCabinates(cabinates: Cabinate[]): void {
         this.cabinates = cabinates;
         this.cabinatesChanged.next(this.cabinates.slice());
     }

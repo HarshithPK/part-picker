@@ -1,6 +1,6 @@
 <h2>Cabinate Detail</h2>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 justify-content-center">
         <img
             [src]="cabinate.imagePath"
             alt="{{ cabinate.name }}"
@@ -32,5 +32,16 @@
         <p><strong>Fan Support: </strong>{{ cabinate.fanSupport }}</p>
         <p><strong>Dust Filters: </strong>{{ cabinate.dustFilters }}</p>
         <p><strong>Price: ₹</strong>{{ cabinate.price }}</p>
+        <button
+            matRipple
+            type="button"
+            class="btn btn-primary mt-2 mb-4 add-cabinate-button"
+            data-mdb-toggle="tooltip"
+            data-mdb-placement="top"
+            title="Add Cabinate"
+            (click)="addCabinate()"
+        >
+            Add To Build
+        </button>
     </div>
 </div>

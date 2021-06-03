@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { BuildSystemService } from 'src/app/build-system/build-system.service';
 
 import { MemoryService } from '../memory.service';
 import { Memory } from '../momery.model';
@@ -15,7 +16,9 @@ export class MemoryDetailComponent implements OnInit {
 
     constructor(
         private memoryService: MemoryService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private buildSystemService: BuildSystemService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -23,5 +26,10 @@ export class MemoryDetailComponent implements OnInit {
             this.id = +params.id;
             this.memory = this.memoryService.getRAM(this.id);
         });
+    }
+
+    addRAM(): void {
+        this.buildSystemService.addMemory(this.memory);
+        this.router.navigate(['/build-system']);
     }
 }

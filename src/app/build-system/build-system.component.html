@@ -16,21 +16,25 @@
                     <button
                         matRipple
                         class="btn btn-outline-primary btn-rounded"
+                        routerLink="/products/processors"
                     >
                         Add CPU
                     </button>
                 </td>
                 <td *ngIf="cpuSelected !== null">
-                    {{ cpuSelected.imagePath }}
+                    <img
+                        [src]="cpuSelected.imagePath"
+                        alt=""
+                        class="img-fluid"
+                        style="max-width: 150px; max-height: 150px"
+                    />
                 </td>
                 <td *ngIf="cpuSelected === null">None</td>
                 <td *ngIf="cpuSelected !== null">
                     {{ cpuSelected.name }}
                 </td>
                 <td *ngIf="cpuSelected === null">None</td>
-                <td *ngIf="cpuSelected !== null">
-                    {{ cpuSelected.price }}
-                </td>
+                <td *ngIf="cpuSelected !== null">₹ {{ cpuSelected.price }}</td>
             </tr>
             <tr class="components">
                 <th scope="row">CPU Cooler</th>
@@ -38,12 +42,18 @@
                     <button
                         matRipple
                         class="btn btn-outline-primary btn-rounded"
+                        routerLink="/products/coolers"
                     >
                         Add Cooler
                     </button>
                 </td>
                 <td *ngIf="coolerSelected !== null">
-                    {{ coolerSelected.imagePath }}
+                    <img
+                        [src]="coolerSelected.imagePath"
+                        alt=""
+                        class="img-fluid"
+                        style="max-width: 150px; max-height: 100px"
+                    />
                 </td>
                 <td *ngIf="coolerSelected === null">None</td>
                 <td *ngIf="coolerSelected !== null">
@@ -51,7 +61,7 @@
                 </td>
                 <td *ngIf="coolerSelected === null">None</td>
                 <td *ngIf="coolerSelected !== null">
-                    {{ coolerSelected.price }}
+                    ₹ {{ coolerSelected.price }}
                 </td>
             </tr>
             <tr class="components">
@@ -60,12 +70,18 @@
                     <button
                         matRipple
                         class="btn btn-outline-primary btn-rounded"
+                        routerLink="/products/motherboards"
                     >
                         Add Motherboard
                     </button>
                 </td>
                 <td *ngIf="motherboardSelected !== null">
-                    {{ motherboardSelected.imagePath }}
+                    <img
+                        [src]="motherboardSelected.imagePath"
+                        alt=""
+                        class="img-fluid"
+                        style="max-width: 150px; max-height: 150px"
+                    />
                 </td>
                 <td *ngIf="motherboardSelected === null">None</td>
                 <td *ngIf="motherboardSelected !== null">
@@ -73,7 +89,7 @@
                 </td>
                 <td *ngIf="motherboardSelected === null">None</td>
                 <td *ngIf="motherboardSelected !== null">
-                    {{ motherboardSelected.price }}
+                    ₹ {{ motherboardSelected.price }}
                 </td>
             </tr>
             <tr class="components">
@@ -82,12 +98,18 @@
                     <button
                         matRipple
                         class="btn btn-outline-primary btn-rounded"
+                        routerLink="/products/memory"
                     >
                         Add Memory
                     </button>
                 </td>
                 <td *ngIf="memorySelected !== null">
-                    {{ memorySelected.imagePath }}
+                    <img
+                        [src]="memorySelected.imagePath"
+                        alt=""
+                        class="img-fluid"
+                        style="max-width: 150px; max-height: 100px"
+                    />
                 </td>
                 <td *ngIf="memorySelected === null">None</td>
                 <td *ngIf="memorySelected !== null">
@@ -95,7 +117,7 @@
                 </td>
                 <td *ngIf="memorySelected === null">None</td>
                 <td *ngIf="memorySelected !== null">
-                    {{ memorySelected.price }}
+                    ₹ {{ memorySelected.price }}
                 </td>
             </tr>
             <tr class="components">
@@ -104,12 +126,18 @@
                     <button
                         matRipple
                         class="btn btn-outline-primary btn-rounded"
+                        routerLink="/products/storage"
                     >
                         Add Storage
                     </button>
                 </td>
                 <td *ngIf="storageSelected !== null">
-                    {{ storageSelected.imagePath }}
+                    <img
+                        [src]="storageSelected.imagePath"
+                        alt=""
+                        class="img-fluid"
+                        style="max-width: 150px; max-height: 100px"
+                    />
                 </td>
                 <td *ngIf="storageSelected === null">None</td>
                 <td *ngIf="storageSelected !== null">
@@ -117,7 +145,7 @@
                 </td>
                 <td *ngIf="storageSelected === null">None</td>
                 <td *ngIf="storageSelected !== null">
-                    {{ storageSelected.price }}
+                    ₹ {{ storageSelected.price }}
                 </td>
             </tr>
             <tr class="components">
@@ -126,12 +154,18 @@
                     <button
                         matRipple
                         class="btn btn-outline-primary btn-rounded"
+                        routerLink="/products/graphics-cards"
                     >
                         Add Graphics Card
                     </button>
                 </td>
                 <td *ngIf="graphicsCardSelected !== null">
-                    {{ graphicsCardSelected.imagePath }}
+                    <img
+                        [src]="graphicsCardSelected.imagePath"
+                        alt=""
+                        class="img-fluid"
+                        style="max-width: 150px; max-height: 100px"
+                    />
                 </td>
                 <td *ngIf="graphicsCardSelected === null">None</td>
                 <td *ngIf="graphicsCardSelected !== null">
@@ -139,7 +173,7 @@
                 </td>
                 <td *ngIf="graphicsCardSelected === null">None</td>
                 <td *ngIf="graphicsCardSelected !== null">
-                    {{ graphicsCardSelected.price }}
+                    ₹ {{ graphicsCardSelected.price }}
                 </td>
             </tr>
             <tr class="components">
@@ -148,12 +182,18 @@
                     <button
                         matRipple
                         class="btn btn-outline-primary btn-rounded"
+                        routerLink="/products/cabinates"
                     >
                         Add Cabinate
                     </button>
                 </td>
                 <td *ngIf="cabinateSelected !== null">
-                    {{ cabinateSelected.imagePath }}
+                    <img
+                        [src]="cabinateSelected.imagePath"
+                        alt=""
+                        class="img-fluid"
+                        style="max-width: 150px; max-height: 100px"
+                    />
                 </td>
                 <td *ngIf="cabinateSelected === null">None</td>
                 <td *ngIf="cabinateSelected !== null">
@@ -161,7 +201,7 @@
                 </td>
                 <td *ngIf="cabinateSelected === null">None</td>
                 <td *ngIf="cabinateSelected !== null">
-                    {{ cabinateSelected.price }}
+                    ₹ {{ cabinateSelected.price }}
                 </td>
             </tr>
             <tr class="components">
@@ -170,12 +210,18 @@
                     <button
                         matRipple
                         class="btn btn-outline-primary btn-rounded"
+                        routerLink="/products/power-supplies"
                     >
                         Add Power Supply
                     </button>
                 </td>
                 <td *ngIf="powerSupplySelected !== null">
-                    {{ powerSupplySelected.imagePath }}
+                    <img
+                        [src]="powerSupplySelected.imagePath"
+                        alt=""
+                        class="img-fluid"
+                        style="max-width: 150px; max-height: 100px"
+                    />
                 </td>
                 <td *ngIf="powerSupplySelected === null">None</td>
                 <td *ngIf="powerSupplySelected !== null">
@@ -183,11 +229,9 @@
                 </td>
                 <td *ngIf="powerSupplySelected === null">None</td>
                 <td *ngIf="powerSupplySelected !== null">
-                    {{ powerSupplySelected.price }}
+                    ₹ {{ powerSupplySelected.price }}
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
-
-<dx-data-grid></dx-data-grid>

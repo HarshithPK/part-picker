@@ -19,5 +19,16 @@
         <p><strong>Interface: </strong>{{ storage.storageInterface }}</p>
         <p><strong>NVME: </strong>{{ storage.NVME }}</p>
         <p><strong>Price: ₹</strong>{{ storage.price }}</p>
+        <button
+            matRipple
+            type="button"
+            class="btn btn-primary mt-2 mb-4 add-storage-button"
+            data-mdb-toggle="tooltip"
+            data-mdb-placement="top"
+            title="Add Storage"
+            (click)="addStorage()"
+        >
+            Add To Build
+        </button>
     </div>
 </div>

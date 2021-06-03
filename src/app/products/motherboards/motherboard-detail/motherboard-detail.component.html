@@ -54,5 +54,16 @@
         </p>
         <p><strong>Wireless: </strong>{{ motherboard.wirelessSupport }}</p>
         <p><strong>Price: ₹</strong>{{ motherboard.price }}</p>
+        <button
+            matRipple
+            type="button"
+            class="btn btn-primary mt-2 mb-4 add-motherboard-button"
+            data-mdb-toggle="tooltip"
+            data-mdb-placement="top"
+            title="Add Motherboard"
+            (click)="addMotherboard()"
+        >
+            Add To Build
+        </button>
     </div>
 </div>

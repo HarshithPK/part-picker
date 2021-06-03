@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { BuildSystemService } from 'src/app/build-system/build-system.service';
 
 import { Storage } from '../storage.model';
 import { StorageService } from '../storage.service';
@@ -15,7 +16,9 @@ export class StorageDetailComponent implements OnInit {
 
     constructor(
         private storageService: StorageService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private buildSystemService: BuildSystemService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -23,5 +26,10 @@ export class StorageDetailComponent implements OnInit {
             this.id = +params.id;
             this.storage = this.storageService.getStorage(this.id);
         });
+    }
+
+    addStorage(): void {
+        this.buildSystemService.addStorage(this.storage);
+        this.router.navigate(['/build-system']);
     }
 }

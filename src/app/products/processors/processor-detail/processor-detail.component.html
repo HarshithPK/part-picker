@@ -27,5 +27,16 @@
         <p><strong>L3 Cache: </strong>{{ processor.cache }}</p>
         <p><strong>Lithograaphy: </strong>{{ processor.lithograaphy }}</p>
         <p><strong>Price: ₹</strong>{{ processor.price }}</p>
+        <button
+            matRipple
+            type="button"
+            class="btn btn-primary mt-2 mb-4 add-processor-button"
+            data-mdb-toggle="tooltip"
+            data-mdb-placement="top"
+            title="Add Processor"
+            (click)="addProcessor()"
+        >
+            Add To Build
+        </button>
     </div>
 </div>

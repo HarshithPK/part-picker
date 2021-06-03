@@ -22,7 +22,7 @@
                     <img
                         [src]="cabinate.imagePath"
                         class="img-fluid"
-                        style="max-width: 300px; max-height: 300px"
+                        style="max-width: 300px; max-height: 250px"
                     />
                     <a [routerLink]="[i]">
                         <div
@@ -78,6 +78,7 @@
                         data-mdb-toggle="tooltip"
                         data-mdb-placement="top"
                         title="Add Cabinate"
+                        (click)="addCabinate(i)"
                     >
                         <i class="fas fa-plus"></i>
                     </button>

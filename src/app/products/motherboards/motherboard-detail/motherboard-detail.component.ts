@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { BuildSystemService } from 'src/app/build-system/build-system.service';
 
 import { Motherboard } from '../motherboard.model';
 import { MotherboardService } from '../motherboard.service';
@@ -15,7 +16,9 @@ export class MotherboardDetailComponent implements OnInit {
 
     constructor(
         private motherboardService: MotherboardService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private buildSystemService: BuildSystemService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -23,5 +26,10 @@ export class MotherboardDetailComponent implements OnInit {
             this.id = +params.id;
             this.motherboard = this.motherboardService.getMotherbboard(this.id);
         });
+    }
+
+    addMotherboard(): void {
+        this.buildSystemService.addMotherboard(this.motherboard);
+        this.router.navigate(['/build-system']);
     }
 }

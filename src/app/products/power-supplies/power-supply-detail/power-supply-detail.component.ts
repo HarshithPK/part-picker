@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { BuildSystemService } from 'src/app/build-system/build-system.service';
 
 import { PowerSupply } from '../power-supply.model';
 import { PowerSupplyService } from '../power-supply.service';
@@ -15,7 +16,9 @@ export class PowerSupplyDetailComponent implements OnInit {
 
     constructor(
         private powerSupplyService: PowerSupplyService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private buildServiceSystem: BuildSystemService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -23,5 +26,10 @@ export class PowerSupplyDetailComponent implements OnInit {
             this.id = +params.id;
             this.powerSupply = this.powerSupplyService.getPowerSupply(this.id);
         });
+    }
+
+    addPowerSupply(): void {
+        this.buildServiceSystem.addPowerSupply(this.powerSupply);
+        this.router.navigate(['/build-system']);
     }
 }

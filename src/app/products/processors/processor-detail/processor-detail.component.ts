@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
+import { BuildSystemService } from 'src/app/build-system/build-system.service';
 import { Processor } from '../processor.model';
 import { ProcessorService } from '../processor.service';
 
@@ -15,7 +16,9 @@ export class ProcessorDetailComponent implements OnInit {
 
     constructor(
         private processorService: ProcessorService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private buildSystemService: BuildSystemService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -23,5 +26,10 @@ export class ProcessorDetailComponent implements OnInit {
             this.id = +params.id;
             this.processor = this.processorService.getProcessor(this.id);
         });
+    }
+
+    addProcessor(): void {
+        this.buildSystemService.addCPU(this.processor);
+        this.router.navigate(['/build-system']);
     }
 }
