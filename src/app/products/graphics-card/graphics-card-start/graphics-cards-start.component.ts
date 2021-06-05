@@ -32,7 +32,7 @@ export class GraphicsCardsStartComponent implements OnInit {
     }
 
     storeGraphicsCards(): void {
-        this.dataStorageService.storeGraphicsCards();
+        // this.dataStorageService.storeGraphicsCards();
     }
 
     loadGraphicsCards(): void {

@@ -1,0 +1,165 @@
+<div class="row mt-5">
+    <div class="col-xs-12 col-md-6">
+        <form
+            class="d-flex flex-column justify-contents-center"
+            #addCoolerForm="ngForm"
+            (ngSubmit)="onSubmit(addCoolerForm)"
+        >
+            <h2>Add Cooler</h2>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Manufacturer</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="manufacturer"
+                    name="manufacturer"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Series</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="series"
+                    name="series"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="name"
+                    name="name"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Fan RPM Range</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="fanRPMRange"
+                    name="fanRPMRange"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Height Without Fan</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="heightWithoutFan"
+                    name="heightWithoutFan"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Height With Fan</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="heightWithFan"
+                    name="heightWithFan"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Acoustical Noise Level</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="acousticalNoiseLevel"
+                    name="acousticalNoiseLevel"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Socket Compatability</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="socketCompatability"
+                    name="socketCompatability"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Color</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="color"
+                    name="color"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Water Cooled</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="waterCooled"
+                    name="waterCooled"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Fanless</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="fanless"
+                    name="fanless"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Image Path</mat-label>
+                <input
+                    matInput
+                    type="url"
+                    id="imagePath"
+                    name="imagePath"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Price</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="price"
+                    name="price"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <button
+                matRipple
+                type="submit"
+                class="btn btn-primary form-components btn-lg mb-5"
+                data-mdb-toggle="tooltip"
+                data-mdb-placement="top"
+                title="Add Cooler to Database"
+                [disabled]="!addCoolerForm.valid"
+            >
+                Add Cooler To Database
+            </button>
+        </form>
+    </div>
+</div>

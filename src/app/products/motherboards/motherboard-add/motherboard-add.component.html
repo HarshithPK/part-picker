@@ -1,0 +1,319 @@
+<div class="row mt-5">
+    <div class="col-xs-12 cil-md-6">
+        <form
+            class="d-flex flex-column justify-contents-center"
+            #addMotherboardForm="ngForm"
+            (ngSubmit)="onSubmit(addMotherboardForm)"
+        >
+            <h2>Add Motherboard</h2>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Manufacturer</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="manufacturer"
+                    name="manufacturer"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Series</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="series"
+                    name="series"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="name"
+                    name="name"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Socket</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="socket"
+                    name="socket"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Chipset</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="chipset"
+                    name="chipset"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Form Factor</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="formFactor"
+                    name="formFactor"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Supported Processors</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="processorsSupported"
+                    name="processorsSupported"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Maximum Memory Support</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="maxMemorySupport"
+                    name="maxMemorySupport"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Memory Type</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="memoryType"
+                    name="memoryType"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Memory Slots</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="memorySlots"
+                    name="memorySlots"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Supported Memory Speeds</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="supportedMemorySpeed"
+                    name="supportedMemorySpeed"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Multi GPU Support</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="dualGpuSupport"
+                    name="dualGpuSupport"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>PCIe x16 Slots</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="pciex16Slots"
+                    name="pciex16Slots"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>PCIe x8 Slots</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="pciex8Slots"
+                    name="pciex8Slots"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>PCIe x4 Slots</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="pciex4Slots"
+                    name="pciex4Slots"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>PCIe x1 Slots</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="pciex1Slots"
+                    name="pciex1Slots"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>PCI Slots</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="pciSlots"
+                    name="pciSlots"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>M.2 Slots</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="m2Slots"
+                    name="m2Slots"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>SATA 6 Gbps Ports</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="sata6Gbps"
+                    name="sata6Gbps"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Ethernet Ports</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="ethernetPorts"
+                    name="ethernetPorts"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>USB 2.0 Headers</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="USB2Headers"
+                    name="USB2Headers"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>USB 3.2 Gen 1 Headers</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="USB3Gen1Headers"
+                    name="USB3Gen1Headers"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>USB 3.2 Gen 2 Headers</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="USB3Gen2Headers"
+                    name="USB3Gen2Headers"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Usb 3.2 Gen 2x2 Headers</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="USB3Gen2x2Headers"
+                    name="USB3Gen2x2Headers"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Wireless</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="wirelessSupport"
+                    name="wirelessSupport"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Image Path</mat-label>
+                <input
+                    matInput
+                    type="url"
+                    id="imagePath"
+                    name="imagePath"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Price</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="price"
+                    name="price"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <button
+                matRipple
+                type="submit"
+                class="btn btn-primary form-components btn-lg mb-5"
+                data-mdb-toggle="tooltip"
+                data-mdb-placement="top"
+                title="Add Motherboard to Database"
+                [disabled]="!addMotherboardForm.valid"
+            >
+                Add Motherboard To Database
+            </button>
+        </form>
+    </div>
+</div>

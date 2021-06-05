@@ -7,21 +7,14 @@
                 <th scope="col">Image</th>
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <tr class="components">
                 <th scope="row">CPU</th>
-                <td *ngIf="cpuSelected === null">
-                    <button
-                        matRipple
-                        class="btn btn-outline-primary btn-rounded"
-                        routerLink="/products/processors"
-                    >
-                        Add CPU
-                    </button>
-                </td>
-                <td *ngIf="cpuSelected !== null">
+                <td *ngIf="!cpuSelected">None</td>
+                <td *ngIf="cpuSelected">
                     <img
                         [src]="cpuSelected.imagePath"
                         alt=""
@@ -29,25 +22,41 @@
                         style="max-width: 150px; max-height: 150px"
                     />
                 </td>
-                <td *ngIf="cpuSelected === null">None</td>
-                <td *ngIf="cpuSelected !== null">
+                <td *ngIf="!cpuSelected">None</td>
+                <td *ngIf="cpuSelected">
                     {{ cpuSelected.name }}
                 </td>
-                <td *ngIf="cpuSelected === null">None</td>
-                <td *ngIf="cpuSelected !== null">₹ {{ cpuSelected.price }}</td>
+                <td *ngIf="!cpuSelected">None</td>
+                <td *ngIf="cpuSelected">₹ {{ cpuSelected.price }}</td>
+                <td *ngIf="!cpuSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Processor"
+                        routerLink="/products/processors"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </td>
+                <td *ngIf="cpuSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-danger"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Remove Processor"
+                        (click)="removeCPU()"
+                    >
+                        X
+                    </button>
+                </td>
             </tr>
             <tr class="components">
                 <th scope="row">CPU Cooler</th>
-                <td *ngIf="coolerSelected === null">
-                    <button
-                        matRipple
-                        class="btn btn-outline-primary btn-rounded"
-                        routerLink="/products/coolers"
-                    >
-                        Add Cooler
-                    </button>
-                </td>
-                <td *ngIf="coolerSelected !== null">
+                <td *ngIf="!coolerSelected">None</td>
+                <td *ngIf="coolerSelected">
                     <img
                         [src]="coolerSelected.imagePath"
                         alt=""
@@ -55,27 +64,41 @@
                         style="max-width: 150px; max-height: 100px"
                     />
                 </td>
-                <td *ngIf="coolerSelected === null">None</td>
-                <td *ngIf="coolerSelected !== null">
+                <td *ngIf="!coolerSelected">None</td>
+                <td *ngIf="coolerSelected">
                     {{ coolerSelected.name }}
                 </td>
-                <td *ngIf="coolerSelected === null">None</td>
-                <td *ngIf="coolerSelected !== null">
-                    ₹ {{ coolerSelected.price }}
+                <td *ngIf="!coolerSelected">None</td>
+                <td *ngIf="coolerSelected">₹ {{ coolerSelected.price }}</td>
+                <td *ngIf="!coolerSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Cooler"
+                        routerLink="/products/coolers"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </td>
+                <td *ngIf="coolerSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-danger"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Remove Cooler"
+                        (click)="removeCooler()"
+                    >
+                        X
+                    </button>
                 </td>
             </tr>
             <tr class="components">
                 <th scope="row">Motherboard</th>
-                <td *ngIf="motherboardSelected === null">
-                    <button
-                        matRipple
-                        class="btn btn-outline-primary btn-rounded"
-                        routerLink="/products/motherboards"
-                    >
-                        Add Motherboard
-                    </button>
-                </td>
-                <td *ngIf="motherboardSelected !== null">
+                <td *ngIf="!motherboardSelected">None</td>
+                <td *ngIf="motherboardSelected">
                     <img
                         [src]="motherboardSelected.imagePath"
                         alt=""
@@ -83,27 +106,43 @@
                         style="max-width: 150px; max-height: 150px"
                     />
                 </td>
-                <td *ngIf="motherboardSelected === null">None</td>
-                <td *ngIf="motherboardSelected !== null">
+                <td *ngIf="!motherboardSelected">None</td>
+                <td *ngIf="motherboardSelected">
                     {{ motherboardSelected.name }}
                 </td>
-                <td *ngIf="motherboardSelected === null">None</td>
-                <td *ngIf="motherboardSelected !== null">
+                <td *ngIf="!motherboardSelected">None</td>
+                <td *ngIf="motherboardSelected">
                     ₹ {{ motherboardSelected.price }}
+                </td>
+                <td *ngIf="!motherboardSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Motherboard"
+                        routerLink="/products/motherboards"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </td>
+                <td *ngIf="motherboardSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-danger"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Remove Motherboard"
+                        (click)="removeMotherboard()"
+                    >
+                        X
+                    </button>
                 </td>
             </tr>
             <tr class="components">
                 <th scope="row">Memory</th>
-                <td *ngIf="memorySelected === null">
-                    <button
-                        matRipple
-                        class="btn btn-outline-primary btn-rounded"
-                        routerLink="/products/memory"
-                    >
-                        Add Memory
-                    </button>
-                </td>
-                <td *ngIf="memorySelected !== null">
+                <td *ngIf="!memorySelected">None</td>
+                <td *ngIf="memorySelected">
                     <img
                         [src]="memorySelected.imagePath"
                         alt=""
@@ -111,27 +150,41 @@
                         style="max-width: 150px; max-height: 100px"
                     />
                 </td>
-                <td *ngIf="memorySelected === null">None</td>
-                <td *ngIf="memorySelected !== null">
+                <td *ngIf="!memorySelected">None</td>
+                <td *ngIf="memorySelected">
                     {{ memorySelected.name }}
                 </td>
-                <td *ngIf="memorySelected === null">None</td>
-                <td *ngIf="memorySelected !== null">
-                    ₹ {{ memorySelected.price }}
+                <td *ngIf="!memorySelected">None</td>
+                <td *ngIf="memorySelected">₹ {{ memorySelected.price }}</td>
+                <td *ngIf="!memorySelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Memory"
+                        routerLink="/products/memory"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </td>
+                <td *ngIf="memorySelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-danger"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Remove Memory"
+                        (click)="removeMemory()"
+                    >
+                        X
+                    </button>
                 </td>
             </tr>
             <tr class="components">
                 <th scope="row">Storage</th>
-                <td *ngIf="storageSelected === null">
-                    <button
-                        matRipple
-                        class="btn btn-outline-primary btn-rounded"
-                        routerLink="/products/storage"
-                    >
-                        Add Storage
-                    </button>
-                </td>
-                <td *ngIf="storageSelected !== null">
+                <td *ngIf="!storageSelected">None</td>
+                <td *ngIf="storageSelected">
                     <img
                         [src]="storageSelected.imagePath"
                         alt=""
@@ -139,27 +192,41 @@
                         style="max-width: 150px; max-height: 100px"
                     />
                 </td>
-                <td *ngIf="storageSelected === null">None</td>
-                <td *ngIf="storageSelected !== null">
+                <td *ngIf="!storageSelected">None</td>
+                <td *ngIf="storageSelected">
                     {{ storageSelected.name }}
                 </td>
-                <td *ngIf="storageSelected === null">None</td>
-                <td *ngIf="storageSelected !== null">
-                    ₹ {{ storageSelected.price }}
+                <td *ngIf="!storageSelected">None</td>
+                <td *ngIf="storageSelected">₹ {{ storageSelected.price }}</td>
+                <td *ngIf="!storageSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Storage"
+                        routerLink="/products/storage"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </td>
+                <td *ngIf="storageSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-danger"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Remove Storage"
+                        (click)="removeStorage()"
+                    >
+                        X
+                    </button>
                 </td>
             </tr>
             <tr class="components">
                 <th scope="row">Graphics Card</th>
-                <td *ngIf="graphicsCardSelected === null">
-                    <button
-                        matRipple
-                        class="btn btn-outline-primary btn-rounded"
-                        routerLink="/products/graphics-cards"
-                    >
-                        Add Graphics Card
-                    </button>
-                </td>
-                <td *ngIf="graphicsCardSelected !== null">
+                <td *ngIf="!graphicsCardSelected">None</td>
+                <td *ngIf="graphicsCardSelected">
                     <img
                         [src]="graphicsCardSelected.imagePath"
                         alt=""
@@ -167,27 +234,43 @@
                         style="max-width: 150px; max-height: 100px"
                     />
                 </td>
-                <td *ngIf="graphicsCardSelected === null">None</td>
-                <td *ngIf="graphicsCardSelected !== null">
+                <td *ngIf="!graphicsCardSelected">None</td>
+                <td *ngIf="graphicsCardSelected">
                     {{ graphicsCardSelected.name }}
                 </td>
-                <td *ngIf="graphicsCardSelected === null">None</td>
-                <td *ngIf="graphicsCardSelected !== null">
+                <td *ngIf="!graphicsCardSelected">None</td>
+                <td *ngIf="graphicsCardSelected">
                     ₹ {{ graphicsCardSelected.price }}
+                </td>
+                <td *ngIf="!graphicsCardSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Graphics Card"
+                        routerLink="/products/graphics-cards"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </td>
+                <td *ngIf="graphicsCardSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-danger"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Remove Graphics Card"
+                        (click)="removeGraphicsCard()"
+                    >
+                        X
+                    </button>
                 </td>
             </tr>
             <tr class="components">
                 <th scope="row">Cabinate</th>
-                <td *ngIf="cabinateSelected === null">
-                    <button
-                        matRipple
-                        class="btn btn-outline-primary btn-rounded"
-                        routerLink="/products/cabinates"
-                    >
-                        Add Cabinate
-                    </button>
-                </td>
-                <td *ngIf="cabinateSelected !== null">
+                <td *ngIf="!cabinateSelected">None</td>
+                <td *ngIf="cabinateSelected">
                     <img
                         [src]="cabinateSelected.imagePath"
                         alt=""
@@ -195,27 +278,41 @@
                         style="max-width: 150px; max-height: 100px"
                     />
                 </td>
-                <td *ngIf="cabinateSelected === null">None</td>
-                <td *ngIf="cabinateSelected !== null">
+                <td *ngIf="!cabinateSelected">None</td>
+                <td *ngIf="cabinateSelected">
                     {{ cabinateSelected.name }}
                 </td>
-                <td *ngIf="cabinateSelected === null">None</td>
-                <td *ngIf="cabinateSelected !== null">
-                    ₹ {{ cabinateSelected.price }}
+                <td *ngIf="!cabinateSelected">None</td>
+                <td *ngIf="cabinateSelected">₹ {{ cabinateSelected.price }}</td>
+                <td *ngIf="!cabinateSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Cabinate"
+                        routerLink="/products/cabinates"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </td>
+                <td *ngIf="cabinateSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-danger"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Remove Cabinate"
+                        (click)="removeCabinate()"
+                    >
+                        X
+                    </button>
                 </td>
             </tr>
             <tr class="components">
                 <th scope="row">Power Supply</th>
-                <td *ngIf="powerSupplySelected === null">
-                    <button
-                        matRipple
-                        class="btn btn-outline-primary btn-rounded"
-                        routerLink="/products/power-supplies"
-                    >
-                        Add Power Supply
-                    </button>
-                </td>
-                <td *ngIf="powerSupplySelected !== null">
+                <td *ngIf="!powerSupplySelected">None</td>
+                <td *ngIf="powerSupplySelected">
                     <img
                         [src]="powerSupplySelected.imagePath"
                         alt=""
@@ -223,13 +320,37 @@
                         style="max-width: 150px; max-height: 100px"
                     />
                 </td>
-                <td *ngIf="powerSupplySelected === null">None</td>
-                <td *ngIf="powerSupplySelected !== null">
+                <td *ngIf="!powerSupplySelected">None</td>
+                <td *ngIf="powerSupplySelected">
                     {{ powerSupplySelected.name }}
                 </td>
-                <td *ngIf="powerSupplySelected === null">None</td>
-                <td *ngIf="powerSupplySelected !== null">
+                <td *ngIf="!powerSupplySelected">None</td>
+                <td *ngIf="powerSupplySelected">
                     ₹ {{ powerSupplySelected.price }}
+                </td>
+                <td *ngIf="!powerSupplySelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Power Supply"
+                        routerLink="/products/power-supplies"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </td>
+                <td *ngIf="powerSupplySelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-danger"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Remove Power Supply"
+                        (click)="removePowerSupply()"
+                    >
+                        X
+                    </button>
                 </td>
             </tr>
         </tbody>

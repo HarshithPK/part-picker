@@ -32,7 +32,7 @@ export class MemoryStartComponent implements OnInit {
     }
 
     storeMemory(): void {
-        this.dataStorageService.storeMemory();
+        // this.dataStorageService.storeMemory();
     }
 
     loadMemory(): void {

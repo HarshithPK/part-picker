@@ -182,7 +182,7 @@ export class MotherboardService {
         return this.motherboards.slice();
     }
 
-    getMotherbboard(index: number): Motherboard {
+    getMotherboard(index: number): Motherboard {
         return this.motherboards[index];
     }
 }

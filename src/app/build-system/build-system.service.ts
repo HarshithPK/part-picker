@@ -49,12 +49,22 @@ export class BuildSystemService {
         this.cpuSelectedChanged.next(this.cpuSelected);
     }
 
+    removeCPU(): void {
+        this.cpuSelected = null!;
+        this.cpuSelectedChanged.next(this.cpuSelected);
+    }
+
     getCPU(): Processor {
         return this.cpuSelected;
     }
 
     addCooler(cooler: Cooler): void {
         this.coolerSelected = cooler;
+        this.coolerSelectedChanged.next(this.coolerSelected);
+    }
+
+    removeCooler(): void {
+        this.coolerSelected = null!;
         this.coolerSelectedChanged.next(this.coolerSelected);
     }
 
@@ -67,12 +77,22 @@ export class BuildSystemService {
         this.motherboardSelectedChanged.next(this.motherboardSelected);
     }
 
+    removeMotherboard(): void {
+        this.motherboardSelected = null!;
+        this.motherboardSelectedChanged.next(this.motherboardSelected);
+    }
+
     getMotherboard(): Motherboard {
         return this.motherboardSelected;
     }
 
     addMemory(memory: Memory): void {
         this.memorySelected = memory;
+        this.memorySelectedChanged.next(this.memorySelected);
+    }
+
+    removeMemory(): void {
+        this.memorySelected = null!;
         this.memorySelectedChanged.next(this.memorySelected);
     }
 
@@ -85,12 +105,22 @@ export class BuildSystemService {
         this.storageSelectedChanged.next(this.storageSelected);
     }
 
+    removeStorage(): void {
+        this.storageSelected = null!;
+        this.storageSelectedChanged.next(this.storageSelected);
+    }
+
     getStorage(): Storage {
         return this.storageSelected;
     }
 
     addGraphicsCard(graphicsCard: GraphicsCard): void {
         this.graphicsCardSelected = graphicsCard;
+        this.graphicsCardSelectedChanged.next(this.graphicsCardSelected);
+    }
+
+    removeGraphicsCard(): void {
+        this.graphicsCardSelected = null!;
         this.graphicsCardSelectedChanged.next(this.graphicsCardSelected);
     }
 
@@ -103,12 +133,22 @@ export class BuildSystemService {
         this.cabinateSelectedChanged.next(this.cabinateSelected);
     }
 
+    removeCabinate(): void {
+        this.cabinateSelected = null!;
+        this.cabinateSelectedChanged.next(this.cabinateSelected);
+    }
+
     getCabinate(): Cabinate {
         return this.cabinateSelected;
     }
 
     addPowerSupply(powerSupply: PowerSupply): void {
         this.powerSupplySelected = powerSupply;
+        this.powerSupplySelectedChanged.next(this.powerSupplySelected);
+    }
+
+    removePowerSupply(): void {
+        this.powerSupplySelected = null!;
         this.powerSupplySelectedChanged.next(this.powerSupplySelected);
     }
 

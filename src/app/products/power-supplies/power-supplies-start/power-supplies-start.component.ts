@@ -32,7 +32,7 @@ export class PowerSuppliesStartComponent implements OnInit {
     }
 
     storePowerSupply(): void {
-        this.dataStorageService.storePowerSupplies();
+        // this.dataStorageService.storePowerSupplies();
     }
 
     loadPowerSupply(): void {

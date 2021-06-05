@@ -32,7 +32,7 @@ export class CoolersStartComponent implements OnInit {
     }
 
     storeCoolers(): void {
-        this.dataStorageService.storeCoolers();
+        // this.dataStorageService.storeCoolers();
     }
 
     loadCoolers(): void {

@@ -34,7 +34,7 @@ export class ProcessorsStartComponent implements OnInit {
     }
 
     storeProcessors(): void {
-        this.dataStorageService.storeProcessors();
+        // this.dataStorageService.storeProcessors();
     }
 
     loadProcessors(): void {

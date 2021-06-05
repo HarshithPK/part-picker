@@ -1,0 +1,198 @@
+<div class="row mt-5">
+    <div class="col-xs-12 col-md-6">
+        <form
+            class="d-flex flex-column justify-contents-center"
+            #addPowerSupplyForm="ngForm"
+            (ngSubmit)="onSubmit(addPowerSupplyForm)"
+        >
+            <h2>Add Power Supply</h2>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Manufacturer</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="manufacturer"
+                    name="manufacturer"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Series</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="series"
+                    name="series"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="name"
+                    name="name"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Form Factor</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="formFactor"
+                    name="formFactor"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Efficiency Rating</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="efficiencyRating"
+                    name="efficiencyRating"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Wattage</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="wattage"
+                    name="wattage"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Modularity</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="modular"
+                    name="modular"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Length</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="length"
+                    name="length"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Color</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="color"
+                    name="color"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Fanless</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="fanless"
+                    name="fanless"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>EPS Connectors</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="EPSConnectors"
+                    name="EPSConnectors"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>PCIe 6+2 Pin Connectors</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="PCIe62PinConnectors"
+                    name="PCIe62PinConnectors"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>SATA Connectors</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="SATAConnectors"
+                    name="SATAConnectors"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Molex 4 Pin Connectors</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="Molex4PinConnectors"
+                    name="Molex4PinConnectors"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Image Path</mat-label>
+                <input
+                    matInput
+                    type="url"
+                    id="imagePath"
+                    name="imagePath"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Price</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="price"
+                    name="price"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <button
+                matRipple
+                type="submit"
+                class="btn btn-primary form-components btn-lg mb-5"
+                data-mdb-toggle="tooltip"
+                data-mdb-placement="top"
+                title="Add Power Supply to Database"
+                [disabled]="!addPowerSupplyForm.valid"
+            >
+                Add Power Supply To Database
+            </button>
+        </form>
+    </div>
+</div>

@@ -24,7 +24,7 @@ export class MotherboardDetailComponent implements OnInit {
     ngOnInit(): void {
         this.route.params.subscribe((params: Params) => {
             this.id = +params.id;
-            this.motherboard = this.motherboardService.getMotherbboard(this.id);
+            this.motherboard = this.motherboardService.getMotherboard(this.id);
         });
     }
 

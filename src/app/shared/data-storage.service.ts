@@ -1,6 +1,6 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { exhaustMap, take, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 
 import { Cabinate } from '../products/cabinates/cabinate.model';
@@ -25,7 +25,6 @@ import { StorageService } from '../products/storage/storage.service';
 export class DataStorageService {
     constructor(
         private http: HttpClient,
-        private authService: AuthService,
         private processorService: ProcessorService,
         private cabinateService: CabinateService,
         private coolerService: CoolerService,
@@ -36,8 +35,8 @@ export class DataStorageService {
         private storageService: StorageService
     ) {}
 
-    storeProcessors() {
-        const processors = this.processorService.getProcessors();
+    storeProcessors(processors: Processor[]) {
+        // const processors = this.processorService.getProcessors();
         const url =
             'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/processors.json';
 
@@ -57,8 +56,8 @@ export class DataStorageService {
         );
     }
 
-    storeCabinates() {
-        const cabinates = this.cabinateService.getCabinates();
+    storeCabinates(cabinates: Cabinate[]) {
+        // const cabinates = this.cabinateService.getCabinates();
 
         const url =
             'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/cabinates.json';
@@ -79,8 +78,8 @@ export class DataStorageService {
         );
     }
 
-    storeCoolers() {
-        const coolers = this.coolerService.getCoolers();
+    storeCoolers(coolers: Cooler[]) {
+        // const coolers = this.coolerService.getCoolers();
         const url =
             'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/coolers.json';
 
@@ -100,8 +99,8 @@ export class DataStorageService {
         );
     }
 
-    storeGraphicsCards() {
-        const graphicsCards = this.graphicsCardService.getGraphicsCards();
+    storeGraphicsCards(graphicsCards: GraphicsCard[]) {
+        // const graphicsCards = this.graphicsCardService.getGraphicsCards();
         const url =
             'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/graphicsCards.json';
 
@@ -121,8 +120,8 @@ export class DataStorageService {
         );
     }
 
-    storeMemory() {
-        const memory = this.memoryService.getMemory();
+    storeMemory(memory: Memory[]) {
+        // const memory = this.memoryService.getMemory();
         const url =
             'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/memory.json';
 
@@ -142,8 +141,8 @@ export class DataStorageService {
         );
     }
 
-    storeMotherboards() {
-        const motherboards = this.motherboardService.getMotherboards();
+    storeMotherboards(motherboards: Motherboard[]) {
+        // const motherboards = this.motherboardService.getMotherboards();
         const url =
             'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/motherboards.json';
 
@@ -163,8 +162,8 @@ export class DataStorageService {
         );
     }
 
-    storePowerSupplies() {
-        const powerSupplies = this.powerSuplyService.getPowerSupplies();
+    storePowerSupplies(powerSupplies: PowerSupply[]) {
+        // const powerSupplies = this.powerSuplyService.getPowerSupplies();
         const url =
             'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/powerSupplies.json';
 
@@ -184,8 +183,8 @@ export class DataStorageService {
         );
     }
 
-    storeStorages() {
-        const storages = this.storageService.getStorages();
+    storeStorages(storages: Storage[]) {
+        // const storages = this.storageService.getStorages();
         const url =
             'https://part-picker-5a901-default-rtdb.asia-southeast1.firebasedatabase.app/storages.json';
 

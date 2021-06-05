@@ -43,6 +43,14 @@ import { SharedModule } from './shared/shared.module';
 import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
 import { DevExtremeModule } from 'devextreme-angular';
+import { CabinateAddComponent } from './products/cabinates/cabinate-add/cabinate-add.component';
+import { CoolerAddComponent } from './products/coolers/cooler-add/cooler-add.component';
+import { GraphicsCardAddComponent } from './products/graphics-card/graphics-card-add/graphics-card-add.component';
+import { MemoryAddComponent } from './products/memory/memory-add/memory-add.component';
+import { MotherboardAddComponent } from './products/motherboards/motherboard-add/motherboard-add.component';
+import { PowerSupplyAddComponent } from './products/power-supplies/power-supply-add/power-supply-add.component';
+import { ProcessorAddComponent } from './products/processors/processor-add/processor-add.component';
+import { StorageAddComponent } from './products/storage/storage-add/storage-add.component';
 
 export const appRoutes = [];
 
@@ -81,6 +89,14 @@ export const appRoutes = [];
         LoadingSpinnerComponent,
         AlertComponent,
         PlaceholderDirective,
+        CabinateAddComponent,
+        CoolerAddComponent,
+        GraphicsCardAddComponent,
+        MemoryAddComponent,
+        MotherboardAddComponent,
+        PowerSupplyAddComponent,
+        ProcessorAddComponent,
+        StorageAddComponent,
     ],
     imports: [
         BrowserModule,

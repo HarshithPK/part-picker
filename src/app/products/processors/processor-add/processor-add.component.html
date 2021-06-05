@@ -1,0 +1,198 @@
+<div class="row mt-5">
+    <div class="col-xs-12 col-md-6">
+        <form
+            class="d-flex flex-column justify-contents-center"
+            #addProcessorForm="ngForm"
+            (ngSubmit)="onSubmit(addProcessorForm)"
+        >
+            <h2>Add Processor</h2>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Manufacturer</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="manufacturer"
+                    name="manufacturer"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Series</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="series"
+                    name="series"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="name"
+                    name="name"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Cores</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="cores"
+                    name="cores"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Threads</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="threads"
+                    name="threads"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Socket</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="socket"
+                    name="socket"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Base Clock</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="baseClock"
+                    name="baseClock"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Boost Clock</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="boostClock"
+                    name="boostClock"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>TDP</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="tdp"
+                    name="tdp"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Integrated Graphics</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="integratedGraphics"
+                    name="integratedGraphics"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>SMT</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="smt"
+                    name="smt"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Architecture</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="architecture"
+                    name="architecture"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>L3 Cache</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="cache"
+                    name="cache"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Lithograaphy</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="lithograaphy"
+                    name="lithograaphy"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Image Path</mat-label>
+                <input
+                    matInput
+                    type="url"
+                    id="imagePath"
+                    name="imagePath"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Price</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="price"
+                    name="price"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <button
+                matRipple
+                type="submit"
+                class="btn btn-primary form-components btn-lg mb-5"
+                data-mdb-toggle="tooltip"
+                data-mdb-placement="top"
+                title="Add Processor to Database"
+                [disabled]="!addProcessorForm.valid"
+            >
+                Add Processor To Database
+            </button>
+        </form>
+    </div>
+</div>

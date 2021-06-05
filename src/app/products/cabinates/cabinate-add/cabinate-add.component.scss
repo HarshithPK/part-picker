@@ -1,0 +1,38 @@
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+@import "~mdb-angular-ui-kit/assets/scss/mdb.scss";
+
+.form-components {
+    max-width: 40%;
+    margin-left: 30%;
+}
+
+.mat-input-element {
+    color: black;
+}
+
+.ng-star-inserted {
+    font-weight: 550;
+    color: black;
+}
+
+.mat-form-field-autofill-control {
+    color: black;
+}
+
+::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: rgb(18, 102, 241);
+    }
+    mat-form-field {
+        .mat-hint,
+        input,
+        ::placeholder,
+        .mat-form-field-label {
+            color: rgb(0, 0, 0);
+        }
+    }
+}

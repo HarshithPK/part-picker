@@ -32,7 +32,7 @@ export class CabinatesStartComponent implements OnInit {
     }
 
     storeCabinates(): void {
-        this.dataStorageService.storeCabinates();
+        // this.dataStorageService.storeCabinates();
     }
 
     loadCabinates(): void {

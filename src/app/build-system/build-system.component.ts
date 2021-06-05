@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 
 import { Cabinate } from '../products/cabinates/cabinate.model';
@@ -44,5 +45,45 @@ export class BuildSystemComponent implements OnInit {
         this.graphicsCardSelected = this.buildSystemService.getGraphicsCard();
         this.cabinateSelected = this.buildSystemService.getCabinate();
         this.powerSupplySelected = this.buildSystemService.getPowerSupply();
+    }
+
+    removeCPU(): void {
+        this.cpuSelected = null!;
+        this.buildSystemService.removeCPU();
+    }
+
+    removeCooler(): void {
+        this.coolerSelected = null!;
+        this.buildSystemService.removeCooler();
+    }
+
+    removeMotherboard(): void {
+        this.motherboardSelected = null!;
+        this.buildSystemService.removeMotherboard();
+    }
+
+    removeMemory(): void {
+        this.memorySelected = null!;
+        this.buildSystemService.removeMemory();
+    }
+
+    removeStorage(): void {
+        this.storageSelected = null!;
+        this.buildSystemService.removeStorage();
+    }
+
+    removeGraphicsCard(): void {
+        this.graphicsCardSelected = null!;
+        this.buildSystemService.removeGraphicsCard();
+    }
+
+    removeCabinate(): void {
+        this.cabinateSelected = null!;
+        this.buildSystemService.removeCabinate();
+    }
+
+    removePowerSupply(): void {
+        this.powerSupplySelected = null!;
+        this.buildSystemService.removePowerSupply();
     }
 }

@@ -38,6 +38,14 @@ import { StorageStartComponent } from './products/storage/storage-start/storage-
 import { StorageComponent } from './products/storage/storage.component';
 import { StoragesResolverService } from './products/storage/storages-resolver.service';
 import { AuthGuard } from './auth/auth.guard';
+import { CabinateAddComponent } from './products/cabinates/cabinate-add/cabinate-add.component';
+import { CoolerAddComponent } from './products/coolers/cooler-add/cooler-add.component';
+import { GraphicsCardAddComponent } from './products/graphics-card/graphics-card-add/graphics-card-add.component';
+import { MemoryAddComponent } from './products/memory/memory-add/memory-add.component';
+import { MotherboardAddComponent } from './products/motherboards/motherboard-add/motherboard-add.component';
+import { PowerSupplyAddComponent } from './products/power-supplies/power-supply-add/power-supply-add.component';
+import { ProcessorAddComponent } from './products/processors/processor-add/processor-add.component';
+import { StorageAddComponent } from './products/storage/storage-add/storage-add.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/build-system', pathMatch: 'full' },
@@ -62,6 +70,7 @@ const appRoutes: Routes = [
                         component: ProcessorsStartComponent,
                         pathMatch: 'full',
                     },
+                    { path: 'add-processor', component: ProcessorAddComponent },
                     {
                         path: ':id',
                         component: ProcessorDetailComponent,
@@ -79,6 +88,10 @@ const appRoutes: Routes = [
                         pathMatch: 'full',
                     },
                     {
+                        path: 'add-motherboard',
+                        component: MotherboardAddComponent,
+                    },
+                    {
                         path: ':id',
                         component: MotherboardDetailComponent,
                     },
@@ -94,6 +107,7 @@ const appRoutes: Routes = [
                         component: MemoryStartComponent,
                         pathMatch: 'full',
                     },
+                    { path: 'add-memory', component: MemoryAddComponent },
                     {
                         path: ':id',
                         component: MemoryDetailComponent,
@@ -110,6 +124,7 @@ const appRoutes: Routes = [
                         component: CoolersStartComponent,
                         pathMatch: 'full',
                     },
+                    { path: 'add-cooler', component: CoolerAddComponent },
                     {
                         path: ':id',
                         component: CoolerDetailComponent,
@@ -125,6 +140,10 @@ const appRoutes: Routes = [
                         path: '',
                         component: GraphicsCardsStartComponent,
                         pathMatch: 'full',
+                    },
+                    {
+                        path: 'add-graphics-card',
+                        component: GraphicsCardAddComponent,
                     },
                     {
                         path: ':id',
@@ -143,6 +162,10 @@ const appRoutes: Routes = [
                         pathMatch: 'full',
                     },
                     {
+                        path: 'add-power-supply',
+                        component: PowerSupplyAddComponent,
+                    },
+                    {
                         path: ':id',
                         component: PowerSupplyDetailComponent,
                     },
@@ -158,6 +181,7 @@ const appRoutes: Routes = [
                         component: StorageStartComponent,
                         pathMatch: 'full',
                     },
+                    { path: 'add-storage', component: StorageAddComponent },
                     {
                         path: ':id',
                         component: StorageDetailComponent,
@@ -173,6 +197,10 @@ const appRoutes: Routes = [
                         path: '',
                         component: CabinatesStartComponent,
                         pathMatch: 'full',
+                    },
+                    {
+                        path: 'add-cabinate',
+                        component: CabinateAddComponent,
                     },
                     {
                         path: ':id',

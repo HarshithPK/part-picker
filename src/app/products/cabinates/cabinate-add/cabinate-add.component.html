@@ -1,0 +1,220 @@
+<div class="row mt-5">
+    <div class="col-xs-12 col-md-6">
+        <form
+            class="d-flex flex-column justify-contents-center"
+            #addCabinateForm="ngForm"
+            (ngSubmit)="onSubmit(addCabinateForm)"
+        >
+            <h2>Add Cabinate</h2>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Manufacturer</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="manufacturer"
+                    name="manufacturer"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Series</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="series"
+                    name="series"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="name"
+                    name="name"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Type</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="type"
+                    name="type"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Power Supply</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="powerSupply"
+                    name="powerSupply"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Color</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="color"
+                    name="color"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Dimensions</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="dimensions"
+                    name="dimensions"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>IO Ports</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="ioPorts"
+                    name="ioPorts"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Motherboard Support</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="motherboardSupport"
+                    name="motherboardSupport"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Side Panel</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="sidePanel"
+                    name="sidePanel"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Material</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="material"
+                    name="material"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Max PSU Length</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="maxPSULength"
+                    name="maxPSULength"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Max GPU Length</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="maxGPULength"
+                    name="maxGPULength"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Max CPU Clearance</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="maxCPUClearance"
+                    name="maxCPUClearance"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Fan Support</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="fanSupport"
+                    name="fanSuppor"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Dust Filters</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="dustFilters"
+                    name="dustFilters"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Image Path</mat-label>
+                <input
+                    matInput
+                    type="url"
+                    id="imagePath"
+                    name="imagePath"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Price</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="price"
+                    name="price"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <button
+                matRipple
+                type="submit"
+                class="btn btn-primary form-components btn-lg mb-5"
+                data-mdb-toggle="tooltip"
+                data-mdb-placement="top"
+                title="Add Cabinate to Database"
+                [disabled]="!addCabinateForm.valid"
+            >
+                Add Cabinate To Database
+            </button>
+        </form>
+    </div>
+</div>

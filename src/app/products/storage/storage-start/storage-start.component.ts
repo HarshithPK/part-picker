@@ -32,7 +32,7 @@ export class StorageStartComponent implements OnInit {
     }
 
     storeStorages(): void {
-        this.dataStorageService.storeStorages();
+        // this.dataStorageService.storeStorages();
     }
 
     loadStorages(): void {

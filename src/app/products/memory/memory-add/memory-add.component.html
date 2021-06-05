@@ -1,0 +1,198 @@
+<div class="row mt-5">
+    <div class="col-xs-12 col-md-6">
+        <form
+            class="d-flex flex-column justify-contents-center"
+            #addMemoryForm="ngForm"
+            (ngSubmit)="onSubmit(addMemoryForm)"
+        >
+            <h2>Add Memory</h2>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Manufacturer</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="manufacturer"
+                    name="manufacturer"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Series</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="series"
+                    name="series"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="name"
+                    name="name"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Modules</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="modules"
+                    name="modules"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Memory Speed</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="memorySpeed"
+                    name="memorySpeed"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Memorry Size</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="memorrySize"
+                    name="memorrySize"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Memory Type</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="memoryType"
+                    name="memoryType"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Form Factor</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="formFactor"
+                    name="formFactor"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>CAS Latency</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="casLatency"
+                    name="casLatency"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Timing</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="timing"
+                    name="timing"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Voltage</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="voltage"
+                    name="voltage"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Heat Spreader</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="heatSpreader"
+                    name="heatSpreader"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>ECC</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="ecc"
+                    name="ecc"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Color</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="color"
+                    name="color"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Image Path</mat-label>
+                <input
+                    matInput
+                    type="url"
+                    id="imagePath"
+                    name="imagePath"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Price</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="price"
+                    name="price"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <button
+                matRipple
+                type="submit"
+                class="btn btn-primary form-components btn-lg mb-5"
+                data-mdb-toggle="tooltip"
+                data-mdb-placement="top"
+                title="Add Memory to Database"
+                [disabled]="!addMemoryForm.valid"
+            >
+                Add Memory To Database
+            </button>
+        </form>
+    </div>
+</div>

@@ -26,13 +26,13 @@ export class MotherboardsStartComponent implements OnInit {
     }
 
     addMotherboard(index: number): void {
-        const motherboard = this.motherboardService.getMotherbboard(index);
+        const motherboard = this.motherboardService.getMotherboard(index);
         this.buildSystemService.addMotherboard(motherboard);
         this.router.navigate(['/build-system']);
     }
 
     storeMotherboards(): void {
-        this.dataStorageService.storeMotherboards();
+        // this.dataStorageService.storeMotherboards();
     }
 
     loadMotherboards(): void {

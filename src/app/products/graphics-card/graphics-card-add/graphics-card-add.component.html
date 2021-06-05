@@ -1,0 +1,275 @@
+<div class="row mt-5">
+    <div class="col-xs-12 col-md-6">
+        <form
+            class="d-flex flex-column justify-contents-center"
+            #addGraphicsCardForm="ngForm"
+            (ngSubmit)="onSubmit(addGraphicsCardForm)"
+        >
+            <h2>Add Graphics Card</h2>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Manufacturer</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="manufacturer"
+                    name="manufacturer"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Series</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="series"
+                    name="series"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="name"
+                    name="name"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Chipset</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="chipset"
+                    name="chipset"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Memory</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="memory"
+                    name="memory"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Memory Type</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="memoryType"
+                    name="memoryType"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Core Clock</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="coreClock"
+                    name="coreClock"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Boost Clock</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="boostClock"
+                    name="boostClock"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Effective Memory Clock</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="effectiveMemoryClock"
+                    name="effectiveMemoryClock"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Card Interface</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="cardInterface"
+                    name="cardInterface"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Frame Sync</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="frameSync"
+                    name="frameSync"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>TDP</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="tdp"
+                    name="tdp"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Length</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="length"
+                    name="length"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>DVI Ports</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="DVIPorts"
+                    name="DVIPorts"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>HDMI Ports</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="HDMIPorts"
+                    name="HDMIPorts"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Mini-HDMI Ports</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="MiniHDMIPorts"
+                    name="MiniHDMIPorts"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>DisplayPort Ports</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="DisplayPortPorts"
+                    name="DisplayPortPorts"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Mini-DisplayPort Ports</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="MiniDisplayPortPorts"
+                    name="MiniDisplayPortPorts"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Slot Width</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="slotWidth"
+                    name="slotWidth"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Cooling</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="cooling"
+                    name="cooling"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>External Power</mat-label>
+                <input
+                    matInput
+                    type="text"
+                    id="externalPower"
+                    name="externalPower"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Image Path</mat-label>
+                <input
+                    matInput
+                    type="url"
+                    id="imagePath"
+                    name="imagePath"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="form-components" appearance="outline">
+                <mat-label>Price</mat-label>
+                <input
+                    matInput
+                    type="number"
+                    id="price"
+                    name="price"
+                    ngModel
+                    required
+                />
+            </mat-form-field>
+            <button
+                matRipple
+                type="submit"
+                class="btn btn-primary form-components btn-lg mb-5"
+                data-mdb-toggle="tooltip"
+                data-mdb-placement="top"
+                title="Add Graphics Card to Database"
+                [disabled]="!addGraphicsCardForm.valid"
+            >
+                Add Graphics Card To Database
+            </button>
+        </form>
+    </div>
+</div>
