@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 3;
 
 import { BuildSystemService } from 'src/app/build-system/build-system.service';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Processor } from '../processor.model';
 import { ProcessorService } from '../processor.service';
 
@@ -18,7 +17,6 @@ export class ProcessorsStartComponent implements OnInit {
 
     constructor(
         private processorService: ProcessorService,
-        private dataStorageService: DataStorageService,
         private buildSystemService: BuildSystemService,
         private router: Router
     ) {}
@@ -31,13 +29,5 @@ export class ProcessorsStartComponent implements OnInit {
         const processor = this.processorService.getProcessor(index);
         this.buildSystemService.addCPU(processor);
         this.router.navigate(['/build-system']);
-    }
-
-    storeProcessors(): void {
-        // this.dataStorageService.storeProcessors();
-    }
-
-    loadProcessors(): void {
-        this.dataStorageService.fetchProcessors();
     }
 }

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Memory } from '../momery.model';
 import { MemoryService } from '../memory.service';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
-import { Router } from '@angular/router';
 import { BuildSystemService } from 'src/app/build-system/build-system.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class MemoryStartComponent implements OnInit {
 
     constructor(
         private memorySeervice: MemoryService,
-        private dataStorageService: DataStorageService,
         private buildSystemService: BuildSystemService,
         private router: Router
     ) {}
@@ -29,13 +27,5 @@ export class MemoryStartComponent implements OnInit {
         const ram = this.memorySeervice.getRAM(index);
         this.buildSystemService.addMemory(ram);
         this.router.navigate(['/build-system']);
-    }
-
-    storeMemory(): void {
-        // this.dataStorageService.storeMemory();
-    }
-
-    loadMemory(): void {
-        this.dataStorageService.fetchMemory();
     }
 }

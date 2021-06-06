@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { BuildSystemService } from 'src/app/build-system/build-system.service';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Motherboard } from '../motherboard.model';
 import { MotherboardService } from '../motherboard.service';
 
@@ -16,7 +15,6 @@ export class MotherboardsStartComponent implements OnInit {
 
     constructor(
         private motherboardService: MotherboardService,
-        private dataStorageService: DataStorageService,
         private buildSystemService: BuildSystemService,
         private router: Router
     ) {}
@@ -29,13 +27,5 @@ export class MotherboardsStartComponent implements OnInit {
         const motherboard = this.motherboardService.getMotherboard(index);
         this.buildSystemService.addMotherboard(motherboard);
         this.router.navigate(['/build-system']);
-    }
-
-    storeMotherboards(): void {
-        // this.dataStorageService.storeMotherboards();
-    }
-
-    loadMotherboards(): void {
-        this.dataStorageService.fetchMotherboards();
     }
 }
