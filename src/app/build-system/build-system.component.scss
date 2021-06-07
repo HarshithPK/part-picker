@@ -18,8 +18,18 @@ tr {
     background-color: rgb(53, 51, 51);
 }
 
-.components,
-td {
-    font-size: 1rem;
+.component-headings th {
+    color: rgb(255, 0, 0);
+    font-size: 1.2rem;
+}
+
+.components th {
+    font-size: 1.1rem;
+    font-weight: 550;
+}
+
+.components td {
+    color: rgb(136, 238, 238);
+    font-size: 1.05rem;
     font-weight: 550;
 }
