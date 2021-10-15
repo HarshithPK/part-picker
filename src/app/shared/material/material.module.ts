@@ -1,32 +1,3 @@
-// import { NgModule } from '@angular/core';
-
-// import { MatToolbarModule } from '@angular/material/toolbar';
-// import { MatIconModule } from '@angular/material/icon';
-// import { MatRippleModule } from '@angular/material/core';
-// import { MatMenuModule } from '@angular/material/menu';
-// import { MatFormFieldModule } from '@angular/material/form-field';
-// import { MatInputModule } from '@angular/material/input';
-
-// @NgModule({
-//     imports: [
-//         MatToolbarModule,
-//         MatIconModule,
-//         MatRippleModule,
-//         MatMenuModule,
-//         MatFormFieldModule,
-//         MatInputModule,
-//     ],
-//     exports: [
-//         MatToolbarModule,
-//         MatIconModule,
-//         MatRippleModule,
-//         MatMenuModule,
-//         MatFormFieldModule,
-//         MatInputModule,
-//     ],
-// })
-// export class MaterialModule { }
-
 import { NgModule } from '@angular/core';
 import { A11yModule } from '@angular/cdk/a11y';
 import { ClipboardModule } from '@angular/cdk/clipboard';

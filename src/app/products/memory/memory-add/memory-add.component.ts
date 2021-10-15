@@ -46,6 +46,12 @@ export class MemoryAddComponent implements OnInit {
         this.memory.push(this.ram);
         this.dataStorageService.storeMemory(this.memory);
 
-        // form.reset();private
+        form.reset();
+
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
     }
 }

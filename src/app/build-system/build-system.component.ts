@@ -1,4 +1,3 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 
 import { Cabinate } from '../products/cabinates/cabinate.model';
@@ -17,21 +16,13 @@ import { BuildSystemService } from './build-system.service';
     styleUrls: ['./build-system.component.scss'],
 })
 export class BuildSystemComponent implements OnInit {
-    // tslint:disable-next-line: no-non-null-assertion
     cpuSelected: Processor = null!;
-    // tslint:disable-next-line: no-non-null-assertion
     coolerSelected: Cooler = null!;
-    // tslint:disable-next-line: no-non-null-assertion
     motherboardSelected: Motherboard = null!;
-    // tslint:disable-next-line: no-non-null-assertion
     memorySelected: Memory = null!;
-    // tslint:disable-next-line: no-non-null-assertion
     storageSelected: Storage = null!;
-    // tslint:disable-next-line: no-non-null-assertion
     graphicsCardSelected: GraphicsCard = null!;
-    // tslint:disable-next-line: no-non-null-assertion
     cabinateSelected: Cabinate = null!;
-    // tslint:disable-next-line: no-non-null-assertion
     powerSupplySelected: PowerSupply = null!;
 
     constructor(private buildSystemService: BuildSystemService) {}

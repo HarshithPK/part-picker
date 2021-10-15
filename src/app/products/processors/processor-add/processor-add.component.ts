@@ -26,8 +26,8 @@ export class ProcessorAddComponent implements OnInit {
     onSubmit(form: NgForm) {
         this.processor = new Processor(
             form.value.manufacturer,
-            form.value.series,
             form.value.name,
+            form.value.series,
             form.value.cores,
             form.value.threads,
             form.value.socket,
@@ -47,5 +47,11 @@ export class ProcessorAddComponent implements OnInit {
         this.dataStorageService.storeProcessors(this.processors);
 
         form.reset();
+
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
     }
 }

@@ -1,119 +1,694 @@
 <div class="container">
-    <h2>Power Supplies</h2>
     <div class="row">
-        <div
-            class="col-md-4 d-flex allign-items-start mb-5"
-            *ngFor="let powerSupply of powerSupplies; let i = index"
-        >
-            <div
-                class="
-                    card
-                    text-center
-                    border border-primary
-                    shadow-0
-                    text-white
-                "
-                style="background-color: #000000"
+        <!-- Filters Column Div -->
+        <div class="col-md-3">
+            <h3
+                class="filters-heading mt-3"
+                style="font-size: 1.1rem; font-weight: 1000"
             >
+                Filters
+            </h3>
+
+            <!-- Simplebar Scrollbar for filters -->
+            <ngx-simplebar class="filters-scroll">
+                <!-- Filters card -->
                 <div
-                    class="bg-image hover-overlay ripple"
-                    data-mdb-ripple-color="light"
+                    class="row card text-white"
+                    style="background-color: #3b3838; padding: 10px"
                 >
-                    <img
-                        [src]="powerSupply.imagePath"
-                        class="img-fluid"
-                        style="max-width: 200px; height: 150px"
-                    />
-                    <a [routerLink]="[i]">
-                        <div
-                            class="mask"
-                            style="background-color: rgba(255, 255, 255, 0.349)"
-                        ></div>
-                    </a>
-                </div>
-                <div class="card-header">
-                    <strong class="power-supply-name">{{
-                        powerSupply.name
-                    }}</strong>
-                </div>
-                <div class="card-body">
-                    <div class="row justify-content-start">
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Manufacturer</strong></span
+                    <!-- Price Filter -->
+                    <span
+                        class="mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Price</span
+                    >
+                    <div class="d-flex allign-items-center">
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
                         >
-                        <span class="col-md-6 spec-content">
-                            {{ powerSupply.manufacturer }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Form Factor</strong></span
+                            <mat-label>Min</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="price-min"
+                                name="price-min"
+                                [(ngModel)]="priceMin"
+                            />
+                            <i matSuffix class="fas fa-rupee-sign"></i>
+                        </mat-form-field>
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
                         >
-                        <span class="col-md-6 spec-content">
-                            {{ powerSupply.formFactor }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Wattage</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ powerSupply.wattage }} W
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Efficiency Rating</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ powerSupply.efficiencyRating }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Modularity</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ powerSupply.modular }}
-                        </span>
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Price</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            ₹ {{ powerSupply.price }}
-                        </span>
+                            <mat-label>Max</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="price-max"
+                                name="price-max"
+                                [(ngModel)]="priceMax"
+                            />
+                            <i matSuffix class="fas fa-rupee-sign"></i>
+                        </mat-form-field>
                     </div>
                     <button
-                        matRipple
                         type="button"
-                        class="
-                            btn btn-outline-primary
-                            mt-4
-                            add-power-supply-button
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
                         "
                         data-mdb-toggle="tooltip"
                         data-mdb-placement="top"
-                        title="Add Power Supply"
-                        (click)="addPowerSupply(i)"
+                        title="Apply"
+                        (click)="applyFilters()"
                     >
-                        <i class="fas fa-plus"></i>
+                        Apply
                     </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Form Factor filter -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Form Factor</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div class="col-md-12 d-flex allign-items-start">
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'BTX',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="form-factor-btn-check-1"
+                                    >BTX</label
+                                >
+
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'SFX',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="form-factor-btn-check-2"
+                                    >SFX</label
+                                >
+                            </div>
+
+                            <div
+                                class="col-md-12 d-flex allign-items-start mt-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ATX',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="form-factor-btn-check-3"
+                                    >ATX</label
+                                >
+                            </div>
+                        </div>
+                    </div>
                     <button
-                        matRipple
                         type="button"
-                        class="
-                            btn btn-outline-primary
-                            mt-4
-                            load-power-supply-button
-                            ripple
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
                         "
                         data-mdb-toggle="tooltip"
                         data-mdb-placement="top"
-                        title="View Power Supply"
-                        [routerLink]="[i]"
+                        title="Apply"
+                        (click)="applyFilters()"
                     >
-                        <i class="far fa-arrow-alt-circle-right"></i>
+                        Apply
                     </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Modularity filter -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Modularity</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div class="col-md-12 d-flex allign-items-start">
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="modularity-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Full-Modular',
+                                            'modularity'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="modularity-btn-check-1"
+                                    >FULL</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="modularity-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Semi-Modular',
+                                            'modularity'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="modularity-btn-check-2"
+                                    >SEMI</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 d-flex allign-items-start mt-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="modularity-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Non-Modular',
+                                            'modularity'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    style="margin-right: 1.5px"
+                                    for="modularity-btn-check-3"
+                                    >NON - MODULAR</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Wattage filter -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Wattage</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-right: 1.75px"
+                            appearance="outline"
+                        >
+                            <mat-label>Min</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="wattage-min"
+                                name="wattage-min"
+                                [(ngModel)]="wattageMin"
+                            />
+                            <i matSuffix class="fab fa-weebly"></i>
+                        </mat-form-field>
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
+                        >
+                            <mat-label>Max</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="wattage-max"
+                                name="wattage-max"
+                                [(ngModel)]="wattageMax"
+                            />
+                            <i matSuffix class="fab fa-weebly"></i>
+                        </mat-form-field>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Efficiency Filter -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Efficiency Rating</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div
+                                class="col-md-12 mt-1 d-flex allign-items-start"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="efficiency-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '80+ Titanium',
+                                            'efficiency'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="efficiency-btn-check-1"
+                                    >80+ TITANIUM</label
+                                >
+                            </div>
+
+                            <div
+                                class="col-md-12 mt-1 d-flex allign-items-start"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="efficiency-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '80+ Platinum',
+                                            'efficiency'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="efficiency-btn-check-2"
+                                    >80+ PLATINUM</label
+                                >
+                            </div>
+
+                            <div
+                                class="col-md-12 mt-1 d-flex allign-items-start"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="efficiency-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '80+ Gold',
+                                            'efficiency'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="efficiency-btn-check-3"
+                                    >80+ GOLD</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 mt-1 d-flex allign-items-start"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="efficiency-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '80+ Silver',
+                                            'efficiency'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="efficiency-btn-check-4"
+                                    >80+ Silver</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 mt-1 d-flex allign-items-start"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="efficiency-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '80+ Bronze',
+                                            'efficiency'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="efficiency-btn-check-5"
+                                    >80+ BRONZE</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 mt-1 d-flex allign-items-start"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="efficiency-btn-check-6"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '80+ White',
+                                            'efficiency'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="efficiency-btn-check-6"
+                                    >80+ WHITE</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 mt-1 d-flex allign-items-start"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="efficiency-btn-check-7"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'None',
+                                            'efficiency'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="efficiency-btn-check-7"
+                                    >NONE</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+                    <mat-divider></mat-divider>
+
+                    <!-- Clear Filters -->
+                    <div class="col-md-12 mt-1 d-flex justify-content-center">
+                        <button
+                            matRipple
+                            class="clear-filter-button btn btn-danger mt-2 mb-2"
+                            type="button"
+                            data-mdb-toggle="tooltip"
+                            data-mdb-placement="top"
+                            title="Clear Filters"
+                            routerLink="power-supplies"
+                            (click)="clearFilters()"
+                        >
+                            Clear Filters
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </ngx-simplebar>
+        </div>
+
+        <div class="col-md-9">
+            <h2 class="mt-2" style="font-size: 2rem">Power Supplies</h2>
+            <ngx-simplebar class="content-scroll">
+                <div class="row">
+                    <div
+                        class="
+                            col-md-4
+                            d-flex
+                            allign-items-end
+                            justify-content-between
+                            mb-5
+                        "
+                        data-mdb-perfect-scrollbar="true"
+                        *ngFor="let powerSupply of powerSupplies; let i = index"
+                    >
+                        <div
+                            class="
+                                card
+                                text-center
+                                border border-primary
+                                shadow-0
+                                text-white
+                            "
+                            style="background-color: #000000"
+                        >
+                            <div
+                                class="bg-image hover-overlay ripple"
+                                data-mdb-ripple-color="light"
+                            >
+                                <img
+                                    [src]="powerSupply.imagePath"
+                                    class="img-fluid"
+                                    style="max-width: 200px; height: 150px"
+                                />
+                                <a [routerLink]="[i]">
+                                    <div
+                                        class="mask"
+                                        style="
+                                            background-color: rgba(
+                                                255,
+                                                255,
+                                                255,
+                                                0.349
+                                            );
+                                        "
+                                    ></div>
+                                </a>
+                            </div>
+                            <div class="card-header">
+                                <strong class="power-supply-name">{{
+                                    powerSupply.name
+                                }}</strong>
+                            </div>
+                            <div class="card-body">
+                                <div class="row justify-content-start">
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Manufacturer</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ powerSupply.manufacturer }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Form Factor</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ powerSupply.formFactor }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Wattage</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ powerSupply.wattage }} W
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong
+                                            >Efficiency Rating</strong
+                                        ></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ powerSupply.efficiencyRating }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Modularity</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ powerSupply.modular }}
+                                    </span>
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Price</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        ₹ {{ powerSupply.price }}
+                                    </span>
+                                </div>
+                                <button
+                                    matRipple
+                                    type="button"
+                                    class="
+                                        btn btn-outline-primary
+                                        mt-4
+                                        add-power-supply-button
+                                    "
+                                    data-mdb-toggle="tooltip"
+                                    data-mdb-placement="top"
+                                    title="Add Power Supply"
+                                    (click)="addPowerSupply(i)"
+                                >
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <button
+                                    matRipple
+                                    type="button"
+                                    class="
+                                        btn btn-outline-primary
+                                        mt-4
+                                        load-power-supply-button
+                                        ripple
+                                    "
+                                    data-mdb-toggle="tooltip"
+                                    data-mdb-placement="top"
+                                    title="View Power Supply"
+                                    [routerLink]="[i]"
+                                >
+                                    <i
+                                        class="far fa-arrow-alt-circle-right"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ngx-simplebar>
         </div>
     </div>
+
     <button
         type="button"
         class="btn btn-primary mt-2 mb-5"

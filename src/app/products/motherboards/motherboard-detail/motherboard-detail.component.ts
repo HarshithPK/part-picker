@@ -22,6 +22,12 @@ export class MotherboardDetailComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+
         this.route.params.subscribe((params: Params) => {
             this.id = +params.id;
             this.motherboard = this.motherboardService.getMotherboard(this.id);

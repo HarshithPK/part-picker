@@ -12,35 +12,27 @@ import { Storage } from '../products/storage/storage.model';
 
 @Injectable({ providedIn: 'root' })
 export class BuildSystemService {
-    // tslint:disable-next-line: no-non-null-assertion
     private cpuSelected: Processor = null!;
     cpuSelectedChanged = new Subject<Processor>();
 
-    // tslint:disable-next-line: no-non-null-assertion
     private coolerSelected: Cooler = null!;
     coolerSelectedChanged = new Subject<Cooler>();
 
-    // tslint:disable-next-line: no-non-null-assertion
     private motherboardSelected: Motherboard = null!;
     motherboardSelectedChanged = new Subject<Motherboard>();
 
-    // tslint:disable-next-line: no-non-null-assertion
     private memorySelected: Memory = null!;
     memorySelectedChanged = new Subject<Memory>();
 
-    // tslint:disable-next-line: no-non-null-assertion
     private storageSelected: Storage = null!;
     storageSelectedChanged = new Subject<Storage>();
 
-    // tslint:disable-next-line: no-non-null-assertion
     private graphicsCardSelected: GraphicsCard = null!;
     graphicsCardSelectedChanged = new Subject<GraphicsCard>();
 
-    // tslint:disable-next-line: no-non-null-assertion
     private cabinateSelected: Cabinate = null!;
     cabinateSelectedChanged = new Subject<Cabinate>();
 
-    // tslint:disable-next-line: no-non-null-assertion
     private powerSupplySelected: PowerSupply = null!;
     powerSupplySelectedChanged = new Subject<PowerSupply>();
 

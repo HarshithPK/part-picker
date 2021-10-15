@@ -62,5 +62,11 @@ export class MotherboardAddComponent implements OnInit {
         this.dataStorageService.storeMotherboards(this.motherboards);
 
         form.reset();
+
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
     }
 }

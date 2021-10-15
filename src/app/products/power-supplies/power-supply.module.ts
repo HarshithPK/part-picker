@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { SimplebarAngularModule } from 'simplebar-angular';
 
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { PowerSuppliesStartComponent } from './power-supplies-start/power-supplies-start.component';
@@ -24,6 +26,8 @@ import { PowerSupplyRoutingModule } from './power-supply-routing.module';
         ReactiveFormsModule,
         MaterialModule,
         PowerSupplyRoutingModule,
+        NgxSliderModule,
+        SimplebarAngularModule,
     ],
 })
 export class PowerSupplyModule {}
