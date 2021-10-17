@@ -8,6 +8,24 @@
     padding: 0 5px 0 5px;
 }
 
+.fa-rupee-sign {
+    font-size: 0.75rem;
+    padding: 0 5px 0 5px;
+}
+
+.filters-scroll {
+    max-width: 3000px;
+    height: 575px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.content-scroll {
+    max-height: 700px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .add-ram-button {
     margin-right: 5px;
 }
@@ -36,4 +54,47 @@
 .spec-content {
     font-size: 0.95rem;
     text-align: left;
+}
+
+.clear-filter-button {
+    max-width: 200px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.clear-filter-button:hover {
+    background-color: rgb(92, 90, 90);
+}
+
+.mat-input-element {
+    color: rgb(255, 255, 255);
+}
+
+.ng-star-inserted {
+    font-weight: 550;
+    color: rgb(255, 255, 255);
+}
+
+.mat-form-field-autofill-control {
+    color: rgb(255, 255, 255);
+}
+
+::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: rgb(255, 255, 255);
+    }
+    mat-form-field {
+        .mat-hint,
+        input,
+        ::placeholder,
+        .mat-form-field-label {
+            color: rgb(0, 0, 0);
+        }
+    }
+}
+
+::ng-deep {
+    .mat-form-field-wrapper {
+        padding-bottom: 5px;
+    }
 }

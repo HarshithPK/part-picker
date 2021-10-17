@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SimplebarAngularModule } from 'simplebar-angular';
 
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { MemoryAddComponent } from './memory-add/memory-add.component';
@@ -24,6 +25,7 @@ import { MemoryComponent } from './memory.component';
         ReactiveFormsModule,
         MaterialModule,
         MemoryRoutingModule,
+        SimplebarAngularModule,
     ],
 })
 export class MemoryModule {}

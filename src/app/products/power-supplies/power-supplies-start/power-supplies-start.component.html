@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" *ngIf="powerSupplies">
     <div class="row">
-        <!-- Filters Column Div -->
+        <!-- Filters Column Div. -->
         <div class="col-md-3">
             <h3
                 class="filters-heading mt-3"
@@ -9,14 +9,14 @@
                 Filters
             </h3>
 
-            <!-- Simplebar Scrollbar for filters -->
+            <!-- Simplebar Scrollbar for filters. -->
             <ngx-simplebar class="filters-scroll">
                 <!-- Filters card -->
                 <div
                     class="row card text-white"
                     style="background-color: #3b3838; padding: 10px"
                 >
-                    <!-- Price Filter -->
+                    <!-- Price Filter. -->
                     <span
                         class="mb-1"
                         style="font-weight: bold; font-size: 1rem"
@@ -73,7 +73,7 @@
 
                     <mat-divider></mat-divider>
 
-                    <!-- Form Factor filter -->
+                    <!-- Form Factor filter. -->
                     <span
                         class="mt-2 mb-1"
                         style="font-weight: bold; font-size: 1rem"
@@ -168,7 +168,7 @@
 
                     <mat-divider></mat-divider>
 
-                    <!-- Modularity filter -->
+                    <!-- Modularity filter. -->
                     <span
                         class="mt-2 mb-1"
                         style="font-weight: bold; font-size: 1rem"
@@ -265,7 +265,7 @@
 
                     <mat-divider></mat-divider>
 
-                    <!-- Wattage filter -->
+                    <!-- Wattage filter. -->
                     <span
                         class="mt-2 mb-1"
                         style="font-weight: bold; font-size: 1rem"
@@ -324,7 +324,7 @@
 
                     <mat-divider></mat-divider>
 
-                    <!-- Efficiency Filter -->
+                    <!-- Efficiency Filter. -->
                     <span
                         class="mt-2 mb-1"
                         style="font-weight: bold; font-size: 1rem"
@@ -531,7 +531,7 @@
                     </button>
                     <mat-divider></mat-divider>
 
-                    <!-- Clear Filters -->
+                    <!-- Clear Filters. -->
                     <div class="col-md-12 mt-1 d-flex justify-content-center">
                         <button
                             matRipple
@@ -550,21 +550,20 @@
             </ngx-simplebar>
         </div>
 
+        <!-- Content Div. -->
         <div class="col-md-9">
             <h2 class="mt-2" style="font-size: 2rem">Power Supplies</h2>
+
+            <!-- Simplebar Scrollbar for content. -->
             <ngx-simplebar class="content-scroll">
                 <div class="row">
+                    <!-- Recursive generation of Power Supply cards. -->
                     <div
-                        class="
-                            col-md-4
-                            d-flex
-                            allign-items-end
-                            justify-content-between
-                            mb-5
-                        "
+                        class="col-md-4 d-flex allign-items-start mb-5"
                         data-mdb-perfect-scrollbar="true"
                         *ngFor="let powerSupply of powerSupplies; let i = index"
                     >
+                        <!-- Content card for a Power Supply. -->
                         <div
                             class="
                                 card
@@ -689,6 +688,7 @@
         </div>
     </div>
 
+    <!-- Add Power Supply Button. -->
     <button
         type="button"
         class="btn btn-primary mt-2 mb-5"

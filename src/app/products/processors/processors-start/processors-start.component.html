@@ -1,116 +1,916 @@
 <div class="container" *ngIf="processors">
-    <h2>Processors</h2>
     <div class="row">
-        <div
-            class="col-md-4 d-flex allign-items-start mb-5"
-            *ngFor="let processor of processors; let i = index"
-        >
-            <div
-                class="
-                    card
-                    text-center
-                    border border-primary
-                    shadow-0
-                    text-white
-                "
-                style="background-color: #000000"
+        <!-- Filters Column Div. -->
+        <div class="col-md-3">
+            <h3
+                class="filters-heading mt-3"
+                style="font-size: 1.1rem; font-weight: 1000; color: black"
             >
+                Filters
+            </h3>
+
+            <!-- Simplebar Scrollbar for filters. -->
+            <ngx-simplebar class="filters-scroll">
+                <!-- Filters card -->
                 <div
-                    class="bg-image hover-overlay ripple"
-                    data-mdb-ripple-color="light"
+                    class="row card text-white"
+                    style="background-color: #3b3838; padding: 10px"
                 >
-                    <img
-                        [src]="processor.imagePath"
-                        class="img-fluid"
-                        style="max-width: 300px; max-height: 300px"
-                    />
-                    <a [routerLink]="[i]">
-                        <div
-                            class="mask"
-                            style="background-color: rgba(255, 255, 255, 0.349)"
-                        ></div>
-                    </a>
-                </div>
-                <div class="card-header">
-                    <strong class="processor-name">{{ processor.name }}</strong>
-                </div>
-                <div class="card-body">
-                    <div class="row justify-content-start">
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Cores</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ processor.cores }}
-                        </span>
+                    <!-- Price Filter. -->
+                    <span
+                        class="mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Price</span
+                    >
 
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Threads</strong></span
+                    <div class="d-flex allign-items-center">
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
                         >
-                        <span class="col-md-6 spec-content">
-                            {{ processor.threads }}
-                        </span>
+                            <mat-label>Min</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="price-min"
+                                name="price-min"
+                                [(ngModel)]="priceMin"
+                            />
+                            <i matSuffix class="fas fa-rupee-sign"></i>
+                        </mat-form-field>
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
+                        >
+                            <mat-label>Max</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="price-max"
+                                name="price-max"
+                                [(ngModel)]="priceMax"
+                            />
+                            <i matSuffix class="fas fa-rupee-sign"></i>
+                        </mat-form-field>
+                    </div>
 
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Base Clock</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ processor.baseClock }} GHz
-                        </span>
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
 
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Boost Clock</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ processor.boostClock }} GHz
-                        </span>
+                    <mat-divider></mat-divider>
 
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Socket</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ processor.socket }}
-                        </span>
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Price</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            ₹ {{ processor.price }}
-                        </span>
+                    <!-- Manufacturer Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Manufacturers</span
+                    >
+
+                    <div
+                        class="
+                            d-flex
+                            allign-items-center
+                            justify-content-center
+                        "
+                    >
+                        <div class="row">
+                            <div class="col-md-12 d-flex allign-items-start">
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'AMD',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="manufacturer-btn-check-1"
+                                    >AMD</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 d-flex allign-items-start mt-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'INTEL',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="manufacturer-btn-check-2"
+                                    >INTEL</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Cores and Threads Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Cores</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label
+                                    for="cores-range"
+                                    class="form-label text-white"
+                                    style="margin-left: 20px; font-weight: bold"
+                                    >{{ noOfCores }}</label
+                                >
+                            </div>
+
+                            <div class="range col-md-9">
+                                <input
+                                    type="range"
+                                    class="form-range"
+                                    min="2"
+                                    max="64"
+                                    step="2"
+                                    id="cores-range"
+                                    [(ngModel)]="noOfCores"
+                                    style="margin-left: 12px"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Threads</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label
+                                    for="threads-range"
+                                    class="form-label text-white"
+                                    style="margin-left: 20px; font-weight: bold"
+                                    >{{ noOfThreads }}</label
+                                >
+                            </div>
+
+                            <div class="range col-md-9">
+                                <input
+                                    type="range"
+                                    class="form-range"
+                                    min="2"
+                                    max="128"
+                                    step="2"
+                                    id="threads-range"
+                                    [(ngModel)]="noOfThreads"
+                                    style="margin-left: 12px"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Socket Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Socket</span
+                    >
+
+                    <div
+                        class="
+                            d-flex
+                            allign-items-center
+                            justify-content-center
+                        "
+                    >
+                        <div class="row">
+                            <div
+                                class="col-md-12 d-flex allign-items-start mb-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="socket-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked($event, 'AM4', 'socket')
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="socket-btn-check-1"
+                                    >AM4</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 d-flex allign-items-start mb-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="socket-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'LGA 1200',
+                                            'socket'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="socket-btn-check-2"
+                                    >LGA 1200</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 d-flex allign-items-start mb-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="socket-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'LGA 1151',
+                                            'socket'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="socket-btn-check-3"
+                                    >LGA 1151</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 d-flex allign-items-start mb-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="socket-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'sTRX4',
+                                            'socket'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="socket-btn-check-4"
+                                    >sTRX4</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Series Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Series</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    col-md-12
+                                    mt-1
+                                    d-flex
+                                    allign-items-center
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="series-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'AMD Ryzen 3',
+                                            'series'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 2px"
+                                    for="series-btn-check-1"
+                                    >RYZEN 3</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="series-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'AMD Ryzen 5',
+                                            'series'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 2px"
+                                    for="series-btn-check-2"
+                                    >RYZEN 5</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    col-md-12
+                                    mt-1
+                                    d-flex
+                                    allign-items-center
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="series-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'AMD Ryzen 7',
+                                            'series'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 2px"
+                                    for="series-btn-check-3"
+                                    >RYZEN 7</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="series-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'AMD Ryzen 9',
+                                            'series'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 2px"
+                                    for="series-btn-check-4"
+                                    >RYZEN 9</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    col-md-12
+                                    mt-1
+                                    d-flex
+                                    allign-items-center
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="series-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Intel Core i3',
+                                            'series'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 2px"
+                                    for="series-btn-check-5"
+                                    >CORE i3</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="series-btn-check-6"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Intel Core i5',
+                                            'series'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 2px"
+                                    for="series-btn-check-6"
+                                    >CORE i5</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    col-md-12
+                                    mt-1
+                                    d-flex
+                                    allign-items-center
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="series-btn-check-7"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Intel Core i7',
+                                            'series'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 2px"
+                                    for="series-btn-check-7"
+                                    >CORE i7</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="series-btn-check-8"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Intel Core i9',
+                                            'series'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 2px"
+                                    for="series-btn-check-8"
+                                    >CORE i9</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    col-md-12
+                                    mt-1
+                                    d-flex
+                                    allign-items-center
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="series-btn-check-9"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'AMD Threadripper',
+                                            'series'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    style="margin-left: 2px"
+                                    for="series-btn-check-9"
+                                    >THREADRIPPER</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- TDP Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >TDP</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label
+                                    for="processor-tdp-range"
+                                    class="form-label text-white"
+                                    style="
+                                        margin-left: 15px;
+                                        margin-right: 5px;
+                                        font-weight: bold;
+                                    "
+                                    >{{ processorTDP }}</label
+                                >
+                            </div>
+                            <div class="col-md-1">
+                                <label
+                                    class="form-label text-white"
+                                    style="font-weight: bold"
+                                >
+                                    W</label
+                                >
+                            </div>
+                            <div class="range col-md-8">
+                                <input
+                                    type="range"
+                                    class="form-range"
+                                    min="15"
+                                    max="300"
+                                    step="5"
+                                    id="processor-tdp-range"
+                                    [(ngModel)]="processorTDP"
+                                    style="margin-left: 12px"
+                                />
+                            </div>
+                        </div>
                     </div>
                     <button
-                        matRipple
                         type="button"
-                        class="
-                            btn btn-outline-primary
-                            mt-4
-                            add-processor-button
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
                         "
                         data-mdb-toggle="tooltip"
                         data-mdb-placement="top"
-                        title="Add Processor"
-                        (click)="addProcessor(i)"
+                        title="Apply"
+                        (click)="applyFilters()"
                     >
-                        <i class="fas fa-plus"></i>
+                        Apply
                     </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Cache Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Cache</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label
+                                    for="processor-cache-range"
+                                    class="form-label text-white"
+                                    style="
+                                        margin-left: 15px;
+                                        margin-right: 5px;
+                                        font-weight: bold;
+                                    "
+                                    >{{ processorCache }}</label
+                                >
+                            </div>
+                            <div class="col-md-1">
+                                <label
+                                    class="form-label text-white"
+                                    style="font-weight: bold"
+                                >
+                                    MB</label
+                                >
+                            </div>
+                            <div class="range col-md-8">
+                                <input
+                                    type="range"
+                                    class="form-range"
+                                    min="6"
+                                    max="256"
+                                    step="2"
+                                    id="processor-cache-range"
+                                    [(ngModel)]="processorCache"
+                                    style="margin-left: 12px"
+                                />
+                            </div>
+                        </div>
+                    </div>
                     <button
-                        matRipple
                         type="button"
-                        class="
-                            btn btn-outline-primary
-                            mt-4
-                            load-processor-button
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
                         "
                         data-mdb-toggle="tooltip"
                         data-mdb-placement="top"
-                        title="View Processor"
-                        [routerLink]="[i]"
+                        title="Apply"
+                        (click)="applyFilters()"
                     >
-                        <i class="far fa-arrow-alt-circle-right"></i>
+                        Apply
                     </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Clear Filters. -->
+                    <div class="col-md-12 mt-1 d-flex justify-content-center">
+                        <button
+                            matRipple
+                            class="clear-filter-button btn btn-danger mt-2 mb-2"
+                            type="button"
+                            data-mdb-toggle="tooltip"
+                            data-mdb-placement="top"
+                            title="Clear Filters"
+                            routerLink="power-supplies"
+                            (click)="clearFilters()"
+                        >
+                            Clear Filters
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </ngx-simplebar>
+        </div>
+
+        <!-- Content div. -->
+        <div class="col-md-9">
+            <h2 class="mt-2" style="font-size: 2rem; color: black">
+                Processors
+            </h2>
+
+            <!-- Simplebar Scrollbar for content. -->
+            <ngx-simplebar class="content-scroll">
+                <div class="row">
+                    <!-- Recursive generation of Processor cards. -->
+                    <div
+                        class="col-md-4 d-flex allign-items-start mb-5"
+                        *ngFor="let processor of processors; let i = index"
+                    >
+                        <!-- Content card for a Processor. -->
+                        <div
+                            class="
+                                card
+                                text-center
+                                border border-primary
+                                shadow-0
+                                text-white
+                            "
+                            style="background-color: #000000"
+                        >
+                            <div
+                                class="bg-image hover-overlay ripple"
+                                data-mdb-ripple-color="light"
+                            >
+                                <img
+                                    [src]="processor.imagePath"
+                                    class="img-fluid"
+                                    style="max-width: 300px; max-height: 300px"
+                                />
+                                <a [routerLink]="[i]">
+                                    <div
+                                        class="mask"
+                                        style="
+                                            background-color: rgba(
+                                                255,
+                                                255,
+                                                255,
+                                                0.349
+                                            );
+                                        "
+                                    ></div>
+                                </a>
+                            </div>
+                            <div class="card-header">
+                                <strong class="processor-name">{{
+                                    processor.name
+                                }}</strong>
+                            </div>
+                            <div class="card-body">
+                                <div class="row justify-content-start">
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Cores</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ processor.cores }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Threads</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ processor.threads }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Base Clock</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ processor.baseClock }} GHz
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Boost Clock</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ processor.boostClock }} GHz
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Socket</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ processor.socket }}
+                                    </span>
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Price</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        ₹ {{ processor.price }}
+                                    </span>
+                                </div>
+                                <button
+                                    matRipple
+                                    type="button"
+                                    class="
+                                        btn btn-outline-primary
+                                        mt-4
+                                        add-processor-button
+                                    "
+                                    data-mdb-toggle="tooltip"
+                                    data-mdb-placement="top"
+                                    title="Add Processor"
+                                    (click)="addProcessor(i)"
+                                >
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <button
+                                    matRipple
+                                    type="button"
+                                    class="
+                                        btn btn-outline-primary
+                                        mt-4
+                                        load-processor-button
+                                    "
+                                    data-mdb-toggle="tooltip"
+                                    data-mdb-placement="top"
+                                    title="View Processor"
+                                    [routerLink]="[i]"
+                                >
+                                    <i
+                                        class="far fa-arrow-alt-circle-right"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ngx-simplebar>
         </div>
     </div>
+
+    <!-- Add Processor Button. -->
     <button
         type="button"
         class="btn btn-primary mt-2 mb-5"

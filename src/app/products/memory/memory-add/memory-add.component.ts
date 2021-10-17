@@ -43,6 +43,8 @@ export class MemoryAddComponent implements OnInit {
             form.value.price
         );
 
+        console.log(this.ram);
+
         this.memory.push(this.ram);
         this.dataStorageService.storeMemory(this.memory);
 

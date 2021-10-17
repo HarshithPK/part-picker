@@ -1,119 +1,1237 @@
-<div class="container">
-    <h2>Motherboards</h2>
+<div class="container" *ngIf="motherboards">
     <div class="row">
-        <div
-            class="col-md-4 d-flex allign-items-start mb-5"
-            *ngFor="let motherboard of motherboards; let i = index"
-        >
-            <div
-                class="
-                    card
-                    text-center
-                    border border-primary
-                    shadow-0
-                    text-white
-                "
-                style="background-color: #000000"
+        <!-- Filters Column Div. -->
+        <div class="col-md-3">
+            <h3
+                class="filters-heading mt-3"
+                style="font-size: 1.1rem; font-weight: 1000; color: black"
             >
+                Filters
+            </h3>
+
+            <!-- Simplebar Scrollbar for filters. -->
+            <ngx-simplebar class="filters-scroll">
+                <!-- Filters card -->
                 <div
-                    class="bg-image hover-overlay ripple"
-                    data-mdb-ripple-color="light"
+                    class="row card text-white"
+                    style="background-color: #3b3838; padding: 10px"
                 >
-                    <img
-                        [src]="motherboard.imagePath"
-                        class="img-fluid"
-                        style="max-height: 150px"
-                    />
-                    <a [routerLink]="[i]">
-                        <div
-                            class="mask"
-                            style="background-color: rgba(255, 255, 255, 0.349)"
-                        ></div>
-                    </a>
-                </div>
-                <div class="card-header">
-                    <strong class="motherboard-name">{{
-                        motherboard.name
-                    }}</strong>
-                </div>
-                <div class="card-body">
-                    <div class="row justify-content-start">
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Socket</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ motherboard.socket }}
-                        </span>
+                    <!-- Price Filter. -->
+                    <span
+                        class="mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Price</span
+                    >
 
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Chipset</strong></span
+                    <div class="d-flex allign-items-center">
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
                         >
-                        <span class="col-md-6 spec-content">
-                            {{ motherboard.chipset }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Wi-Fi Support</strong></span
+                            <mat-label>Min</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="price-min"
+                                name="price-min"
+                                [(ngModel)]="priceMin"
+                            />
+                            <i matSuffix class="fas fa-rupee-sign"></i>
+                        </mat-form-field>
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
                         >
-                        <span class="col-md-6 spec-content">
-                            {{ motherboard.wirelessSupport }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Ethernet Support</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ motherboard.ethernetPorts }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Form Factor</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ motherboard.formFactor }}
-                        </span>
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Price</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            ₹ {{ motherboard.price }}
-                        </span>
+                            <mat-label>Max</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="price-max"
+                                name="price-max"
+                                [(ngModel)]="priceMax"
+                            />
+                            <i matSuffix class="fas fa-rupee-sign"></i>
+                        </mat-form-field>
                     </div>
+
                     <button
-                        matRipple
                         type="button"
-                        class="
-                            btn btn-outline-primary
-                            mt-4
-                            add-motherboard-button
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
                         "
                         data-mdb-toggle="tooltip"
                         data-mdb-placement="top"
-                        title="Add Motherboard"
-                        (click)="addMotherboard(i)"
+                        title="Apply"
+                        (click)="applyFilters()"
                     >
-                        <i class="fas fa-plus"></i>
+                        Apply
                     </button>
+
+                    <mat-divider></mat-divider>.
+
+                    <!-- Manufacturer Filter. -->
+                    <span
+                        class="mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Manufacturers</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ASUS',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-1"
+                                    >ASUS</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'GIGABYTE',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-2"
+                                    >GIGABYTE</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'MSI',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-3"
+                                    >MSI</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ASRock',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-4"
+                                    >ASRock</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'GALAX',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-5"
+                                    >GALAX</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-6"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'NZXT',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-6"
+                                    >NZXT</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
                     <button
-                        matRipple
                         type="button"
-                        class="
-                            btn btn-outline-primary
-                            mt-4
-                            load-motherboard-button
-                            ripple
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
                         "
                         data-mdb-toggle="tooltip"
                         data-mdb-placement="top"
-                        title="View Motherboard"
-                        [routerLink]="[i]"
+                        title="Apply"
+                        (click)="applyFilters()"
                     >
-                        <i class="far fa-arrow-alt-circle-right"></i>
+                        Apply
                     </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Socket Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Socket</span
+                    >
+
+                    <div
+                        class="
+                            d-flex
+                            allign-items-center
+                            justify-content-center
+                        "
+                    >
+                        <div class="row">
+                            <div
+                                class="col-md-12 d-flex allign-items-start mb-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="socket-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked($event, 'AM4', 'socket')
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="socket-btn-check-1"
+                                    >AM4</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="socket-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'LGA 1200',
+                                            'socket'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="socket-btn-check-2"
+                                    >LGA 1200</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 d-flex allign-items-start mb-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="socket-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'LGA 1151',
+                                            'socket'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="socket-btn-check-3"
+                                    >LGA 1151</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="socket-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'sTRX4',
+                                            'socket'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="socket-btn-check-4"
+                                    >sTRX4</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!--Form Factor Filter. -->
+                    <span
+                        class="mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Form Factor</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ATX',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="form-factor-btn-check-1"
+                                    >ATX</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'EATX',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="form-factor-btn-check-2"
+                                    >E-ATX</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Micro ATX',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="form-factor-btn-check-3"
+                                    >MICRO ATX</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Mini ITX',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="form-factor-btn-check-4"
+                                    >MINI ITX</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!--Chipset Filter. -->
+                    <span
+                        class="mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Chipset</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="chipset-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'AMD B450',
+                                            'chipset'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="chipset-btn-check-1"
+                                    >AMD B450</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="chipset-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'AMD B550',
+                                            'chipset'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="chipset-btn-check-2"
+                                    >AMD B550</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="chipset-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'AMD X470',
+                                            'chipset'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="chipset-btn-check-3"
+                                    >AMD X470</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="chipset-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'AMD X570',
+                                            'chipset'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="chipset-btn-check-4"
+                                    >AMD X570</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="chipset-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Intel H470',
+                                            'chipset'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="chipset-btn-check-5"
+                                    >INTEL H470</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="chipset-btn-check-6"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Intel H570',
+                                            'chipset'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="chipset-btn-check-6"
+                                    >INTEL H570</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="chipset-btn-check-7"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Intel Z490',
+                                            'chipset'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="chipset-btn-check-7"
+                                    >INTEL Z490</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="chipset-btn-check-8"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Intel Z590',
+                                            'chipset'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="chipset-btn-check-8"
+                                    >INTEL Z590</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Memory Type Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Memory Type</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    col-md-12
+                                    mt-1
+                                    d-flex
+                                    allign-items-center
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-type-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'DDR3',
+                                            'memoryType'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="memory-type-btn-check-1"
+                                    >DDR3</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    col-md-12
+                                    mt-1
+                                    d-flex
+                                    allign-items-center
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-type-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'DDR4',
+                                            'memoryType'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="memory-type-btn-check-2"
+                                    >DDR4</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Memory support Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Memory Support</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label
+                                    for="max-memory-support-range"
+                                    class="form-label text-white"
+                                    style="
+                                        margin-left: 15px;
+                                        margin-right: 5px;
+                                        font-weight: bold;
+                                    "
+                                    >{{ maxMemorySuopport }}
+                                </label>
+                            </div>
+                            <div class="col-md-1">
+                                <label
+                                    class="form-label text-white"
+                                    style="font-weight: bold"
+                                >
+                                    GB</label
+                                >
+                            </div>
+                            <div class="range col-md-8">
+                                <input
+                                    type="range"
+                                    class="form-range"
+                                    min="32"
+                                    max="256"
+                                    step="32"
+                                    list="memory-intervals"
+                                    id="max-memory-support-range"
+                                    [(ngModel)]="maxMemorySuopport"
+                                    style="margin-left: 12px"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Multi GPU Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Multi-GPU Support</span
+                    >
+
+                    <div
+                        class="
+                            d-flex
+                            allign-items-center
+                            justify-content-center
+                        "
+                    >
+                        <div class="row">
+                            <div class="col-md-12 d-flex allign-items-start">
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="multi-GPU-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'CrossFire: Capable',
+                                            'multiGPUSupport'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="multi-GPU-btn-check-1"
+                                    >AMD - CROSSFIRE</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    mt-1
+                                    mb-1
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="multi-GPU-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Nvidia 2-Way SLI: Capable',
+                                            'multiGPUSupport'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="multi-GPU-btn-check-2"
+                                    >NVIDIA - SLI</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Wireless Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Wireless Networking</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    col-md-12
+                                    mt-1
+                                    d-flex
+                                    allign-items-center
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="wireless-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Wi-Fi 6',
+                                            'wireless'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="wireless-btn-check-1"
+                                    >Wi-Fi 6</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="wireless-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Wi-Fi 5',
+                                            'wireless'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="wireless-btn-check-2"
+                                    >Wi-Fi 5</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    col-md-12
+                                    mt-1
+                                    d-flex
+                                    allign-items-center
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="wireless-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'None',
+                                            'wireless'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="wireless-btn-check-3"
+                                    >NONE</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Clear Filters. -->
+                    <div class="col-md-12 mt-1 d-flex justify-content-center">
+                        <button
+                            matRipple
+                            class="clear-filter-button btn btn-danger mt-2 mb-2"
+                            type="button"
+                            data-mdb-toggle="tooltip"
+                            data-mdb-placement="top"
+                            title="Clear Filters"
+                            routerLink="power-supplies"
+                            (click)="clearFilters()"
+                        >
+                            Clear Filters
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </ngx-simplebar>
+        </div>
+
+        <!-- Content div. -->
+        <div class="col-md-9">
+            <h2 class="mt-2" style="font-size: 2rem; color: black">
+                Motherboards
+            </h2>
+
+            <!-- Simplebar Scrollbar for content. -->
+            <ngx-simplebar class="content-scroll">
+                <div class="row">
+                    <!-- Recursive generation of Motherboard cards. -->
+                    <div
+                        class="col-md-4 d-flex allign-items-start mb-5"
+                        *ngFor="let motherboard of motherboards; let i = index"
+                    >
+                        <!-- Content card for a Motherboard. -->
+                        <div
+                            class="
+                                card
+                                text-center
+                                border border-primary
+                                shadow-0
+                                text-white
+                            "
+                            style="background-color: #000000"
+                        >
+                            <div
+                                class="bg-image hover-overlay ripple"
+                                data-mdb-ripple-color="light"
+                            >
+                                <img
+                                    [src]="motherboard.imagePath"
+                                    class="img-fluid"
+                                    style="max-height: 150px"
+                                />
+                                <a [routerLink]="[i]">
+                                    <div
+                                        class="mask"
+                                        style="
+                                            background-color: rgba(
+                                                255,
+                                                255,
+                                                255,
+                                                0.349
+                                            );
+                                        "
+                                    ></div>
+                                </a>
+                            </div>
+                            <div class="card-header">
+                                <strong class="motherboard-name">{{
+                                    motherboard.name
+                                }}</strong>
+                            </div>
+                            <div class="card-body">
+                                <div class="row justify-content-start">
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Socket</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ motherboard.socket }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Chipset</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ motherboard.chipset }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Wi-Fi Support</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ motherboard.wirelessSupport }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Ethernet Support</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ motherboard.ethernetPorts }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Form Factor</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ motherboard.formFactor }}
+                                    </span>
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Price</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        ₹ {{ motherboard.price }}
+                                    </span>
+                                </div>
+                                <button
+                                    matRipple
+                                    type="button"
+                                    class="
+                                        btn btn-outline-primary
+                                        mt-4
+                                        add-motherboard-button
+                                    "
+                                    data-mdb-toggle="tooltip"
+                                    data-mdb-placement="top"
+                                    title="Add Motherboard"
+                                    (click)="addMotherboard(i)"
+                                >
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <button
+                                    matRipple
+                                    type="button"
+                                    class="
+                                        btn btn-outline-primary
+                                        mt-4
+                                        load-motherboard-button
+                                        ripple
+                                    "
+                                    data-mdb-toggle="tooltip"
+                                    data-mdb-placement="top"
+                                    title="View Motherboard"
+                                    [routerLink]="[i]"
+                                >
+                                    <i
+                                        class="far fa-arrow-alt-circle-right"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ngx-simplebar>
         </div>
     </div>
+
+    <!-- Add motherboard button. -->
     <button
         type="button"
         class="btn btn-primary mt-2 mb-5"

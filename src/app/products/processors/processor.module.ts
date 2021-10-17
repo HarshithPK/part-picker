@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SimplebarAngularModule } from 'simplebar-angular';
 
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { ProcessorAddComponent } from './processor-add/processor-add.component';
@@ -24,6 +25,7 @@ import { ProcessorsComponent } from './processors.component';
         ReactiveFormsModule,
         MaterialModule,
         ProcessorRoutingModule,
+        SimplebarAngularModule,
     ],
 })
 export class ProcessorModule {}

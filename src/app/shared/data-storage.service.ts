@@ -136,6 +136,7 @@ export class DataStorageService {
 
         return this.http.get<Memory[]>(url).pipe(
             tap((memory) => {
+                console.log(memory);
                 this.memoryService.setMemory(memory);
             })
         );

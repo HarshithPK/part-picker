@@ -1,122 +1,1794 @@
-<div class="container">
-    <h2>Memory</h2>
+<div class="container" *ngIf="memory">
     <div class="row">
-        <div
-            class="col-md-4 d-flex allign-items-start mb-5"
-            *ngFor="let ram of memory; let i = index"
-        >
-            <div
-                class="
-                    card
-                    text-center
-                    border border-primary
-                    shadow-0
-                    text-white
-                "
-                style="background-color: #000000"
+        <!-- Filters Column Div. -->
+        <div class="col-md-3">
+            <h3
+                class="filters-heading mt-3"
+                style="font-size: 1.1rem; font-weight: 1000; color: black"
             >
+                Filters
+            </h3>
+
+            <!-- Simplebar Scrollbar for filters. -->
+            <ngx-simplebar class="filters-scroll">
+                <!-- Filters card -->
                 <div
-                    class="bg-image hover-overlay ripple"
-                    data-mdb-ripple-color="light"
+                    class="row card text-white"
+                    style="background-color: #3b3838; padding: 10px"
                 >
-                    <img
-                        [src]="ram.imagePath"
-                        class="img-fluid"
-                        style="max-height: 150px"
-                    />
-                    <a [routerLink]="[i]">
-                        <div
-                            class="mask"
-                            style="background-color: rgba(255, 255, 255, 0.349)"
-                        ></div>
-                    </a>
-                </div>
-                <div class="card-header">
-                    <strong class="ram-name">{{ ram.name }}</strong>
-                </div>
-                <div class="card-body">
-                    <div class="row justify-content-start">
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Manufacturer</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ ram.manufacturer }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Size</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ ram.memorySize }} GB
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Speed</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ ram.speed }} MHz
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Module Type</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ ram.modules }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Memory Type</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ ram.memoryType }}
-                        </span>
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Price</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            ₹ {{ ram.price }}
-                        </span>
-                    </div>
-                    <button
-                        matRipple
-                        type="button"
-                        class="btn btn-outline-primary mt-4 add-ram-button"
-                        data-mdb-toggle="tooltip"
-                        data-mdb-placement="top"
-                        title="Add RAM"
-                        (click)="addRAM(i)"
+                    <!-- Price Filter. -->
+                    <span
+                        class="mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Price</span
                     >
-                        <i class="fas fa-plus"></i>
-                    </button>
+
+                    <div class="d-flex allign-items-center">
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
+                        >
+                            <mat-label>Min</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="price-min"
+                                name="price-min"
+                                [(ngModel)]="priceMin"
+                            />
+                            <i matSuffix class="fas fa-rupee-sign"></i>
+                        </mat-form-field>
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
+                        >
+                            <mat-label>Max</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="price-max"
+                                name="price-max"
+                                [(ngModel)]="priceMax"
+                            />
+                            <i matSuffix class="fas fa-rupee-sign"></i>
+                        </mat-form-field>
+                    </div>
+
                     <button
-                        matRipple
                         type="button"
-                        class="
-                            btn btn-outline-primary
-                            mt-4
-                            load-ram-button
-                            ripple
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
                         "
                         data-mdb-toggle="tooltip"
                         data-mdb-placement="top"
-                        title="View RAM"
-                        [routerLink]="[i]"
+                        title="Apply"
+                        (click)="applyFilters()"
                     >
-                        <i class="far fa-arrow-alt-circle-right"></i>
+                        Apply
                     </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Manufacturer Filter. -->
+                    <span
+                        class="mb-1 mt-2"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Manufacturers</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ADATA',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-1"
+                                    >ADATA</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'CORSAIR',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-2"
+                                    >CORSAIR</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'CRUCIAL',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-3"
+                                    >CRUCIAL</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'G.SKILL',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-4"
+                                    >G.SKILL</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'GIGABYTE',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-5"
+                                    >GIGABYTE</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-6"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'HYPERX',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-6"
+                                    >HYPERX</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-7"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'KINGSTON',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-7"
+                                    >KINGSTON</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-8"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'PATRIOT',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-8"
+                                    >PATRIOT</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-9"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'TEAMGROUP',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-9"
+                                    >TEAMGROUP</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-10"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'THERMALTAKE',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-10"
+                                    >THERMALTAKE</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Memory Type Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Memory Type</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    col-md-12
+                                    mt-1
+                                    d-flex
+                                    allign-items-center
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-type-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'DDR3',
+                                            'memoryType'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="memory-type-btn-check-1"
+                                    >DDR3</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    col-md-12
+                                    mt-1
+                                    d-flex
+                                    allign-items-center
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-type-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'DDR4',
+                                            'memoryType'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="memory-type-btn-check-2"
+                                    >DDR4</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Memory size Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Memory Size</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label
+                                    for="max-memory-support-range"
+                                    class="form-label text-white"
+                                    style="
+                                        margin-left: 15px;
+                                        margin-right: 5px;
+                                        font-weight: bold;
+                                    "
+                                    >{{ memorySize }}
+                                </label>
+                            </div>
+                            <div class="col-md-1">
+                                <label
+                                    class="form-label text-white"
+                                    style="font-weight: bold"
+                                >
+                                    GB</label
+                                >
+                            </div>
+                            <div class="range col-md-8">
+                                <input
+                                    type="range"
+                                    class="form-range"
+                                    min="8"
+                                    max="256"
+                                    step="8"
+                                    list="memory-intervals"
+                                    id="max-memory-support-range"
+                                    [(ngModel)]="memorySize"
+                                    style="margin-left: 12px"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Memory Module Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Memory Modules</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '1 x 4GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-right: 1.5px"
+                                    for="memoryModule-btn-check-1"
+                                    >1 x 4GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '1 x 8GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="
+                                        margin-left: 1.5px;
+                                        margin-right: 1.5px;
+                                    "
+                                    for="memoryModule-btn-check-2"
+                                    >1 x 8GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '1 x 16GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-left: 1.5px"
+                                    for="memoryModule-btn-check-3"
+                                    >1 x 16GB</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '1 x 32GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-right: 1.5px"
+                                    for="memoryModule-btn-check-4"
+                                    >1 x 32GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '1 x 64GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="
+                                        margin-left: 1.5px;
+                                        margin-right: 1.5px;
+                                    "
+                                    for="memoryModule-btn-check-5"
+                                    >1 x 64GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-6"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '1 x 128GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-left: 1.5px"
+                                    for="memoryModule-btn-check-6"
+                                    >1 x 128GB</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-7"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '2 x 4GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-right: 1.5px"
+                                    for="memoryModule-btn-check-7"
+                                    >2 x 4GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-8"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '2 x 8GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="
+                                        margin-left: 1.5px;
+                                        margin-right: 1.5px;
+                                    "
+                                    for="memoryModule-btn-check-8"
+                                    >2 x 8GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-9"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '2 x 16GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-left: 1.5px"
+                                    for="memoryModule-btn-check-9"
+                                    >2 x 16GB</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-10"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '2 x 32GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-right: 1.5px"
+                                    for="memoryModule-btn-check-10"
+                                    >2 x 32GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-11"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '2 x 64GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="
+                                        margin-left: 1.5px;
+                                        margin-right: 1.5px;
+                                    "
+                                    for="memoryModule-btn-check-11"
+                                    >2 x 64GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-12"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '2 x 128GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-left: 1.5px"
+                                    for="memoryModule-btn-check-12"
+                                    >2 x 128GB</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-13"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '3 x 4GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-right: 1.5px"
+                                    for="memoryModule-btn-check-13"
+                                    >3 x 4GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-14"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '3 x 8GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="
+                                        margin-left: 1.5px;
+                                        margin-right: 1.5px;
+                                    "
+                                    for="memoryModule-btn-check-14"
+                                    >3 x 8GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-15"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '3 x 16GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-left: 1.5px"
+                                    for="memoryModule-btn-check-15"
+                                    >3 x 16GB</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-16"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '3 x 32GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-right: 1.5px"
+                                    for="memoryModule-btn-check-16"
+                                    >3 x 32GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-17"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '3 x 64GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="
+                                        margin-left: 1.5px;
+                                        margin-right: 1.5px;
+                                    "
+                                    for="memoryModule-btn-check-17"
+                                    >3 x 64GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-18"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '3 x 128GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-left: 1.5px"
+                                    for="memoryModule-btn-check-18"
+                                    >3 x 128GB</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-19"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '4 x 4GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-right: 1.5px"
+                                    for="memoryModule-btn-check-19"
+                                    >4 x 4GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-20"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '4 x 8GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="
+                                        margin-left: 1.5px;
+                                        margin-right: 1.5px;
+                                    "
+                                    for="memoryModule-btn-check-20"
+                                    >4 x 8GB</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-21"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '4 x 16GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-left: 1.5px"
+                                    for="memoryModule-btn-check-21"
+                                    >4 x 16GB</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memoryModule-btn-check-22"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '4 x 32GB',
+                                            'memoryModule'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-4"
+                                    style="margin-left: 1.5px"
+                                    for="memoryModule-btn-check-22"
+                                    >4 x 32GB</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Memory Speed Filter. -->
+                    <span
+                        class="mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Memory Speed</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '1600',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="memory-speed-btn-check-1"
+                                    >1600 MHz</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '1866',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="memory-speed-btn-check-2"
+                                    >1866 MHz</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '2133',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="memory-speed-btn-check-3"
+                                    >2133 MHz</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '2400',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="memory-speed-btn-check-4"
+                                    >2400 MHz</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '2666',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="memory-speed-btn-check-5"
+                                    >2666 MHz</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-6"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '2933',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="memory-speed-btn-check-6"
+                                    >2933 MHz</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-7"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '3000',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="memory-speed-btn-check-7"
+                                    >3000 MHz</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-8"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '3200',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="memory-speed-btn-check-8"
+                                    >3200 MHz</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-9"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '3600',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="memory-speed-btn-check-9"
+                                    >3600 MHz</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-10"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '3733',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="memory-speed-btn-check-10"
+                                    >3733 MHz</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-11"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '4000',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="memory-speed-btn-check-11"
+                                    >4000 MHz</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-12"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '4133',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="memory-speed-btn-check-12"
+                                    >4133 MHz</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-13"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '4266',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="memory-speed-btn-check-13"
+                                    >4266 MHz</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-14"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '4400',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="memory-speed-btn-check-14"
+                                    >4400 MHz</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-15"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '4600',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="memory-speed-btn-check-15"
+                                    >4600 MHz</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="memory-speed-btn-check-16"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '5066',
+                                            'memorySpeed'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="memory-speed-btn-check-16"
+                                    >5066 MHz</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Form Factor Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Form Factor</span
+                    >
+
+                    <div
+                        class="
+                            d-flex
+                            allign-items-center
+                            justify-content-center
+                        "
+                    >
+                        <div class="row">
+                            <div
+                                class="col-md-12 d-flex allign-items-start mb-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '200-pin DIMM',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="form-factor-btn-check-1"
+                                    >200-PIN DIMM</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 d-flex allign-items-start mb-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '204-pin DIMM',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="form-factor-btn-check-2"
+                                    >204-PIN DIMM</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 d-flex allign-items-start mb-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '240-pin DIMM',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="form-factor-btn-check-3"
+                                    >240-PIN DIMM</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 d-flex allign-items-start mb-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '260-pin DIMM',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="form-factor-btn-check-4"
+                                    >260-PIN DIMM</label
+                                >
+                            </div>
+                            <div
+                                class="col-md-12 d-flex allign-items-start mb-1"
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '288-pin DIMM',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    for="form-factor-btn-check-5"
+                                    >288-PIN DIMM</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Clear Filters. -->
+                    <div class="col-md-12 mt-1 d-flex justify-content-center">
+                        <button
+                            matRipple
+                            class="clear-filter-button btn btn-danger mt-2 mb-2"
+                            type="button"
+                            data-mdb-toggle="tooltip"
+                            data-mdb-placement="top"
+                            title="Clear Filters"
+                            routerLink="power-supplies"
+                            (click)="clearFilters()"
+                        >
+                            Clear Filters
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </ngx-simplebar>
+            <button
+                type="button"
+                class="btn btn-primary mt-2"
+                style="margin-right: 5px"
+                data-mdb-toggle="tooltip"
+                data-mdb-placement="top"
+                title="Add Memory"
+                routerLink="add-memory"
+            >
+                Add memory
+            </button>
+        </div>
+
+        <!-- Content div. -->
+        <div class="col-md-9">
+            <h2 class="mt-2" style="font-size: 2rem; color: black">Memory</h2>
+
+            <!-- Simplebar Scrollbar for content. -->
+            <ngx-simplebar class="content-scroll"
+                ><div class="row">
+                    <!-- Recursive generation of Memory cards. -->
+                    <div
+                        class="col-md-4 d-flex allign-items-start mb-5"
+                        *ngFor="let ram of memory; let i = index"
+                    >
+                        <!-- Content card for a RAM. -->
+                        <div
+                            class="
+                                card
+                                text-center
+                                border border-primary
+                                shadow-0
+                                text-white
+                            "
+                            style="background-color: #000000"
+                        >
+                            <div
+                                class="bg-image hover-overlay ripple"
+                                data-mdb-ripple-color="light"
+                            >
+                                <img
+                                    [src]="ram.imagePath"
+                                    class="img-fluid"
+                                    style="max-height: 150px"
+                                />
+                                <a [routerLink]="[i]">
+                                    <div
+                                        class="mask"
+                                        style="
+                                            background-color: rgba(
+                                                255,
+                                                255,
+                                                255,
+                                                0.349
+                                            );
+                                        "
+                                    ></div>
+                                </a>
+                            </div>
+                            <div class="card-header">
+                                <strong class="ram-name">{{ ram.name }}</strong>
+                            </div>
+                            <div class="card-body">
+                                <div class="row justify-content-start">
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Manufacturer</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ ram.manufacturer }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Size</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ ram.memorySize }} GB
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Speed</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ ram.speed }} MHz
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Module Type</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ ram.modules }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Memory Type</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ ram.memoryType }}
+                                    </span>
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Price</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        ₹ {{ ram.price }}
+                                    </span>
+                                </div>
+                                <button
+                                    matRipple
+                                    type="button"
+                                    class="
+                                        btn btn-outline-primary
+                                        mt-4
+                                        add-ram-button
+                                    "
+                                    data-mdb-toggle="tooltip"
+                                    data-mdb-placement="top"
+                                    title="Add RAM"
+                                    (click)="addRAM(i)"
+                                >
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <button
+                                    matRipple
+                                    type="button"
+                                    class="
+                                        btn btn-outline-primary
+                                        mt-4
+                                        load-ram-button
+                                        ripple
+                                    "
+                                    data-mdb-toggle="tooltip"
+                                    data-mdb-placement="top"
+                                    title="View RAM"
+                                    [routerLink]="[i]"
+                                >
+                                    <i
+                                        class="far fa-arrow-alt-circle-right"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div></div
+            ></ngx-simplebar>
         </div>
     </div>
-    <button
-        type="button"
-        class="btn btn-primary mt-2"
-        style="margin-right: 5px"
-        data-mdb-toggle="tooltip"
-        data-mdb-placement="top"
-        title="Add Memory"
-        routerLink="add-memory"
-    >
-        Add memory
-    </button>
 </div>

@@ -5,75 +5,20 @@ import { Processor } from './processor.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProcessorService {
-    processorsChanged = new Subject<Processor[]>();
-
-    // private processors: Processor[] = [
-    //     new Processor(
-    //         'AMD',
-    //         'Amd Ryzen 5 3600',
-    //         'Ryzen 5',
-    //         6,
-    //         12,
-    //         'AM 4',
-    //         3.6,
-    //         4.2,
-    //         65,
-    //         'None',
-    //         'Yes',
-    //         'Zen 2',
-    //         32,
-    //         7,
-    //         'https://www.amd.com/system/files/styles/992px/private/2019-06/238593-ryzen-5-pib-left-facing-1260x709.png?itok=umdtyaSy',
-    //         17690
-    //     ),
-    //     new Processor(
-    //         'Intel',
-    //         'Intel Core i5-11600',
-    //         'Core i5',
-    //         6,
-    //         12,
-    //         'LGA 1200',
-    //         2.8,
-    //         4.8,
-    //         65,
-    //         'Intel UHD Graphics 750',
-    //         'Yes',
-    //         'Rocket Lake',
-    //         12,
-    //         14,
-    //         'https://sm.pcmag.com/t/pcmag_in/review/i/intel-core/intel-core-i5-11600k_esmw.1920.jpg',
-    //         24000
-    //     ),
-
-    //     new Processor(
-    //         'AMD',
-    //         'AMD Ryzen 9 5950X',
-    //         'Ryzen 9',
-    //         16,
-    //         32,
-    //         'AM4',
-    //         3.4,
-    //         4.9,
-    //         105,
-    //         'None',
-    //         'Yes',
-    //         'Zen 3',
-    //         64,
-    //         7,
-    //         'https://www.amd.com/system/files/styles/992px/private/2020-09/616656-amd-ryzen-9-5000-series-PIB-1260x709_0.png?itok=Wj2ScmBq',
-    //         76000
-    //     ),
-    // ];
-
-    // private processors!: Processor[];
+    private processorsChanged = new Subject<Processor[]>();
+    private activeProcessorsChanged = new Subject<Processor[]>();
 
     private processors: Processor[] = [];
+    private activeProcessors: Processor[] = [];
 
     constructor() {}
 
     setProcessors(processors: Processor[]) {
         this.processors = processors;
+        this.activeProcessors = processors.sort((a, b) => a.price - b.price);
+
         this.processorsChanged.next(this.processors.slice());
+        this.activeProcessorsChanged.next(this.activeProcessors.slice());
     }
 
     getProcessors(): Processor[] {
@@ -81,6 +26,141 @@ export class ProcessorService {
     }
 
     getProcessor(index: number): Processor {
-        return this.processors[index];
+        return this.activeProcessors[index];
+    }
+
+    applyAllFilters(
+        manufacturerCheckboxes: string[],
+        seriesCheckboxes: string[],
+        socketCheckboxes: string[],
+        priceMin: number,
+        priceMax: number,
+        noOfCores: number,
+        noOfThreads: number,
+        processorTDP: number,
+        processorCache: number
+    ): Processor[] {
+        this.activeProcessors = this.applyPriceFilter(priceMin, priceMax);
+
+        this.activeProcessors = this.applyCoresFilter(noOfCores);
+
+        this.activeProcessors = this.applyThreadsFilter(noOfThreads);
+
+        this.activeProcessors = this.applyTDPFilter(processorTDP);
+
+        this.activeProcessors = this.applyCacheFilter(processorCache);
+
+        this.activeProcessors = this.applyManufacturerFilter(
+            manufacturerCheckboxes
+        );
+
+        this.activeProcessors = this.applySeriesFilter(seriesCheckboxes);
+
+        this.activeProcessors = this.applySocketFilter(socketCheckboxes);
+
+        return this.activeProcessors.slice();
+    }
+
+    applyPriceFilter(priceMin: number, priceMax: number): Processor[] {
+        let newProcessorsArray: Processor[] = [];
+
+        this.processors.forEach((processor) => {
+            if (processor.price >= priceMin && processor.price <= priceMax)
+                newProcessorsArray.push(processor);
+        });
+
+        return newProcessorsArray;
+    }
+
+    applyCoresFilter(noOfCores: number): Processor[] {
+        let newProcessorsArray: Processor[] = [];
+
+        this.activeProcessors.forEach((processor) => {
+            if (processor.cores >= noOfCores)
+                newProcessorsArray.push(processor);
+        });
+
+        return newProcessorsArray;
+    }
+
+    applyTDPFilter(processorTDP: number): Processor[] {
+        let newProcessorsArray: Processor[] = [];
+
+        this.activeProcessors.forEach((processor) => {
+            if (processor.tdp >= processorTDP)
+                newProcessorsArray.push(processor);
+        });
+
+        return newProcessorsArray;
+    }
+
+    applyCacheFilter(processorCache: number): Processor[] {
+        let newProcessorsArray: Processor[] = [];
+
+        this.activeProcessors.forEach((processor) => {
+            if (processor.cache >= processorCache)
+                newProcessorsArray.push(processor);
+        });
+
+        return newProcessorsArray;
+    }
+
+    applyThreadsFilter(noOfThreads: number): Processor[] {
+        let newProcessorsArray: Processor[] = [];
+
+        this.activeProcessors.forEach((processor) => {
+            if (processor.threads >= noOfThreads)
+                newProcessorsArray.push(processor);
+        });
+
+        return newProcessorsArray;
+    }
+
+    applyManufacturerFilter(manufacturerCheckboxes: string[]): Processor[] {
+        let newProcessorsArray: Processor[] = [];
+
+        if (manufacturerCheckboxes.length === 0) {
+            return this.activeProcessors;
+        } else {
+            this.activeProcessors.forEach((processor) => {
+                manufacturerCheckboxes.forEach((manufacturer) => {
+                    if (processor.manufacturer === manufacturer)
+                        newProcessorsArray.push(processor);
+                });
+            });
+            return newProcessorsArray;
+        }
+    }
+
+    applySeriesFilter(seriesCheckboxes: string[]): Processor[] {
+        let newProcessorsArray: Processor[] = [];
+
+        if (seriesCheckboxes.length === 0) {
+            return this.activeProcessors;
+        } else {
+            this.activeProcessors.forEach((processor) => {
+                seriesCheckboxes.forEach((series) => {
+                    if (processor.series === series)
+                        newProcessorsArray.push(processor);
+                });
+            });
+            return newProcessorsArray;
+        }
+    }
+
+    applySocketFilter(socketCheckboxes: string[]): Processor[] {
+        let newProcessorsArray: Processor[] = [];
+
+        if (socketCheckboxes.length === 0) {
+            return this.activeProcessors;
+        } else {
+            this.activeProcessors.forEach((processor) => {
+                socketCheckboxes.forEach((socket) => {
+                    if (processor.socket === socket)
+                        newProcessorsArray.push(processor);
+                });
+            });
+            return newProcessorsArray;
+        }
     }
 }
