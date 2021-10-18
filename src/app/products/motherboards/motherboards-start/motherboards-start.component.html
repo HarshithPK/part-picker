@@ -73,11 +73,11 @@
                         Apply
                     </button>
 
-                    <mat-divider></mat-divider>.
+                    <mat-divider></mat-divider>
 
                     <!-- Manufacturer Filter. -->
                     <span
-                        class="mb-1"
+                        class="mb-1 mt-2"
                         style="font-weight: bold; font-size: 1rem"
                         >Manufacturers</span
                     >
@@ -1092,6 +1092,19 @@
                     </div>
                 </div>
             </ngx-simplebar>
+
+            <!-- Add motherboard button. -->
+            <button
+                type="button"
+                class="btn btn-primary mt-2 mb-5"
+                style="margin-right: 5px"
+                data-mdb-toggle="tooltip"
+                data-mdb-placement="top"
+                title="Add Motherboard"
+                routerLink="add-motherboard"
+            >
+                Add Motherboard
+            </button>
         </div>
 
         <!-- Content div. -->
@@ -1230,17 +1243,4 @@
             </ngx-simplebar>
         </div>
     </div>
-
-    <!-- Add motherboard button. -->
-    <button
-        type="button"
-        class="btn btn-primary mt-2 mb-5"
-        style="margin-right: 5px"
-        data-mdb-toggle="tooltip"
-        data-mdb-placement="top"
-        title="Add Motherboard"
-        routerLink="add-motherboard"
-    >
-        Add Motherboard
-    </button>
 </div>

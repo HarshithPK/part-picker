@@ -13,6 +13,15 @@ import { CoolerService } from '../cooler.service';
 export class CoolersStartComponent implements OnInit {
     coolers: Cooler[] = null!;
 
+    priceMin: number | undefined;
+    priceMax: number | undefined;
+
+    coolerHeightWithoutFan: number = 25;
+    coolerHeightWithFan: number = 25;
+
+    manufacturerCheckboxes: string[] = [];
+    socketCheckboxes: string[] = [];
+
     constructor(
         private coolerService: CoolerService,
         private buildSystemService: BuildSystemService,
@@ -27,5 +36,69 @@ export class CoolersStartComponent implements OnInit {
         const cooler = this.coolerService.getCooler(index);
         this.buildSystemService.addCooler(cooler);
         this.router.navigate(['/build-system']);
+    }
+
+    //Apply selected filters
+    applyFilters() {
+        let activePriceMin: number = 0;
+        let activePriceMax: number = 1000000;
+
+        if (this.priceMin) {
+            activePriceMin = this.priceMin;
+        }
+
+        if (this.priceMax) {
+            activePriceMax = this.priceMax;
+        }
+
+        this.coolers = this.coolerService.applyAllFilters(
+            this.manufacturerCheckboxes,
+            this.socketCheckboxes,
+            activePriceMin,
+            activePriceMax,
+            this.coolerHeightWithoutFan,
+            this.coolerHeightWithFan
+        );
+
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    }
+
+    // Compute checked filters
+    checkboxClicked(event: any, name: string, type: string) {
+        if (type === 'manufacturer') {
+            if (event.target.checked) {
+                this.manufacturerCheckboxes.push(name);
+            } else {
+                this.manufacturerCheckboxes.forEach((element, index) => {
+                    if (element === name)
+                        this.manufacturerCheckboxes.splice(index, 1);
+                });
+            }
+        }
+
+        if (type === 'socket') {
+            if (event.target.checked) {
+                this.socketCheckboxes.push(name);
+            } else {
+                this.socketCheckboxes.forEach((element, index) => {
+                    if (element === name)
+                        this.socketCheckboxes.splice(index, 1);
+                });
+            }
+        }
+    }
+
+    //Clear all filters
+    clearFilters() {
+        let currentUrl = this.router.url;
+        this.router
+            .navigateByUrl('/', { skipLocationChange: true })
+            .then(() => {
+                this.router.navigate([currentUrl]);
+            });
     }
 }

@@ -1,122 +1,1094 @@
-<div class="container">
-    <h2>Storages</h2>
+<div class="container" *ngIf="storages">
     <div class="row">
-        <div
-            class="col-md-4 d-flex allign-items-start mb-5"
-            *ngFor="let storage of storages; let i = index"
-        >
-            <div
-                class="
-                    card
-                    text-center
-                    border border-primary
-                    shadow-0
-                    text-white
-                "
-                style="background-color: #000000"
+        <!-- Filters Column Div. -->
+        <div class="col-md-3">
+            <h3
+                class="filters-heading mt-3"
+                style="font-size: 1.1rem; font-weight: 1000; color: black"
             >
+                Filters
+            </h3>
+
+            <!-- Simplebar Scrollbar for filters. -->
+            <ngx-simplebar class="filters-scroll">
+                <!-- Filters card -->
                 <div
-                    class="bg-image hover-overlay ripple"
-                    data-mdb-ripple-color="light"
+                    class="row card text-white"
+                    style="background-color: #3b3838; padding: 10px"
                 >
-                    <img
-                        [src]="storage.imagePath"
-                        class="img-fluid"
-                        style="max-width: 200px; height: 150px"
-                    />
-                    <a [routerLink]="[i]">
-                        <div
-                            class="mask"
-                            style="background-color: rgba(255, 255, 255, 0.349)"
-                        ></div>
-                    </a>
-                </div>
-                <div class="card-header">
-                    <strong class="storage-name">{{ storage.name }}</strong>
-                </div>
-                <div class="card-body">
-                    <div class="row justify-content-start">
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Manufacturer</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ storage.manufacturer }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Capacity</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ storage.capacity }} TB
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Type</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ storage.type }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Form Factor</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ storage.formFactor }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>NVME</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ storage.NVME }}
-                        </span>
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Price</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            ₹ {{ storage.price }}
-                        </span>
-                    </div>
-                    <button
-                        matRipple
-                        type="button"
-                        class="btn btn-outline-primary mt-4 add-storage-button"
-                        data-mdb-toggle="tooltip"
-                        data-mdb-placement="top"
-                        title="Add Storage"
-                        (click)="addStorage(i)"
+                    <!-- Price Filter. -->
+                    <span
+                        class="mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Price</span
                     >
-                        <i class="fas fa-plus"></i>
-                    </button>
+
+                    <div class="d-flex allign-items-center">
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
+                        >
+                            <mat-label>Min</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="price-min"
+                                name="price-min"
+                                [(ngModel)]="priceMin"
+                            />
+                            <i matSuffix class="fas fa-rupee-sign"></i>
+                        </mat-form-field>
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
+                        >
+                            <mat-label>Max</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="price-max"
+                                name="price-max"
+                                [(ngModel)]="priceMax"
+                            />
+                            <i matSuffix class="fas fa-rupee-sign"></i>
+                        </mat-form-field>
+                    </div>
+
                     <button
-                        matRipple
                         type="button"
-                        class="
-                            btn btn-outline-primary
-                            mt-4
-                            load-storage-button
-                            ripple
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
                         "
                         data-mdb-toggle="tooltip"
                         data-mdb-placement="top"
-                        title="View Storage"
-                        [routerLink]="[i]"
+                        title="Apply"
+                        (click)="applyFilters()"
                     >
-                        <i class="far fa-arrow-alt-circle-right"></i>
+                        Apply
                     </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Manufacturer Filter. -->
+                    <span
+                        class="mb-1 mt-2"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Manufacturers</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ADATA',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-1"
+                                    >ADATA</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ADDLINK',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-2"
+                                    >ADDLINK</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'CORSAIR',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-3"
+                                    >CORSAIR</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'CRUCIAL',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-4"
+                                    >CRUCIAL</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'GIGABYTE',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-5"
+                                    >GIGABYTE</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-6"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'HIKVISION',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-6"
+                                    >HIKVISION</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-7"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'KINGSTON',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-7"
+                                    >KINGSTON</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-8"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'LEXAR',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-8"
+                                    >LEXAR</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-9"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'MSI',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-9"
+                                    >MSI</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-10"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'PATRIOT',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-10"
+                                    >PATRIOT</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-11"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'PIONEER',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-11"
+                                    >PIONEER</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-12"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'SAMSUNG',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-12"
+                                    >SAMSUNG</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-13"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'SEAGATE',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-13"
+                                    >SEAGATE</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-14"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'TEAMGROUP',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-14"
+                                    >TEAMGROUP</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-15"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'TOSHIBA',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-15"
+                                    >TOSHIBA</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-16"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'WESTERN DIGITAL (WD)',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-16"
+                                    >WESTERN DIGITAL (WD)</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Capacity Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Capacity ( TB )</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label
+                                    for="capacity-range"
+                                    class="form-label text-white"
+                                    style="
+                                        margin-left: 15px;
+                                        margin-right: 5px;
+                                        font-weight: bold;
+                                    "
+                                    >{{ capacity }}
+                                </label>
+                            </div>
+                            <div class="col-md-1">
+                                <label
+                                    class="form-label text-white"
+                                    style="font-weight: bold"
+                                >
+                                    TB</label
+                                >
+                            </div>
+                            <div class="range col-md-8">
+                                <input
+                                    type="range"
+                                    class="form-range"
+                                    min="0.5"
+                                    max="16"
+                                    step=".5"
+                                    list="memory-intervals"
+                                    id="capacity-range"
+                                    [(ngModel)]="capacity"
+                                    style="margin-left: 12px"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Manufacturer Filter. -->
+                    <span
+                        class="mb-1 mt-2"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Type</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked($event, 'SSD', 'type')
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="type-btn-check-1"
+                                    >SSD</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '5400RPM',
+                                            'type'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="type-btn-check-2"
+                                    >5400RPM</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '5700RPM',
+                                            'type'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="type-btn-check-3"
+                                    >5700RPM</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '7200RPM',
+                                            'type'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="type-btn-check-4"
+                                    >7200RPM</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!--Form Factor Filter. -->
+                    <span
+                        class="mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Form Factor</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '2.5',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="form-factor-btn-check-1"
+                                    >2.5"</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            '3.5',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="form-factor-btn-check-2"
+                                    >3.5"</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'M.2-22110',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="form-factor-btn-check-3"
+                                    >M.2-22110</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'M.2-2242',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="form-factor-btn-check-4"
+                                    >M.2-2242</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'M.2-2260',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="form-factor-btn-check-5"
+                                    >M.2-2260</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-6"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'M.2-2280',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="form-factor-btn-check-6"
+                                    >M.2-2280</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="form-factor-btn-check-7"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'PCI-E',
+                                            'formFactor'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="form-factor-btn-check-7"
+                                    >PCI-E</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!--NVME Filter. -->
+                    <span
+                        class="mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >NVME SSD</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <input
+                                type="checkbox"
+                                class="btn-check"
+                                id="nvme-btn-check-1"
+                                autocomplete="off"
+                                (change)="
+                                    checkboxClicked($event, 'Yes', 'nvme')
+                                "
+                            />
+                            <label
+                                class="btn btn-warning btn-rounded col-md-12"
+                                for="nvme-btn-check-1"
+                                >NVME</label
+                            >
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mt-2 mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Clear Filters. -->
+                    <div class="col-md-12 mt-1 d-flex justify-content-center">
+                        <button
+                            matRipple
+                            class="clear-filter-button btn btn-danger mt-2 mb-2"
+                            type="button"
+                            data-mdb-toggle="tooltip"
+                            data-mdb-placement="top"
+                            title="Clear Filters"
+                            routerLink="power-supplies"
+                            (click)="clearFilters()"
+                        >
+                            Clear Filters
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </ngx-simplebar>
+
+            <button
+                type="button"
+                class="btn btn-primary mt-2 mb-5"
+                style="margin-right: 5px"
+                data-mdb-toggle="tooltip"
+                data-mdb-placement="top"
+                title="Add Storage"
+                routerLink="add-storage"
+            >
+                Add Storage
+            </button>
+        </div>
+
+        <!-- Content div. -->
+        <div class="col-md-9">
+            <h2 class="mt-2" style="font-size: 2rem; color: black">Storages</h2>
+
+            <!-- Simplebar Scrollbar for content. -->
+            <ngx-simplebar class="content-scroll">
+                <div class="row">
+                    <!-- Recursive generation of Storage cards. -->
+                    <div
+                        class="col-md-4 d-flex allign-items-start mb-5"
+                        *ngFor="let storage of storages; let i = index"
+                    >
+                        <!-- Content card for a Storage. -->
+                        <div
+                            class="
+                                card
+                                text-center
+                                border border-primary
+                                shadow-0
+                                text-white
+                            "
+                            style="background-color: #000000"
+                        >
+                            <div
+                                class="bg-image hover-overlay ripple"
+                                data-mdb-ripple-color="light"
+                            >
+                                <img
+                                    [src]="storage.imagePath"
+                                    class="img-fluid"
+                                    style="max-width: 200px; height: 150px"
+                                />
+                                <a [routerLink]="[i]">
+                                    <div
+                                        class="mask"
+                                        style="
+                                            background-color: rgba(
+                                                255,
+                                                255,
+                                                255,
+                                                0.349
+                                            );
+                                        "
+                                    ></div>
+                                </a>
+                            </div>
+                            <div class="card-header">
+                                <strong class="storage-name">{{
+                                    storage.name
+                                }}</strong>
+                            </div>
+                            <div class="card-body">
+                                <div class="row justify-content-start">
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Manufacturer</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ storage.manufacturer }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Capacity</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ storage.capacity }} TB
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Type</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ storage.type }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Form Factor</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ storage.formFactor }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>NVME</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ storage.NVME }}
+                                    </span>
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Price</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        ₹ {{ storage.price }}
+                                    </span>
+                                </div>
+                                <button
+                                    matRipple
+                                    type="button"
+                                    class="
+                                        btn btn-outline-primary
+                                        mt-4
+                                        add-storage-button
+                                    "
+                                    data-mdb-toggle="tooltip"
+                                    data-mdb-placement="top"
+                                    title="Add Storage"
+                                    (click)="addStorage(i)"
+                                >
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <button
+                                    matRipple
+                                    type="button"
+                                    class="
+                                        btn btn-outline-primary
+                                        mt-4
+                                        load-storage-button
+                                        ripple
+                                    "
+                                    data-mdb-toggle="tooltip"
+                                    data-mdb-placement="top"
+                                    title="View Storage"
+                                    [routerLink]="[i]"
+                                >
+                                    <i
+                                        class="far fa-arrow-alt-circle-right"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ngx-simplebar>
         </div>
     </div>
-    <button
-        type="button"
-        class="btn btn-primary mt-2 mb-5"
-        style="margin-right: 5px"
-        data-mdb-toggle="tooltip"
-        data-mdb-placement="top"
-        title="Add Storage"
-        routerLink="add-storage"
-    >
-        Add Storage
-    </button>
 </div>

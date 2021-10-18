@@ -15,7 +15,16 @@
         <p><strong>Capacity: </strong>{{ storage.capacity }} TB</p>
         <p><strong>Type: </strong>{{ storage.type }}</p>
         <p><strong>Cache: </strong>{{ storage.cache }} MB</p>
-        <p><strong>Form Factor: </strong>{{ storage.formFactor }}</p>
+        <p>
+            <strong>Form Factor: </strong>{{ storage.formFactor
+            }}<span
+                *ngIf="
+                    storage.formFactor === '3.5' || storage.formFactor === '2.5'
+                "
+                >"</span
+            >
+        </p>
+
         <p>
             <strong>Storage Interface: </strong>{{ storage.storageInterface }}
         </p>

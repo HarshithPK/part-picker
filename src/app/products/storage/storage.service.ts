@@ -6,6 +6,7 @@ import { Storage } from './storage.model';
 @Injectable({ providedIn: 'root' })
 export class StorageService {
     storagesChanged = new Subject<Storage[]>();
+    activeStoragesChanged = new Subject<Storage[]>();
 
     // storages: Storage[] = [
     //     new Storage(
@@ -50,12 +51,16 @@ export class StorageService {
     // ];
 
     private storages: Storage[] = [];
+    private activeStorages: Storage[] = [];
 
     constructor() {}
 
     setStorages(storages: Storage[]) {
         this.storages = storages;
+        this.activeStorages = storages.sort((a, b) => a.price - b.price);
+
         this.storagesChanged.next(this.storages.slice());
+        this.activeStoragesChanged.next(this.activeStorages.slice());
     }
 
     getStorages(): Storage[] {
@@ -63,6 +68,114 @@ export class StorageService {
     }
 
     getStorage(index: number): Storage {
-        return this.storages[index];
+        return this.activeStorages[index];
+    }
+
+    applyAllFilters(
+        manufacturerCheckboxes: string[],
+        typeCheckboxes: string[],
+        formFactorCheckboxes: string[],
+        NVMECheckbox: string,
+        priceMin: number,
+        priceMax: number,
+        capacity: number
+    ): Storage[] {
+        this.activeStorages = this.applyPriceFilter(priceMin, priceMax);
+
+        this.activeStorages = this.applyCapacityFilter(capacity);
+
+        this.activeStorages = this.applyManufacturerFilter(
+            manufacturerCheckboxes
+        );
+
+        this.activeStorages = this.applyTypeFilter(typeCheckboxes);
+
+        this.activeStorages = this.applyFormFactorFilter(formFactorCheckboxes);
+
+        this.activeStorages = this.applyNVMEFilter(NVMECheckbox);
+
+        return this.activeStorages.slice();
+    }
+
+    applyPriceFilter(priceMin: number, priceMax: number): Storage[] {
+        let newStoragesArray: Storage[] = [];
+
+        this.storages.forEach((storage) => {
+            if (storage.price >= priceMin && storage.price <= priceMax)
+                newStoragesArray.push(storage);
+        });
+
+        return newStoragesArray;
+    }
+
+    applyCapacityFilter(capacity: number): Storage[] {
+        let newStoragesArray: Storage[] = [];
+
+        this.activeStorages.forEach((storage) => {
+            if (storage.capacity >= capacity) newStoragesArray.push(storage);
+        });
+
+        return newStoragesArray;
+    }
+
+    applyManufacturerFilter(manufacturerCheckboxes: string[]): Storage[] {
+        let newStoragesArray: Storage[] = [];
+
+        if (manufacturerCheckboxes.length === 0) {
+            return this.activeStorages;
+        } else {
+            this.activeStorages.forEach((storage) => {
+                manufacturerCheckboxes.forEach((manufacturer) => {
+                    if (storage.manufacturer === manufacturer)
+                        newStoragesArray.push(storage);
+                });
+            });
+            return newStoragesArray;
+        }
+    }
+
+    applyTypeFilter(typeCheckboxes: string[]): Storage[] {
+        let newStoragesArray: Storage[] = [];
+
+        if (typeCheckboxes.length === 0) {
+            return this.activeStorages;
+        } else {
+            this.activeStorages.forEach((storage) => {
+                typeCheckboxes.forEach((type) => {
+                    if (storage.type === type) newStoragesArray.push(storage);
+                });
+            });
+            return newStoragesArray;
+        }
+    }
+
+    applyFormFactorFilter(formFactorCheckboxes: string[]): Storage[] {
+        let newStoragesArray: Storage[] = [];
+
+        if (formFactorCheckboxes.length === 0) {
+            return this.activeStorages;
+        } else {
+            this.activeStorages.forEach((storage) => {
+                formFactorCheckboxes.forEach((formFactor) => {
+                    if (storage.formFactor === formFactor)
+                        newStoragesArray.push(storage);
+                });
+            });
+            return newStoragesArray;
+        }
+    }
+
+    applyNVMEFilter(NVMECheckbox: string): Storage[] {
+        let newStoragesArray: Storage[] = [];
+
+        if (NVMECheckbox.length === 0) {
+            return this.activeStorages;
+        } else {
+            this.activeStorages.forEach((storage) => {
+                if (storage.NVME === NVMECheckbox)
+                    newStoragesArray.push(storage);
+            });
+            return newStoragesArray;
+        }
     }
 }
