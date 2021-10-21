@@ -18,7 +18,7 @@ export class StorageStartComponent implements OnInit {
 
     capacity: number = 0.5;
 
-    NVMECheckbox: string = null!;
+    NVMECheckbox: string = '';
 
     manufacturerCheckboxes: string[] = [];
     typeCheckboxes: string[] = [];
@@ -75,6 +75,7 @@ export class StorageStartComponent implements OnInit {
         if (type === 'manufacturer') {
             if (event.target.checked) {
                 this.manufacturerCheckboxes.push(name);
+                console.log(this.manufacturerCheckboxes);
             } else {
                 this.manufacturerCheckboxes.forEach((element, index) => {
                     if (element === name)

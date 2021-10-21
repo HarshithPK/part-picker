@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SimplebarAngularModule } from 'simplebar-angular';
 
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { GraphicsCardAddComponent } from './graphics-card-add/graphics-card-add.component';
@@ -24,6 +25,7 @@ import { GraphicsCardsComponent } from './graphics-cards.component';
         ReactiveFormsModule,
         MaterialModule,
         GraphicsCardRoutingModule,
+        SimplebarAngularModule,
     ],
 })
 export class GraphicsCardModule {}
