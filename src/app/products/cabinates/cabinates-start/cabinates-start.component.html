@@ -1,116 +1,1362 @@
-<div class="container">
-    <h2>Cabinates</h2>
+<div class="container" *ngIf="cabinates">
     <div class="row">
-        <div
-            class="col-md-4 d-flex allign-items-start mb-5"
-            *ngFor="let cabinate of cabinates; let i = index"
-        >
-            <div
-                class="
-                    card
-                    text-center
-                    border border-primary
-                    shadow-0
-                    text-white
-                "
-                style="background-color: #000000"
+        <!-- Filters Column Div. -->
+        <div class="col-md-3">
+            <h3
+                class="filters-heading mt-3"
+                style="font-size: 1.1rem; font-weight: 1000; color: black"
             >
+                Filters
+            </h3>
+
+            <!-- Simplebar Scrollbar for filters. -->
+            <ngx-simplebar class="filters-scroll">
                 <div
-                    class="bg-image hover-overlay ripple"
-                    data-mdb-ripple-color="light"
+                    class="row card text-white"
+                    style="background-color: #3b3838; padding: 10px"
                 >
-                    <img
-                        [src]="cabinate.imagePath"
-                        class="img-fluid"
-                        style="max-width: 300px; max-height: 250px"
-                    />
-                    <a [routerLink]="[i]">
-                        <div
-                            class="mask"
-                            style="background-color: rgba(255, 255, 255, 0.349)"
-                        ></div>
-                    </a>
-                </div>
-                <div class="card-header">
-                    <strong class="cabinate-name">{{ cabinate.name }}</strong>
-                </div>
-                <div class="card-body">
-                    <div class="row justify-content-start">
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Type</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ cabinate.type }}
-                        </span>
+                    <!-- Price Filter. -->
+                    <span
+                        class="mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Price</span
+                    >
 
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Color</strong></span
+                    <div class="d-flex allign-items-center">
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
                         >
-                        <span class="col-md-6 spec-content">
-                            {{ cabinate.color }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Side Panel</strong></span
+                            <mat-label>Min</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="price-min"
+                                name="price-min"
+                                [(ngModel)]="priceMin"
+                            />
+                            <i matSuffix class="fas fa-rupee-sign"></i>
+                        </mat-form-field>
+                        <mat-form-field
+                            class="form-components col-md-6"
+                            style="margin-left: 1.75px"
+                            appearance="outline"
                         >
-                        <span class="col-md-6 spec-content">
-                            {{ cabinate.sidePanel }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Dimentsions</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            {{ cabinate.dimensions }}
-                        </span>
-
-                        <span class="col-md-6 spec-headings"
-                            ><strong>Price</strong></span
-                        >
-                        <span class="col-md-6 spec-content">
-                            ₹ {{ cabinate.price }}
-                        </span>
+                            <mat-label>Max</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                id="price-max"
+                                name="price-max"
+                                [(ngModel)]="priceMax"
+                            />
+                            <i matSuffix class="fas fa-rupee-sign"></i>
+                        </mat-form-field>
                     </div>
                     <button
-                        matRipple
                         type="button"
-                        class="btn btn-outline-primary mt-4 add-cabinate-button"
-                        data-mdb-toggle="tooltip"
-                        data-mdb-placement="top"
-                        title="Add Cabinate"
-                        (click)="addCabinate(i)"
-                    >
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <button
-                        matRipple
-                        type="button"
-                        class="
-                            btn btn-outline-primary
-                            mt-4
-                            load-cabinate-button
-                            ripple
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
                         "
                         data-mdb-toggle="tooltip"
                         data-mdb-placement="top"
-                        title="View Cabinate"
-                        [routerLink]="[i]"
+                        title="Apply"
+                        (click)="applyFilters()"
                     >
-                        <i class="far fa-arrow-alt-circle-right"></i>
+                        Apply
                     </button>
+
+                    <mat-divider></mat-divider>
+
+                    <span
+                        class="mb-1 mt-2"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Manufacturers</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ADATA',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-1"
+                                    >ADATA</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'AEROCOOL',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-2"
+                                    >AEROCOOL</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ANT ESPORTS',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-3"
+                                    >ANT ESPORTS</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ANTEC',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-4"
+                                    >ANTEC</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ASUS',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-5"
+                                    >ASUS</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-6"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'CIRCLE',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-6"
+                                    >CIRCLE</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-7"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'COOLER MASTER',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-7"
+                                    >COOLER MASTER</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-8"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'CORSAIR',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-8"
+                                    >CORSAIR</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-9"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'COUGAR',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-9"
+                                    >COUGAR</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-10"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'DEEPCOOL',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-10"
+                                    >DEEPCOOL</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-11"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'FRACTAL DESIGN',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-11"
+                                    >FRACTAL DESIGN</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-12"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'GIGABYTE',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-12"
+                                    >GIGABYTE</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-13"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'LIAN LI',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-13"
+                                    >LIAN LI</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-14"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'MONTECH',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-14"
+                                    >MONTECH</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-15"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'MSI',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-15"
+                                    >MSI</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-16"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'NZXT',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-16"
+                                    >NZXT</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-17"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'PHANTEKS',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="manufacturer-btn-check-17"
+                                    >PHANTEKS</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-18"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'SILVERSTONE',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-18"
+                                    >SILVERSTONE</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="manufacturer-btn-check-19"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'THERMALTAKE',
+                                            'manufacturer'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="
+                                        btn btn-warning btn-rounded
+                                        col-md-12
+                                    "
+                                    style="margin-left: 1.5px"
+                                    for="manufacturer-btn-check-19"
+                                    >THERMALTAKE</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Type Filter. -->
+                    <span
+                        class="mb-1 mt-2"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Type</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ATX Full Tower',
+                                            'type'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="type-btn-check-1"
+                                    >ATX Full Tower</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ATX Mid Tower',
+                                            'type'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="type-btn-check-2"
+                                    >ATX Mid Tower</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ATX Mini Tower',
+                                            'type'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="type-btn-check-3"
+                                    >ATX Mini Tower</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked($event, 'HTPC', 'type')
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="type-btn-check-4"
+                                    >HTPC</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'MicroATX Mid Tower',
+                                            'type'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="type-btn-check-5"
+                                    >MicroATX Mid Tower</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-6"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'MicroATX Mini Tower',
+                                            'type'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="type-btn-check-6"
+                                    >MicroATX Mini Tower</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-7"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'MicroATX Slim',
+                                            'type'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="type-btn-check-7"
+                                    >MicroATX Slim</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-8"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Mini ITX Test Bench',
+                                            'type'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="type-btn-check-8"
+                                    >Mini ITX Test Bench</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-9"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Mini ITX Tower',
+                                            'type'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="type-btn-check-9"
+                                    >Mini ITX Tower</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="type-btn-check-10"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'ATX Super Tower',
+                                            'type'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="type-btn-check-10"
+                                    >ATX Super Tower</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- SIDE PANEL WINDOW Filter. -->
+                    <span
+                        class="mb-1 mt-2"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Side Panel Window</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="side-panel-window-btn-check-1"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Acrylic',
+                                            'sidePanelWindow'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="side-panel-window-btn-check-1"
+                                    >Acrylic</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="side-panel-window-btn-check-2"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Mesh',
+                                            'sidePanelWindow'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="side-panel-window-btn-check-2"
+                                    >Mesh</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="side-panel-window-btn-check-3"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Tinted Acrylic',
+                                            'sidePanelWindow'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="side-panel-window-btn-check-3"
+                                    >Tinted Acrylic</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="side-panel-window-btn-check-4"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Tempered Glass',
+                                            'sidePanelWindow'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="side-panel-window-btn-check-4"
+                                    >Tempered Glass</label
+                                >
+                            </div>
+                            <div
+                                class="
+                                    mb-1
+                                    col-md-12
+                                    d-flex
+                                    allign-items-start
+                                    justify-content-center
+                                "
+                            >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="side-panel-window-btn-check-5"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'Tinted Tempered Glass',
+                                            'sidePanelWindow'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-right: 1.5px"
+                                    for="side-panel-window-btn-check-5"
+                                    >Tinted Tempered Glass</label
+                                >
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="side-panel-window-btn-check-6"
+                                    autocomplete="off"
+                                    (change)="
+                                        checkboxClicked(
+                                            $event,
+                                            'None',
+                                            'sidePanelWindow'
+                                        )
+                                    "
+                                />
+                                <label
+                                    class="btn btn-warning btn-rounded col-md-6"
+                                    style="margin-left: 1.5px"
+                                    for="side-panel-window-btn-check-6"
+                                    >None</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- PSU Length Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >PSU Length</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label
+                                    for="psu-length-range"
+                                    class="form-label text-white"
+                                    style="
+                                        margin-left: 15px;
+                                        margin-right: 5px;
+                                        font-weight: bold;
+                                    "
+                                    >{{ PSULength }}
+                                </label>
+                            </div>
+                            <div class="col-md-1">
+                                <label
+                                    class="form-label text-white"
+                                    style="font-weight: bold"
+                                >
+                                    mm</label
+                                >
+                            </div>
+                            <div class="range col-md-8">
+                                <input
+                                    type="range"
+                                    class="form-range"
+                                    min="50"
+                                    max="350"
+                                    step="5"
+                                    id="psu-length-range"
+                                    [(ngModel)]="PSULength"
+                                    style="margin-left: 12px"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- GPU Length Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >GPU Length</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label
+                                    for="gpu-length-range"
+                                    class="form-label text-white"
+                                    style="
+                                        margin-left: 15px;
+                                        margin-right: 5px;
+                                        font-weight: bold;
+                                    "
+                                    >{{ GPULength }}
+                                </label>
+                            </div>
+                            <div class="col-md-1">
+                                <label
+                                    class="form-label text-white"
+                                    style="font-weight: bold"
+                                >
+                                    mm</label
+                                >
+                            </div>
+                            <div class="range col-md-8">
+                                <input
+                                    type="range"
+                                    class="form-range"
+                                    min="50"
+                                    max="550"
+                                    step="5"
+                                    id="gpu-length-range"
+                                    [(ngModel)]="GPULength"
+                                    style="margin-left: 12px"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- CPU Cooler Clearence Filter. -->
+                    <span
+                        class="mt-2 mb-1"
+                        style="font-weight: bold; font-size: 1rem"
+                        >CPU Cooler Clearence</span
+                    >
+
+                    <div class="d-flex allign-items-center">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label
+                                    for="gpu-length-range"
+                                    class="form-label text-white"
+                                    style="
+                                        margin-left: 15px;
+                                        margin-right: 5px;
+                                        font-weight: bold;
+                                    "
+                                    >{{ CPUCoolerClearance }}
+                                </label>
+                            </div>
+                            <div class="col-md-1">
+                                <label
+                                    class="form-label text-white"
+                                    style="font-weight: bold"
+                                >
+                                    mm</label
+                                >
+                            </div>
+                            <div class="range col-md-8">
+                                <input
+                                    type="range"
+                                    class="form-range"
+                                    min="10"
+                                    max="200"
+                                    step="5"
+                                    id="gpu-length-range"
+                                    [(ngModel)]="CPUCoolerClearance"
+                                    style="margin-left: 12px"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
+                    <!-- Clear Filters. -->
+                    <div class="col-md-12 mt-1 d-flex justify-content-center">
+                        <button
+                            matRipple
+                            class="clear-filter-button btn btn-danger mt-2 mb-2"
+                            type="button"
+                            data-mdb-toggle="tooltip"
+                            data-mdb-placement="top"
+                            title="Clear Filters"
+                            routerLink="power-supplies"
+                            (click)="clearFilters()"
+                        >
+                            Clear Filters
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </ngx-simplebar>
+
+            <button
+                type="button"
+                class="btn btn-primary mt-2 mb-5"
+                style="margin-right: 5px"
+                data-mdb-toggle="tooltip"
+                data-mdb-placement="top"
+                title="Add Cabinate"
+                routerLink="add-cabinate"
+            >
+                Add Cabinate
+            </button>
+        </div>
+
+        <!-- Content div. -->
+        <div class="col-md-9">
+            <h2 class="mt-2" style="font-size: 2rem; color: black">
+                Cabinates
+            </h2>
+
+            <!-- Simplebar Scrollbar for content. -->
+            <ngx-simplebar class="content-scroll">
+                <div class="row">
+                    <!-- Recursive generation of Cabinates cards. -->
+                    <div
+                        class="col-md-4 d-flex allign-items-start mb-5"
+                        *ngFor="let cabinate of cabinates; let i = index"
+                    >
+                        <!-- Content card for a Cabinate. -->
+                        <div
+                            class="
+                                card
+                                text-center
+                                border border-primary
+                                shadow-0
+                                text-white
+                            "
+                            style="background-color: #000000"
+                        >
+                            <div
+                                class="bg-image hover-overlay ripple"
+                                data-mdb-ripple-color="light"
+                            >
+                                <img
+                                    [src]="cabinate.imagePath"
+                                    class="img-fluid"
+                                    style="max-width: 300px; max-height: 250px"
+                                />
+                                <a [routerLink]="[i]">
+                                    <div
+                                        class="mask"
+                                        style="
+                                            background-color: rgba(
+                                                255,
+                                                255,
+                                                255,
+                                                0.349
+                                            );
+                                        "
+                                    ></div>
+                                </a>
+                            </div>
+                            <div class="card-header">
+                                <strong class="cabinate-name">{{
+                                    cabinate.name
+                                }}</strong>
+                            </div>
+                            <div class="card-body">
+                                <div class="row justify-content-start">
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Type</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ cabinate.type }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Color</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ cabinate.color }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Side Panel</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ cabinate.sidePanel }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Dimentsions</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        {{ cabinate.dimensions }}
+                                    </span>
+
+                                    <span class="col-md-6 spec-headings"
+                                        ><strong>Price</strong></span
+                                    >
+                                    <span class="col-md-6 spec-content">
+                                        ₹ {{ cabinate.price }}
+                                    </span>
+                                </div>
+                                <button
+                                    matRipple
+                                    type="button"
+                                    class="
+                                        btn btn-outline-primary
+                                        mt-4
+                                        add-cabinate-button
+                                    "
+                                    data-mdb-toggle="tooltip"
+                                    data-mdb-placement="top"
+                                    title="Add Cabinate"
+                                    (click)="addCabinate(i)"
+                                >
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <button
+                                    matRipple
+                                    type="button"
+                                    class="
+                                        btn btn-outline-primary
+                                        mt-4
+                                        load-cabinate-button
+                                        ripple
+                                    "
+                                    data-mdb-toggle="tooltip"
+                                    data-mdb-placement="top"
+                                    title="View Cabinate"
+                                    [routerLink]="[i]"
+                                >
+                                    <i
+                                        class="far fa-arrow-alt-circle-right"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ngx-simplebar>
         </div>
     </div>
-    <button
-        type="button"
-        class="btn btn-primary mt-2 mb-5"
-        style="margin-right: 5px"
-        data-mdb-toggle="tooltip"
-        data-mdb-placement="top"
-        title="Add Cabinate"
-        routerLink="add-cabinate"
-    >
-        Add Cabinate
-    </button>
 </div>
