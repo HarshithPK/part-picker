@@ -73,6 +73,65 @@
 
                     <mat-divider></mat-divider>
 
+                    <span
+                        class="mb-1 mt-2"
+                        style="font-weight: bold; font-size: 1rem"
+                        >Manufacturers</span
+                    >
+
+                    <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
+                            <ngx-simplebar class="manufacturers-scroll">
+                                <div
+                                    class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
+                                    *ngFor="
+                                        let manufacturerName of manufacturerNames;
+                                        let i = index
+                                    "
+                                >
+                                    <input
+                                        type="checkbox"
+                                        class="btn-check"
+                                        [id]="[i]"
+                                        autocomplete="off"
+                                        (change)="
+                                            checkboxClicked(
+                                                $event,
+                                                manufacturerName,
+                                                'manufacturer'
+                                            )
+                                        "
+                                    />
+                                    <label
+                                        class="btn btn-warning btn-rounded col-md-12"
+                                        style="margin-right: 1.5px"
+                                        [for]="[i]"
+                                        >{{ manufacturerName }}</label
+                                    >
+                                </div>
+                            </ngx-simplebar>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn btn-success btn-rounded mb-2"
+                        style="
+                            margin-left: 10px;
+                            max-width: 25%;
+                            padding: 4px 4px 4px 4px;
+                            font-size: 0.8rem;
+                        "
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Apply"
+                        (click)="applyFilters()"
+                    >
+                        Apply
+                    </button>
+
+                    <mat-divider></mat-divider>
+
                     <!-- Form Factor filter. -->
                     <span
                         class="mt-2 mb-1"
@@ -149,6 +208,7 @@
                             </div>
                         </div>
                     </div>
+
                     <button
                         type="button"
                         class="btn btn-success btn-rounded mt-2 mb-2"
@@ -234,10 +294,7 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     style="margin-right: 1.5px"
                                     for="modularity-btn-check-3"
                                     >NON - MODULAR</label
@@ -350,10 +407,7 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="efficiency-btn-check-1"
                                     >80+ TITANIUM</label
                                 >
@@ -376,10 +430,7 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="efficiency-btn-check-2"
                                     >80+ PLATINUM</label
                                 >
@@ -402,10 +453,7 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="efficiency-btn-check-3"
                                     >80+ GOLD</label
                                 >
@@ -427,10 +475,7 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="efficiency-btn-check-4"
                                     >80+ Silver</label
                                 >
@@ -452,10 +497,7 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="efficiency-btn-check-5"
                                     >80+ BRONZE</label
                                 >
@@ -477,14 +519,12 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="efficiency-btn-check-6"
                                     >80+ WHITE</label
                                 >
                             </div>
+
                             <div
                                 class="col-md-12 mt-1 d-flex allign-items-start"
                             >
@@ -502,10 +542,7 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="efficiency-btn-check-7"
                                     >NONE</label
                                 >
@@ -529,6 +566,7 @@
                     >
                         Apply
                     </button>
+
                     <mat-divider></mat-divider>
 
                     <!-- Clear Filters. -->
@@ -548,6 +586,19 @@
                     </div>
                 </div>
             </ngx-simplebar>
+
+            <!-- Add Power Supply Button. -->
+            <button
+                type="button"
+                class="btn btn-primary mt-2 mb-5"
+                style="margin-right: 5px"
+                data-mdb-toggle="tooltip"
+                data-mdb-placement="top"
+                title="Add power Supply"
+                routerLink="add-power-supply"
+            >
+                Add Power Supply
+            </button>
         </div>
 
         <!-- Content Div. -->
@@ -565,13 +616,7 @@
                     >
                         <!-- Content card for a Power Supply. -->
                         <div
-                            class="
-                                card
-                                text-center
-                                border border-primary
-                                shadow-0
-                                text-white
-                            "
+                            class="card text-center border border-primary shadow-0 text-white"
                             style="background-color: #000000"
                         >
                             <div
@@ -650,11 +695,7 @@
                                 <button
                                     matRipple
                                     type="button"
-                                    class="
-                                        btn btn-outline-primary
-                                        mt-4
-                                        add-power-supply-button
-                                    "
+                                    class="btn btn-outline-primary mt-4 add-power-supply-button"
                                     data-mdb-toggle="tooltip"
                                     data-mdb-placement="top"
                                     title="Add Power Supply"
@@ -665,12 +706,7 @@
                                 <button
                                     matRipple
                                     type="button"
-                                    class="
-                                        btn btn-outline-primary
-                                        mt-4
-                                        load-power-supply-button
-                                        ripple
-                                    "
+                                    class="btn btn-outline-primary mt-4 load-power-supply-button ripple"
                                     data-mdb-toggle="tooltip"
                                     data-mdb-placement="top"
                                     title="View Power Supply"
@@ -687,17 +723,4 @@
             </ngx-simplebar>
         </div>
     </div>
-
-    <!-- Add Power Supply Button. -->
-    <button
-        type="button"
-        class="btn btn-primary mt-2 mb-5"
-        style="margin-right: 5px"
-        data-mdb-toggle="tooltip"
-        data-mdb-placement="top"
-        title="Add power Supply"
-        routerLink="add-power-supply"
-    >
-        Add Power Supply
-    </button>
 </div>

@@ -16,6 +16,8 @@ export class GraphicsCardsStartComponent implements OnInit {
     priceMin: number | undefined;
     priceMax: number | undefined;
 
+    manufacturerNames: string[] = [];
+
     memorySize: number = 1;
 
     coreClock: number = 150;
@@ -43,6 +45,9 @@ export class GraphicsCardsStartComponent implements OnInit {
 
     ngOnInit(): void {
         this.graphicsCards = this.graphicsCardService.getGraphicsCards();
+        this.manufacturerNames =
+            this.graphicsCardService.getManufacturerNames();
+        console.log(this.manufacturerNames);
     }
 
     addGraphicsCard(index: number): void {
@@ -94,6 +99,70 @@ export class GraphicsCardsStartComponent implements OnInit {
 
     // Compute checked filters
     checkboxClicked(event: any, name: string, type: string) {
+        //Switch case for the filters.
+        switch (type) {
+            case 'manufacturer':
+                console.log('manufacturer');
+                if (event.target.checked) {
+                    this.manufacturerCheckboxes.push(name);
+                } else {
+                    this.manufacturerCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.manufacturerCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'chipset':
+                console.log('chipset');
+                if (event.target.checked) {
+                    this.chipsetCheckboxes.push(name);
+                } else {
+                    this.chipsetCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.chipsetCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'interface':
+                console.log('interface');
+                if (event.target.checked) {
+                    this.interfaceCheckboxes.push(name);
+                } else {
+                    this.interfaceCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.interfaceCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'frameSync':
+                console.log('frameSync');
+                if (event.target.checked) {
+                    this.frameSyncCheckboxes.push(name);
+                } else {
+                    this.frameSyncCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.frameSyncCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'externalPower':
+                console.log('externalPower');
+                if (event.target.checked) {
+                    this.externalPowerCheckboxes.push(name);
+                } else {
+                    this.externalPowerCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.externalPowerCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+        }
+
+        /*
         if (type === 'manufacturer') {
             if (event.target.checked) {
                 this.manufacturerCheckboxes.push(name);
@@ -148,6 +217,7 @@ export class GraphicsCardsStartComponent implements OnInit {
                 });
             }
         }
+        */
     }
 
     //Clear all filters

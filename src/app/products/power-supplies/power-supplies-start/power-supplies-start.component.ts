@@ -15,10 +15,12 @@ export class PowerSuppliesStartComponent implements OnInit {
 
     priceMin: number | undefined;
     priceMax: number | undefined;
-
     wattageMin: number | undefined;
     wattageMax: number | undefined;
 
+    manufacturerNames: string[] = [];
+
+    manufacturerCheckboxes: string[] = [];
     formFactorCheckboxes: string[] = [];
     modularCheckboxes: string[] = [];
     efficiencyRatingCheckboxes: string[] = [];
@@ -31,6 +33,9 @@ export class PowerSuppliesStartComponent implements OnInit {
 
     ngOnInit(): void {
         this.powerSupplies = this.powerSupplyService.getPowerSupplies();
+        this.manufacturerNames = this.powerSupplyService.getManufacturerNames();
+
+        console.log(this.manufacturerNames);
     }
 
     addPowerSupply(index: number): void {
@@ -63,6 +68,7 @@ export class PowerSuppliesStartComponent implements OnInit {
         }
 
         this.powerSupplies = this.powerSupplyService.applyAllFilters(
+            this.manufacturerCheckboxes,
             this.formFactorCheckboxes,
             this.modularCheckboxes,
             this.efficiencyRatingCheckboxes,
@@ -81,6 +87,50 @@ export class PowerSuppliesStartComponent implements OnInit {
 
     // Compute checked filters
     checkboxClicked(event: any, name: string, type: string) {
+        //Switch case for the filters.
+        switch (type) {
+            case 'manufacturer':
+                console.log('manufacturer');
+                if (event.target.checked) {
+                    this.manufacturerCheckboxes.push(name);
+                } else {
+                    this.manufacturerCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.manufacturerCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'modularity':
+                console.log('modularity');
+                if (event.target.checked) {
+                    this.modularCheckboxes.push(name);
+                } else {
+                    this.modularCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.modularCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'efficiency':
+                console.log('efficiency');
+                if (event.target.checked) {
+                    this.efficiencyRatingCheckboxes.push(name);
+                } else {
+                    this.efficiencyRatingCheckboxes.forEach(
+                        (element, index) => {
+                            if (element === name)
+                                this.efficiencyRatingCheckboxes.splice(
+                                    index,
+                                    1
+                                );
+                        }
+                    );
+                }
+                break;
+        }
+        /*
         if (type === 'formFactor') {
             if (event.target.checked) {
                 this.formFactorCheckboxes.push(name);
@@ -113,6 +163,7 @@ export class PowerSuppliesStartComponent implements OnInit {
                 });
             }
         }
+        */
     }
 
     //Clear all filters

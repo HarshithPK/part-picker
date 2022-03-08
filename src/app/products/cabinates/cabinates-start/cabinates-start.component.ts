@@ -16,6 +16,8 @@ export class CabinatesStartComponent implements OnInit {
     priceMin: number | undefined;
     priceMax: number | undefined;
 
+    manufacturerNames: string[] = [];
+
     manufacturerCheckboxes: string[] = [];
     typeCheckboxes: string[] = [];
     sidePanelWindowCheckboxes: string[] = [];
@@ -32,6 +34,8 @@ export class CabinatesStartComponent implements OnInit {
 
     ngOnInit(): void {
         this.cabinates = this.cabinateService.getCabinates();
+        this.manufacturerNames = this.cabinateService.getManufacturerNames();
+        console.log(this.manufacturerNames);
     }
 
     addCabinate(index: number): void {
@@ -73,6 +77,46 @@ export class CabinatesStartComponent implements OnInit {
 
     // Compute checked filters
     checkboxClicked(event: any, name: string, type: string) {
+        //Switch case for the filters.
+        switch (type) {
+            case 'manufacturer':
+                console.log('manufacturer');
+                if (event.target.checked) {
+                    this.manufacturerCheckboxes.push(name);
+                } else {
+                    this.manufacturerCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.manufacturerCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'type':
+                console.log('type');
+                if (event.target.checked) {
+                    this.typeCheckboxes.push(name);
+                } else {
+                    this.typeCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.typeCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'sidePanelWindow':
+                console.log('sidePanelWindow');
+                if (event.target.checked) {
+                    this.sidePanelWindowCheckboxes.push(name);
+                } else {
+                    this.sidePanelWindowCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.sidePanelWindowCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+        }
+
+        /*
         if (type === 'manufacturer') {
             if (event.target.checked) {
                 this.manufacturerCheckboxes.push(name);
@@ -103,7 +147,7 @@ export class CabinatesStartComponent implements OnInit {
                         this.sidePanelWindowCheckboxes.splice(index, 1);
                 });
             }
-        }
+        }*/
     }
 
     //Clear all filters

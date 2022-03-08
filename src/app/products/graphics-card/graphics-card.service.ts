@@ -1,4 +1,3 @@
-import { NumberSymbol } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -11,6 +10,7 @@ export class GraphicsCardService {
 
     private graphicsCards: GraphicsCard[] = [];
     private activeGraphicsCards: GraphicsCard[] = [];
+    private manufacturerNames: string[] = [];
 
     constructor() {}
 
@@ -20,13 +20,31 @@ export class GraphicsCardService {
             (a, b) => a.price - b.price
         );
 
-        this.graphicsCardsChanged.next(this.graphicsCards.slice());
+        this.setManufacturerNames();
 
+        this.graphicsCardsChanged.next(this.graphicsCards.slice());
         this.activeGraphicsCardsChanged.next(this.activeGraphicsCards.slice());
     }
 
     getGraphicsCards(): GraphicsCard[] {
         return this.graphicsCards.slice();
+    }
+
+    setManufacturerNames() {
+        this.graphicsCards.forEach((graphicsCard) => {
+            this.manufacturerNames.push(graphicsCard.manufacturer);
+        });
+
+        this.manufacturerNames = this.removeDuplicates(this.manufacturerNames);
+        this.manufacturerNames = this.manufacturerNames.sort();
+    }
+
+    getManufacturerNames(): string[] {
+        return this.manufacturerNames.slice();
+    }
+
+    removeDuplicates(data: string[]) {
+        return [...new Set(data)];
     }
 
     getGraphicsCard(index: number): GraphicsCard {

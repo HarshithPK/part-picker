@@ -76,6 +76,47 @@ export class ProcessorsStartComponent implements OnInit {
 
     // Compute checked filters
     checkboxClicked(event: any, name: string, type: string) {
+        //Switch case for the filters.
+        switch (type) {
+            case 'manufacturer':
+                console.log('manufacturer');
+                if (event.target.checked) {
+                    this.manufacturerCheckboxes.push(name);
+                } else {
+                    this.manufacturerCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.manufacturerCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'series':
+                console.log('series');
+                if (event.target.checked) {
+                    this.seriesCheckboxes.push(name);
+                } else {
+                    this.seriesCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.seriesCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'socket':
+                console.log('socket');
+                if (event.target.checked) {
+                    this.socketCheckboxes.push(name);
+                } else {
+                    this.socketCheckboxes.forEach((element, index) => {
+                        if (element === name) {
+                            this.socketCheckboxes.splice(index, 1);
+                        }
+                    });
+                }
+                break;
+        }
+
+        /*
         if (type === 'manufacturer') {
             if (event.target.checked) {
                 this.manufacturerCheckboxes.push(name);
@@ -109,6 +150,7 @@ export class ProcessorsStartComponent implements OnInit {
                 });
             }
         }
+        */
     }
 
     //Clear all filters

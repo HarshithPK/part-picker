@@ -10,6 +10,7 @@ export class MemoryService {
 
     private memory: Memory[] = [];
     private activeMemory: Memory[] = [];
+    private manufacturerNames: string[] = [];
 
     constructor() {}
 
@@ -17,12 +18,31 @@ export class MemoryService {
         this.memory = memory;
         this.activeMemory = memory.sort((a, b) => a.price - b.price);
 
+        this.setManufacturerNames();
+
         this.memoryChanged.next(this.memory.slice());
         this.activeMemoryChanged.next(this.activeMemory.slice());
     }
 
     getMemory(): Memory[] {
         return this.memory.slice();
+    }
+
+    setManufacturerNames() {
+        this.memory.forEach((ram) => {
+            this.manufacturerNames.push(ram.manufacturer);
+        });
+
+        this.manufacturerNames = this.removeDuplicates(this.manufacturerNames);
+        this.manufacturerNames = this.manufacturerNames.sort();
+    }
+
+    getManufacturerNames(): string[] {
+        return this.manufacturerNames.slice();
+    }
+
+    removeDuplicates(data: string[]) {
+        return [...new Set(data)];
     }
 
     getRAM(index: number): Memory {

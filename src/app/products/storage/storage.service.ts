@@ -52,6 +52,7 @@ export class StorageService {
 
     private storages: Storage[] = [];
     private activeStorages: Storage[] = [];
+    private manufacturerNames: string[] = [];
 
     constructor() {}
 
@@ -59,12 +60,31 @@ export class StorageService {
         this.storages = storages;
         this.activeStorages = storages.sort((a, b) => a.price - b.price);
 
+        this.setManufacturerNames();
+
         this.storagesChanged.next(this.storages.slice());
         this.activeStoragesChanged.next(this.activeStorages.slice());
     }
 
     getStorages(): Storage[] {
         return this.storages.slice();
+    }
+
+    setManufacturerNames() {
+        this.storages.forEach((storage) => {
+            this.manufacturerNames.push(storage.manufacturer);
+        });
+
+        this.manufacturerNames = this.removeDuplicates(this.manufacturerNames);
+        this.manufacturerNames = this.manufacturerNames.sort();
+    }
+
+    getManufacturerNames(): string[] {
+        return this.manufacturerNames.slice();
+    }
+
+    removeDuplicates(data: string[]) {
+        return [...new Set(data)];
     }
 
     getStorage(index: number): Storage {

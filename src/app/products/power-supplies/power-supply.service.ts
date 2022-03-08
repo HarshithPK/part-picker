@@ -1,3 +1,4 @@
+import { removeSummaryDuplicates } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -10,6 +11,7 @@ export class PowerSupplyService {
 
     private powerSupplies: PowerSupply[] = [];
     private activePowerSupplies: PowerSupply[] = [];
+    private manufacturerNames: string[] = [];
 
     constructor() {}
 
@@ -19,8 +21,28 @@ export class PowerSupplyService {
             (a, b) => a.price - b.price
         );
 
+        this.setManufacturerNames();
+
         this.powerSuppliesChanged.next(this.powerSupplies.slice());
         this.activePowerSuppliesChanged.next(this.activePowerSupplies.slice());
+    }
+
+    setManufacturerNames() {
+        this.powerSupplies.forEach((powerSupply) => {
+            this.manufacturerNames.push(powerSupply.manufacturer);
+        });
+
+        this.manufacturerNames = this.removeDuplicates(this.manufacturerNames);
+
+        this.manufacturerNames = this.manufacturerNames.sort();
+    }
+
+    getManufacturerNames(): string[] {
+        return this.manufacturerNames.slice();
+    }
+
+    removeDuplicates(data: string[]) {
+        return [...new Set(data)];
     }
 
     getPowerSupplies(): PowerSupply[] {
@@ -32,6 +54,7 @@ export class PowerSupplyService {
     }
 
     applyAllFilters(
+        manufacturerCheckboxes: string[],
         formFactorCheckboxes: string[],
         modularCheckboxes: string[],
         efficiencyRatingCheckboxes: string[],
@@ -51,6 +74,10 @@ export class PowerSupplyService {
         this.activePowerSupplies = this.applyWattageFilter(
             wattageMin,
             wattageMax
+        );
+
+        this.activePowerSupplies = this.applyManufacturerFilter(
+            manufacturerCheckboxes
         );
 
         this.activePowerSupplies = this.applyEfficiencyRatingFilter(
@@ -84,6 +111,22 @@ export class PowerSupplyService {
                 });
             });
 
+            return newPowerSuppliesArray;
+        }
+    }
+
+    applyManufacturerFilter(manufacturerCheckboxes: string[]): PowerSupply[] {
+        let newPowerSuppliesArray: PowerSupply[] = [];
+
+        if (manufacturerCheckboxes.length === 0) {
+            return this.activePowerSupplies;
+        } else {
+            this.activePowerSupplies.forEach((powerSuply) => {
+                manufacturerCheckboxes.forEach((manufacturer) => {
+                    if (powerSuply.manufacturer === manufacturer)
+                        newPowerSuppliesArray.push(powerSuply);
+                });
+            });
             return newPowerSuppliesArray;
         }
     }

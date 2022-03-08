@@ -82,6 +82,40 @@
 
                     <div class="d-flex mb-2 justify-content-center">
                         <div class="row">
+                            <ngx-simplebar class="manufacturers-scroll">
+                                <div
+                                    class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
+                                    *ngFor="
+                                        let manufacturerName of manufacturerNames;
+                                        let i = index
+                                    "
+                                >
+                                    <input
+                                        type="checkbox"
+                                        class="btn-check"
+                                        [id]="[i]"
+                                        autocomplete="off"
+                                        (change)="
+                                            checkboxClicked(
+                                                $event,
+                                                manufacturerName,
+                                                'manufacturer'
+                                            )
+                                        "
+                                    />
+                                    <label
+                                        class="btn btn-warning btn-rounded col-md-12"
+                                        style="margin-right: 1.5px"
+                                        [for]="[i]"
+                                        >{{ manufacturerName }}</label
+                                    >
+                                </div>
+                            </ngx-simplebar>
+                        </div>
+                    </div>
+
+                    <!-- <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
                             <div
                                 class="
                                     mb-1
@@ -323,7 +357,7 @@
                                 >
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <button
                         type="button"
@@ -354,13 +388,7 @@
                     <div class="d-flex mb-2 justify-content-center">
                         <div class="row">
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -402,13 +430,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -450,13 +472,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -498,13 +514,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -546,13 +556,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -594,13 +598,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -642,13 +640,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -690,13 +682,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -738,13 +724,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -786,13 +766,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -834,13 +808,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -882,13 +850,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -930,13 +892,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -978,13 +934,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1026,13 +976,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1074,13 +1018,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1122,13 +1060,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1170,13 +1102,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1218,13 +1144,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1266,13 +1186,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1314,13 +1228,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1582,13 +1490,7 @@
                     <div class="d-flex mb-2 justify-content-center">
                         <div class="row">
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1630,13 +1532,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1709,13 +1605,7 @@
                     <div class="d-flex mb-2 justify-content-center">
                         <div class="row">
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1731,22 +1621,13 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="frame-sync-btn-check-1"
                                     >FreeSync</label
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1762,10 +1643,7 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="frame-sync-btn-check-2"
                                     >G-Sync</label
                                 >
@@ -2258,13 +2136,7 @@
                     <div class="d-flex mb-2 justify-content-center">
                         <div class="row">
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -2306,13 +2178,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -2354,13 +2220,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -2402,13 +2262,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -2450,13 +2304,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -2472,22 +2320,13 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="external-power-btn-check-9"
                                     >1 PCIe 8-pin + 1 PCIe 6-pin</label
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -2503,10 +2342,7 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="external-power-btn-check-10"
                                     >2 PCIe 8-pin + 1 PCIe 6-pin</label
                                 >
@@ -2584,13 +2420,7 @@
                     >
                         <!-- Content card for a Graphics Card. -->
                         <div
-                            class="
-                                card
-                                text-center
-                                border border-primary
-                                shadow-0
-                                text-white
-                            "
+                            class="card text-center border border-primary shadow-0 text-white"
                             style="background-color: #000000"
                         >
                             <div
@@ -2667,11 +2497,7 @@
                                 <button
                                     matRipple
                                     type="button"
-                                    class="
-                                        btn btn-outline-primary
-                                        mt-4
-                                        add-graphics-card-button
-                                    "
+                                    class="btn btn-outline-primary mt-4 add-graphics-card-button"
                                     data-mdb-toggle="tooltip"
                                     data-mdb-placement="top"
                                     title="Add Graphics Card"
@@ -2682,12 +2508,7 @@
                                 <button
                                     matRipple
                                     type="button"
-                                    class="
-                                        btn btn-outline-primary
-                                        mt-4
-                                        load-graphics-card-button
-                                        ripple
-                                    "
+                                    class="btn btn-outline-primary mt-4 load-graphics-card-button ripple"
                                     data-mdb-toggle="tooltip"
                                     data-mdb-placement="top"
                                     title="View Graphics Card"

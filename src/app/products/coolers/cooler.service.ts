@@ -11,6 +11,7 @@ export class CoolerService {
 
     private coolers: Cooler[] = [];
     private activeCoolers: Cooler[] = [];
+    private manufacturerNames: string[] = [];
 
     constructor() {}
 
@@ -18,12 +19,31 @@ export class CoolerService {
         this.coolers = coolers;
         this.activeCoolers = coolers.sort((a, b) => a.price - b.price);
 
+        this.setManufacturerNames();
+
         this.coolersChanged.next(this.coolers.slice());
         this.activeCoolersChanged.next(this.activeCoolers.slice());
     }
 
     getCoolers(): Cooler[] {
         return this.coolers.slice();
+    }
+
+    setManufacturerNames() {
+        this.coolers.forEach((cooler) => {
+            this.manufacturerNames.push(cooler.manufacturer);
+        });
+
+        this.manufacturerNames = this.removeDuplicates(this.manufacturerNames);
+        this.manufacturerNames = this.manufacturerNames.sort();
+    }
+
+    getManufacturerNames(): string[] {
+        return this.manufacturerNames.slice();
+    }
+
+    removeDuplicates(data: string[]) {
+        return [...new Set(data)];
     }
 
     getCooler(index: number): Cooler {

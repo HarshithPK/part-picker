@@ -10,6 +10,7 @@ export class MotherboardService {
 
     private motherboards: Motherboard[] = [];
     private activeMotherboards: Motherboard[] = [];
+    private manufacturerNames: string[] = [];
 
     constructor() {}
 
@@ -19,12 +20,31 @@ export class MotherboardService {
             (a, b) => a.price - b.price
         );
 
+        this.setManufacturerNames();
+
         this.motherboardsChanged.next(this.motherboards.slice());
         this.activeMotherboardsChanged.next(this.activeMotherboards.slice());
     }
 
     getMotherboards(): Motherboard[] {
         return this.motherboards.slice();
+    }
+
+    setManufacturerNames() {
+        this.motherboards.forEach((motherboard) => {
+            this.manufacturerNames.push(motherboard.manufacturer);
+        });
+
+        this.manufacturerNames = this.removeDuplicates(this.manufacturerNames);
+        this.manufacturerNames = this.manufacturerNames.sort();
+    }
+
+    getManufacturerNames(): string[] {
+        return this.manufacturerNames.slice();
+    }
+
+    removeDuplicates(data: string[]) {
+        return [...new Set(data)];
     }
 
     getMotherboard(index: number): Motherboard {

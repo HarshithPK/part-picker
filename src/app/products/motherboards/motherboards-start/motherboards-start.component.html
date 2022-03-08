@@ -84,6 +84,40 @@
 
                     <div class="d-flex mb-2 justify-content-center">
                         <div class="row">
+                            <ngx-simplebar class="manufacturers-scroll">
+                                <div
+                                    class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
+                                    *ngFor="
+                                        let manufacturerName of manufacturerNames;
+                                        let i = index
+                                    "
+                                >
+                                    <input
+                                        type="checkbox"
+                                        class="btn-check"
+                                        [id]="[i]"
+                                        autocomplete="off"
+                                        (change)="
+                                            checkboxClicked(
+                                                $event,
+                                                manufacturerName,
+                                                'manufacturer'
+                                            )
+                                        "
+                                    />
+                                    <label
+                                        class="btn btn-warning btn-rounded col-md-12"
+                                        style="margin-right: 1.5px"
+                                        [for]="[i]"
+                                        >{{ manufacturerName }}</label
+                                    >
+                                </div>
+                            </ngx-simplebar>
+                        </div>
+                    </div>
+
+                    <!-- <div class="d-flex mb-2 justify-content-center">
+                        <div class="row">
                             <div
                                 class="
                                     mb-1
@@ -229,7 +263,7 @@
                                 >
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <button
                         type="button"
@@ -258,11 +292,7 @@
                     >
 
                     <div
-                        class="
-                            d-flex
-                            allign-items-center
-                            justify-content-center
-                        "
+                        class="d-flex allign-items-center justify-content-center"
                     >
                         <div class="row">
                             <div
@@ -377,13 +407,7 @@
                     <div class="d-flex mb-2 justify-content-center">
                         <div class="row">
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -425,13 +449,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -504,13 +522,7 @@
                     <div class="d-flex mb-2 justify-content-center">
                         <div class="row">
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -552,13 +564,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -600,13 +606,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -648,13 +648,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    mb-1
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    justify-content-center
-                                "
+                                class="mb-1 col-md-12 d-flex allign-items-start justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -727,13 +721,7 @@
                     <div class="d-flex mb-2 justify-content-center">
                         <div class="row">
                             <div
-                                class="
-                                    col-md-12
-                                    mt-1
-                                    d-flex
-                                    allign-items-center
-                                    justify-content-center
-                                "
+                                class="col-md-12 mt-1 d-flex allign-items-center justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -749,22 +737,13 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="memory-type-btn-check-1"
                                     >DDR3</label
                                 >
                             </div>
                             <div
-                                class="
-                                    col-md-12
-                                    mt-1
-                                    d-flex
-                                    allign-items-center
-                                    justify-content-center
-                                "
+                                class="col-md-12 mt-1 d-flex allign-items-center justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -780,10 +759,7 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="memory-type-btn-check-2"
                                     >DDR4</label
                                 >
@@ -881,11 +857,7 @@
                     >
 
                     <div
-                        class="
-                            d-flex
-                            allign-items-center
-                            justify-content-center
-                        "
+                        class="d-flex allign-items-center justify-content-center"
                     >
                         <div class="row">
                             <div class="col-md-12 d-flex allign-items-start">
@@ -903,22 +875,13 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="multi-GPU-btn-check-1"
                                     >AMD - CROSSFIRE</label
                                 >
                             </div>
                             <div
-                                class="
-                                    col-md-12
-                                    d-flex
-                                    allign-items-start
-                                    mt-1
-                                    mb-1
-                                "
+                                class="col-md-12 d-flex allign-items-start mt-1 mb-1"
                             >
                                 <input
                                     type="checkbox"
@@ -934,10 +897,7 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="multi-GPU-btn-check-2"
                                     >NVIDIA - SLI</label
                                 >
@@ -974,13 +934,7 @@
                     <div class="d-flex mb-2 justify-content-center">
                         <div class="row">
                             <div
-                                class="
-                                    col-md-12
-                                    mt-1
-                                    d-flex
-                                    allign-items-center
-                                    justify-content-center
-                                "
+                                class="col-md-12 mt-1 d-flex allign-items-center justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1022,13 +976,7 @@
                                 >
                             </div>
                             <div
-                                class="
-                                    col-md-12
-                                    mt-1
-                                    d-flex
-                                    allign-items-center
-                                    justify-content-center
-                                "
+                                class="col-md-12 mt-1 d-flex allign-items-center justify-content-center"
                             >
                                 <input
                                     type="checkbox"
@@ -1044,10 +992,7 @@
                                     "
                                 />
                                 <label
-                                    class="
-                                        btn btn-warning btn-rounded
-                                        col-md-12
-                                    "
+                                    class="btn btn-warning btn-rounded col-md-12"
                                     for="wireless-btn-check-3"
                                     >NONE</label
                                 >
@@ -1122,13 +1067,7 @@
                     >
                         <!-- Content card for a Motherboard. -->
                         <div
-                            class="
-                                card
-                                text-center
-                                border border-primary
-                                shadow-0
-                                text-white
-                            "
+                            class="card text-center border border-primary shadow-0 text-white"
                             style="background-color: #000000"
                         >
                             <div
@@ -1205,11 +1144,7 @@
                                 <button
                                     matRipple
                                     type="button"
-                                    class="
-                                        btn btn-outline-primary
-                                        mt-4
-                                        add-motherboard-button
-                                    "
+                                    class="btn btn-outline-primary mt-4 add-motherboard-button"
                                     data-mdb-toggle="tooltip"
                                     data-mdb-placement="top"
                                     title="Add Motherboard"
@@ -1220,12 +1155,7 @@
                                 <button
                                     matRipple
                                     type="button"
-                                    class="
-                                        btn btn-outline-primary
-                                        mt-4
-                                        load-motherboard-button
-                                        ripple
-                                    "
+                                    class="btn btn-outline-primary mt-4 load-motherboard-button ripple"
                                     data-mdb-toggle="tooltip"
                                     data-mdb-placement="top"
                                     title="View Motherboard"

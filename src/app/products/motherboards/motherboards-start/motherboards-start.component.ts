@@ -16,6 +16,8 @@ export class MotherboardsStartComponent implements OnInit {
     priceMin: number | undefined;
     priceMax: number | undefined;
 
+    manufacturerNames: string[] = [];
+
     maxMemorySuopport: number = 32;
 
     manufacturerCheckboxes: string[] = [];
@@ -34,6 +36,8 @@ export class MotherboardsStartComponent implements OnInit {
 
     ngOnInit(): void {
         this.motherboards = this.motherboardService.getMotherboards();
+        this.manufacturerNames = this.motherboardService.getManufacturerNames();
+        console.log(this.manufacturerNames);
     }
 
     addMotherboard(index: number): void {
@@ -77,6 +81,99 @@ export class MotherboardsStartComponent implements OnInit {
 
     // Compute checked filters
     checkboxClicked(event: any, name: string, type: string) {
+        //Switch case for the filters.
+        switch (type) {
+            case 'manufacturer':
+                console.log('manufacturer');
+                if (event.target.checked) {
+                    this.manufacturerCheckboxes.push(name);
+                } else {
+                    this.manufacturerCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.manufacturerCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'formFactor':
+                console.log('formFactor');
+                if (event.target.checked) {
+                    this.formFactorCheckboxes.push(name);
+                } else {
+                    this.formFactorCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.formFactorCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'chipset':
+                console.log('chipset');
+                if (event.target.checked) {
+                    this.chipsetCheckboxes.push(name);
+                } else {
+                    this.chipsetCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.chipsetCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'socket':
+                console.log('socket');
+                if (event.target.checked) {
+                    this.socketCheckboxes.push(name);
+                } else {
+                    this.socketCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.socketCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'multiGPUSupport':
+                console.log('multiGPUSupport');
+                if (event.target.checked) {
+                    this.multiGPUSupportCheckboxes.push(name);
+                } else {
+                    this.multiGPUSupportCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.multiGPUSupportCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'wireless':
+                console.log('wireless');
+                if (event.target.checked) {
+                    this.wirelessNetworkingCheckboxes.push(name);
+                } else {
+                    this.wirelessNetworkingCheckboxes.forEach(
+                        (element, index) => {
+                            if (element === name)
+                                this.wirelessNetworkingCheckboxes.splice(
+                                    index,
+                                    1
+                                );
+                        }
+                    );
+                }
+                break;
+
+            case 'memoryType':
+                console.log('memoryType');
+                if (event.target.checked) {
+                    this.memoryTypeCheckboxes.push(name);
+                } else {
+                    this.memoryTypeCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.memoryTypeCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+        }
+
+        /*
         if (type === 'manufacturer') {
             if (event.target.checked) {
                 this.manufacturerCheckboxes.push(name);
@@ -153,6 +250,7 @@ export class MotherboardsStartComponent implements OnInit {
                 });
             }
         }
+        */
     }
 
     //Clear all filters

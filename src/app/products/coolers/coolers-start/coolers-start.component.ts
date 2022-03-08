@@ -16,6 +16,8 @@ export class CoolersStartComponent implements OnInit {
     priceMin: number | undefined;
     priceMax: number | undefined;
 
+    manufacturerNames: string[] = [];
+
     coolerHeightWithoutFan: number = 25;
     coolerHeightWithFan: number = 25;
 
@@ -30,6 +32,8 @@ export class CoolersStartComponent implements OnInit {
 
     ngOnInit(): void {
         this.coolers = this.coolerService.getCoolers();
+        this.manufacturerNames = this.coolerService.getManufacturerNames();
+        console.log(this.manufacturerNames);
     }
 
     addCooler(index: number): void {
@@ -69,6 +73,34 @@ export class CoolersStartComponent implements OnInit {
 
     // Compute checked filters
     checkboxClicked(event: any, name: string, type: string) {
+        //Switch case for the filters.
+        switch (type) {
+            case 'manufacturer':
+                console.log('manufacturer');
+                if (event.target.checked) {
+                    this.manufacturerCheckboxes.push(name);
+                } else {
+                    this.manufacturerCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.manufacturerCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'socket':
+                console.log('socket');
+                if (event.target.checked) {
+                    this.manufacturerCheckboxes.push(name);
+                } else {
+                    this.manufacturerCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.manufacturerCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+        }
+
+        /*
         if (type === 'manufacturer') {
             if (event.target.checked) {
                 this.manufacturerCheckboxes.push(name);
@@ -90,6 +122,7 @@ export class CoolersStartComponent implements OnInit {
                 });
             }
         }
+        */
     }
 
     //Clear all filters

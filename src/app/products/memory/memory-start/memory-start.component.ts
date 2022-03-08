@@ -16,6 +16,8 @@ export class MemoryStartComponent implements OnInit {
     priceMin: number | undefined;
     priceMax: number | undefined;
 
+    manufacturerNames: string[] = [];
+
     memorySize: number = 4;
 
     manufacturerCheckboxes: string[] = [];
@@ -32,6 +34,8 @@ export class MemoryStartComponent implements OnInit {
 
     ngOnInit(): void {
         this.memory = this.memoryService.getMemory();
+        this.manufacturerNames = this.memoryService.getManufacturerNames();
+        console.log(this.manufacturerNames);
     }
 
     addRAM(index: number): void {
@@ -73,6 +77,71 @@ export class MemoryStartComponent implements OnInit {
 
     // Compute checked filters
     checkboxClicked(event: any, name: string, type: string) {
+        //Switch case for the filters.
+        switch (type) {
+            case 'manufacturer':
+                console.log('manufacturer');
+                if (event.target.checked) {
+                    this.manufacturerCheckboxes.push(name);
+                } else {
+                    this.manufacturerCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.manufacturerCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'memoryType':
+                console.log('memoryType');
+                if (event.target.checked) {
+                    this.memoryTypeCheckboxes.push(name);
+                    console.log(this.memoryTypeCheckboxes);
+                } else {
+                    this.memoryTypeCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.memoryTypeCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'memoryModule':
+                console.log('memoryModule');
+                if (event.target.checked) {
+                    this.memoryModuleCheckboxes.push(name);
+                } else {
+                    this.memoryModuleCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.memoryModuleCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'memorySpeed':
+                console.log('memorySpeed');
+                if (event.target.checked) {
+                    this.memorySpeedCheckboxes.push(name);
+                } else {
+                    this.memorySpeedCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.memorySpeedCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'formFactor':
+                console.log('formFactor');
+                if (event.target.checked) {
+                    this.formFactorCheckboxes.push(name);
+                } else {
+                    this.formFactorCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.formFactorCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+        }
+
+        /*
         if (type === 'manufacturer') {
             if (event.target.checked) {
                 this.manufacturerCheckboxes.push(name);
@@ -128,6 +197,7 @@ export class MemoryStartComponent implements OnInit {
                 });
             }
         }
+        */
     }
 
     //Clear all filters

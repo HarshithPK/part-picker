@@ -24,6 +24,14 @@ h2 {
     overflow-x: hidden;
 }
 
+.manufacturers-scroll {
+    min-width: 250px !important;
+    max-width: 3000px;
+    height: 160px !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .content-scroll {
     max-height: 700px;
     overflow-y: auto;

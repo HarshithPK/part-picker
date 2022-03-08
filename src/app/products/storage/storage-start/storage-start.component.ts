@@ -16,6 +16,8 @@ export class StorageStartComponent implements OnInit {
     priceMin: number | undefined;
     priceMax: number | undefined;
 
+    manufacturerNames: string[] = [];
+
     capacity: number = 0.5;
 
     NVMECheckbox: string = '';
@@ -32,6 +34,8 @@ export class StorageStartComponent implements OnInit {
 
     ngOnInit(): void {
         this.storages = this.storageService.getStorages();
+        this.manufacturerNames = this.storageService.getManufacturerNames();
+        console.log(this.manufacturerNames);
     }
 
     addStorage(index: number): void {
@@ -72,6 +76,55 @@ export class StorageStartComponent implements OnInit {
 
     // Compute checked filters
     checkboxClicked(event: any, name: string, type: string) {
+        //Switch case for the filters.
+        switch (type) {
+            case 'manufacturer':
+                console.log('manufacturer');
+                if (event.target.checked) {
+                    this.manufacturerCheckboxes.push(name);
+                } else {
+                    this.manufacturerCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.manufacturerCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'type':
+                console.log('type');
+                if (event.target.checked) {
+                    this.typeCheckboxes.push(name);
+                } else {
+                    this.typeCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.typeCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'formFactor':
+                console.log('formFactor');
+                if (event.target.checked) {
+                    this.formFactorCheckboxes.push(name);
+                } else {
+                    this.formFactorCheckboxes.forEach((element, index) => {
+                        if (element === name)
+                            this.formFactorCheckboxes.splice(index, 1);
+                    });
+                }
+                break;
+
+            case 'nvme':
+                console.log('nvme');
+                if (event.target.checked) {
+                    this.NVMECheckbox = name;
+                } else {
+                    this.NVMECheckbox = '';
+                }
+                break;
+        }
+
+        /*
         if (type === 'manufacturer') {
             if (event.target.checked) {
                 this.manufacturerCheckboxes.push(name);
@@ -112,6 +165,7 @@ export class StorageStartComponent implements OnInit {
                 this.NVMECheckbox = '';
             }
         }
+        */
     }
 
     //Clear all filters
