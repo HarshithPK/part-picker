@@ -28,6 +28,11 @@ export class MemoryService {
         return this.memory.slice();
     }
 
+    getActiveMemory(memoryTypeCheckboxes: string[]): Memory[] {
+        this.activeMemory = this.applyMemoryTypeFilter(memoryTypeCheckboxes);
+        return this.activeMemory.slice();
+    }
+
     setManufacturerNames() {
         this.memory.forEach((ram) => {
             this.manufacturerNames.push(ram.manufacturer);
@@ -122,6 +127,8 @@ export class MemoryService {
         if (memoryTypeCheckboxes.length === 0) {
             return this.activeMemory;
         } else {
+            memoryTypeCheckboxes = this.removeDuplicates(memoryTypeCheckboxes);
+            console.log(memoryTypeCheckboxes);
             this.activeMemory.forEach((memory) => {
                 memoryTypeCheckboxes.forEach((memoryType) => {
                     if (memory.memoryType === memoryType)

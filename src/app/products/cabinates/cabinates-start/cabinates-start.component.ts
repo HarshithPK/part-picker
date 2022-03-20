@@ -13,6 +13,10 @@ import { CabinateService } from '../cabinate.service';
 export class CabinatesStartComponent implements OnInit {
     cabinates: Cabinate[] = null!;
 
+    private coolerSelectedHeight: number = null!;
+    private gpuSelectedLength: number = null!;
+    private powerSupplySelectedLength: number = null!;
+
     priceMin: number | undefined;
     priceMax: number | undefined;
 
@@ -33,9 +37,27 @@ export class CabinatesStartComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.cabinates = this.cabinateService.getCabinates();
+        // this.cabinates = this.cabinateService.getCabinates();
+        this.coolerSelectedHeight =
+            this.buildSystemService.coolerSelectedHeight;
+        if (this.coolerSelectedHeight) {
+            this.CPUCoolerClearance = this.coolerSelectedHeight;
+        }
+
+        this.gpuSelectedLength = this.buildSystemService.gpuSelectedLength;
+        if (this.gpuSelectedLength) {
+            this.GPULength = this.gpuSelectedLength;
+        }
+
+        this.powerSupplySelectedLength =
+            this.buildSystemService.powerSupplySelectedLength;
+        if (this.powerSupplySelectedLength) {
+            this.PSULength = this.powerSupplySelectedLength;
+        }
+
+        this.applyFilters();
+
         this.manufacturerNames = this.cabinateService.getManufacturerNames();
-        console.log(this.manufacturerNames);
     }
 
     addCabinate(index: number): void {
@@ -152,11 +174,25 @@ export class CabinatesStartComponent implements OnInit {
 
     //Clear all filters
     clearFilters() {
+        this.manufacturerNames = [];
+
+        this.manufacturerCheckboxes = [];
+        this.typeCheckboxes = [];
+        this.sidePanelWindowCheckboxes = [];
+
+        this.PSULength = 50;
+        this.GPULength = 50;
+        this.CPUCoolerClearance = 10;
+
+        this.applyFilters();
+
+        /*
         let currentUrl = this.router.url;
         this.router
             .navigateByUrl('/', { skipLocationChange: true })
             .then(() => {
                 this.router.navigate([currentUrl]);
             });
+        */
     }
 }

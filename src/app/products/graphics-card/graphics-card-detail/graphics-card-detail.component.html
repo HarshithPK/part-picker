@@ -1,13 +1,18 @@
 <h2 class="title-text mt-3">Graphics Card Detail</h2>
 <div class="row">
     <div class="col-md-6">
-        <img
-            [src]="graphicsCard.imagePath"
-            alt="{{ graphicsCard.name }}"
-            class="img-responsive"
-            style="max-width: 400px"
-        />
+        <lib-ngx-image-zoom
+            [thumbImage]="graphicsCard.imagePath"
+            [fullImage]="graphicsCard.imagePath"
+            [magnification]="1.5"
+            [enableScrollZoom]="true"
+            [enableLens]="true"
+            [lensWidth]="200"
+            [lensHeight]="150"
+        >
+        </lib-ngx-image-zoom>
     </div>
+
     <div class="col-md-6">
         <h2>{{ graphicsCard.name }}</h2>
         <p><strong>Manufacturer: </strong>{{ graphicsCard.manufacturer }}</p>

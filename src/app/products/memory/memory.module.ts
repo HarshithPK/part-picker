@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { SimplebarAngularModule } from 'simplebar-angular';
 
 import { MaterialModule } from 'src/app/shared/material/material.module';
@@ -26,6 +27,7 @@ import { MemoryComponent } from './memory.component';
         MaterialModule,
         MemoryRoutingModule,
         SimplebarAngularModule,
+        NgxImageZoomModule,
     ],
 })
 export class MemoryModule {}

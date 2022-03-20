@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 3;
 
@@ -10,6 +10,7 @@ import { CoolerService } from '../cooler.service';
     selector: 'app-cooler-detail',
     templateUrl: './cooler-detail.component.html',
     styleUrls: ['./cooler-detail.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class CoolerDetailComponent implements OnInit {
     id!: number;

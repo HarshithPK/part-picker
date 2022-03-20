@@ -11,6 +11,7 @@ import { PowerSuppliesComponent } from './power-supplies.component';
 import { PowerSupplyAddComponent } from './power-supply-add/power-supply-add.component';
 import { PowerSupplyDetailComponent } from './power-supply-detail/power-supply-detail.component';
 import { PowerSupplyRoutingModule } from './power-supply-routing.module';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { PowerSupplyRoutingModule } from './power-supply-routing.module';
         PowerSupplyRoutingModule,
         NgxSliderModule,
         SimplebarAngularModule,
+        NgxImageZoomModule,
     ],
 })
 export class PowerSupplyModule {}

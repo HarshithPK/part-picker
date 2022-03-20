@@ -33,6 +33,7 @@ export class PowerSuppliesStartComponent implements OnInit {
 
     ngOnInit(): void {
         this.powerSupplies = this.powerSupplyService.getPowerSupplies();
+
         this.manufacturerNames = this.powerSupplyService.getManufacturerNames();
 
         console.log(this.manufacturerNames);
@@ -130,6 +131,7 @@ export class PowerSuppliesStartComponent implements OnInit {
                 }
                 break;
         }
+
         /*
         if (type === 'formFactor') {
             if (event.target.checked) {
@@ -168,11 +170,20 @@ export class PowerSuppliesStartComponent implements OnInit {
 
     //Clear all filters
     clearFilters() {
+        this.manufacturerCheckboxes = [];
+        this.formFactorCheckboxes = [];
+        this.modularCheckboxes = [];
+        this.efficiencyRatingCheckboxes = [];
+
+        this.applyFilters();
+
+        /*
         let currentUrl = this.router.url;
         this.router
             .navigateByUrl('/', { skipLocationChange: true })
             .then(() => {
                 this.router.navigate([currentUrl]);
             });
+        */
     }
 }

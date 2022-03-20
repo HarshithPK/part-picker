@@ -1,13 +1,18 @@
 <h2 class="title-text mt-3">Cooler Detail</h2>
 <div class="row">
     <div class="col-md-6">
-        <img
-            [src]="cooler.imagePath"
-            alt="{{ cooler.name }}"
-            class="img-responsive"
-            style="max-width: 400px"
-        />
+        <lib-ngx-image-zoom
+            [thumbImage]="cooler.imagePath"
+            [fullImage]="cooler.imagePath"
+            [magnification]="1.2"
+            [enableScrollZoom]="true"
+            [enableLens]="true"
+            [lensWidth]="200"
+            [lensHeight]="150"
+        >
+        </lib-ngx-image-zoom>
     </div>
+
     <div class="col-md-6">
         <h2>{{ cooler.name }}</h2>
         <p><strong>Manufacturer: </strong>{{ cooler.manufacturer }}</p>

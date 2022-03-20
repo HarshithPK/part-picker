@@ -170,11 +170,23 @@ export class StorageStartComponent implements OnInit {
 
     //Clear all filters
     clearFilters() {
+        this.capacity = 0.5;
+
+        this.NVMECheckbox = '';
+
+        this.manufacturerCheckboxes = [];
+        this.typeCheckboxes = [];
+        this.formFactorCheckboxes = [];
+
+        this.applyFilters();
+
+        /*
         let currentUrl = this.router.url;
         this.router
             .navigateByUrl('/', { skipLocationChange: true })
             .then(() => {
                 this.router.navigate([currentUrl]);
             });
+        */
     }
 }

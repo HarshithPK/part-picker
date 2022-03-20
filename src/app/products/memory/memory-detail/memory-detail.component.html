@@ -1,13 +1,18 @@
 <h2 class="title-text mt-3">Memory Detail</h2>
 <div class="row">
     <div class="col-md-6">
-        <img
-            [src]="memory.imagePath"
-            alt="{{ memory.name }}"
-            class="img-responsive"
-            style="max-width: 400px"
-        />
+        <lib-ngx-image-zoom
+            [thumbImage]="memory.imagePath"
+            [fullImage]="memory.imagePath"
+            [magnification]="1.5"
+            [enableScrollZoom]="true"
+            [enableLens]="true"
+            [lensWidth]="200"
+            [lensHeight]="150"
+        >
+        </lib-ngx-image-zoom>
     </div>
+
     <div class="col-md-6">
         <h2>{{ memory.name }}</h2>
         <p><strong>Manufacturer: </strong>{{ memory.manufacturer }}</p>

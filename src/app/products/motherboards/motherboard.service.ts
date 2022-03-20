@@ -30,6 +30,11 @@ export class MotherboardService {
         return this.motherboards.slice();
     }
 
+    // getActiveMotherboards(socketCheckboxes: string[]): Motherboard[] {
+    //     this.activeMotherboards = this.applySocketFilter(socketCheckboxes);
+    //     return this.activeMotherboards.slice();
+    // }
+
     setManufacturerNames() {
         this.motherboards.forEach((motherboard) => {
             this.manufacturerNames.push(motherboard.manufacturer);
@@ -169,6 +174,8 @@ export class MotherboardService {
         if (socketCheckboxes.length === 0) {
             return this.activeMotherboards;
         } else {
+            socketCheckboxes = this.removeDuplicates(socketCheckboxes);
+            console.log(socketCheckboxes);
             this.activeMotherboards.forEach((motherboard) => {
                 socketCheckboxes.forEach((socket) => {
                     if (motherboard.socket === socket)

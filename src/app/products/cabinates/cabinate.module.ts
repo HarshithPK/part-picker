@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SimplebarAngularModule } from 'simplebar-angular';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { NgxImageZoomComponent } from 'ngx-image-zoom';
 
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { CabinateAddComponent } from './cabinate-add/cabinate-add.component';
@@ -26,6 +28,7 @@ import { CabinatesComponent } from './cabinates.component';
         MaterialModule,
         CabinateRoutingModule,
         SimplebarAngularModule,
+        NgxImageZoomModule,
     ],
 })
 export class CabinateModule {}

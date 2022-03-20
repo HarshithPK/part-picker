@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { BuildSystemService } from 'src/app/build-system/build-system.service';
@@ -9,6 +9,7 @@ import { ProcessorService } from '../processor.service';
     selector: 'app-processor-detail',
     templateUrl: './processor-detail.component.html',
     styleUrls: ['./processor-detail.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class ProcessorDetailComponent implements OnInit {
     id!: number;

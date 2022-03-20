@@ -155,11 +155,24 @@ export class ProcessorsStartComponent implements OnInit {
 
     //Clear all filters
     clearFilters() {
+        this.noOfCores = 2;
+        this.noOfThreads = 2;
+        this.processorTDP = 15;
+        this.processorCache = 6;
+
+        this.manufacturerCheckboxes = [];
+        this.seriesCheckboxes = [];
+        this.socketCheckboxes = [];
+
+        this.applyFilters();
+
+        /*
         let currentUrl = this.router.url;
         this.router
             .navigateByUrl('/', { skipLocationChange: true })
             .then(() => {
                 this.router.navigate([currentUrl]);
             });
+        */
     }
 }

@@ -13,6 +13,8 @@ import { CoolerService } from '../cooler.service';
 export class CoolersStartComponent implements OnInit {
     coolers: Cooler[] = null!;
 
+    private selectedSocket: string = '';
+
     priceMin: number | undefined;
     priceMax: number | undefined;
 
@@ -31,9 +33,15 @@ export class CoolersStartComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.coolers = this.coolerService.getCoolers();
+        this.selectedSocket = this.buildSystemService.cpuSelectedSocket;
+        if (this.selectedSocket !== '') {
+            this.socketCheckboxes.push(this.selectedSocket);
+        }
+
+        this.coolers = this.coolerService.getActiveCoolers(
+            this.socketCheckboxes
+        );
         this.manufacturerNames = this.coolerService.getManufacturerNames();
-        console.log(this.manufacturerNames);
     }
 
     addCooler(index: number): void {
@@ -88,13 +96,12 @@ export class CoolersStartComponent implements OnInit {
                 break;
 
             case 'socket':
-                console.log('socket');
                 if (event.target.checked) {
-                    this.manufacturerCheckboxes.push(name);
+                    this.socketCheckboxes.push(name);
                 } else {
-                    this.manufacturerCheckboxes.forEach((element, index) => {
+                    this.socketCheckboxes.forEach((element, index) => {
                         if (element === name)
-                            this.manufacturerCheckboxes.splice(index, 1);
+                            this.socketCheckboxes.splice(index, 1);
                     });
                 }
                 break;
@@ -113,25 +120,35 @@ export class CoolersStartComponent implements OnInit {
         }
 
         if (type === 'socket') {
-            if (event.target.checked) {
-                this.socketCheckboxes.push(name);
-            } else {
-                this.socketCheckboxes.forEach((element, index) => {
-                    if (element === name)
-                        this.socketCheckboxes.splice(index, 1);
-                });
-            }
+        if (event.target.checked) {
+            this.socketCheckboxes.push(name);
+        } else {
+            this.socketCheckboxes.forEach((element, index) => {
+                if (element === name)
+                    this.socketCheckboxes.splice(index, 1);
+            });
+        }
         }
         */
     }
 
     //Clear all filters
     clearFilters() {
+        this.coolerHeightWithoutFan = 25;
+        this.coolerHeightWithFan = 25;
+
+        this.manufacturerCheckboxes = [];
+        this.socketCheckboxes = [];
+
+        this.applyFilters();
+
+        /*
         let currentUrl = this.router.url;
         this.router
             .navigateByUrl('/', { skipLocationChange: true })
             .then(() => {
                 this.router.navigate([currentUrl]);
             });
+        */
     }
 }

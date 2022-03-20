@@ -95,6 +95,7 @@ export class CabinateService {
         let newCabinatesArray: Cabinate[] = [];
 
         this.activeCabinates.forEach((cabinate) => {
+            console.log(PSULength);
             if (cabinate.maxPSULength >= PSULength)
                 newCabinatesArray.push(cabinate);
         });

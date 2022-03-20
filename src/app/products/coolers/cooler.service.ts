@@ -29,6 +29,11 @@ export class CoolerService {
         return this.coolers.slice();
     }
 
+    getActiveCoolers(socketCheckboxes: string[]): Cooler[] {
+        this.activeCoolers = this.applySocketFilter(socketCheckboxes);
+        return this.activeCoolers.slice();
+    }
+
     setManufacturerNames() {
         this.coolers.forEach((cooler) => {
             this.manufacturerNames.push(cooler.manufacturer);
@@ -59,17 +64,13 @@ export class CoolerService {
         coolerHeightWithFan: number
     ): Cooler[] {
         this.activeCoolers = this.applyPriceFilter(priceMin, priceMax);
-
         this.activeCoolers = this.applyHeightWithoutFanFilter(
             coolerHeightWithoutFan
         );
-
         this.activeCoolers = this.applyHeightWithFanFilter(coolerHeightWithFan);
-
         this.activeCoolers = this.applyManufacturerFilter(
             manufacturerCheckboxes
         );
-
         this.activeCoolers = this.applySocketFilter(socketCheckboxes);
 
         return this.activeCoolers.slice();
@@ -127,9 +128,13 @@ export class CoolerService {
     applySocketFilter(socketCheckboxes: string[]): Cooler[] {
         let newCoolersArray: Cooler[] = [];
 
+        console.log(socketCheckboxes);
+
         if (socketCheckboxes.length === 0) {
             return this.activeCoolers;
         } else {
+            socketCheckboxes = this.removeDuplicates(socketCheckboxes);
+            console.log(socketCheckboxes);
             this.activeCoolers.forEach((cooler) => {
                 socketCheckboxes.forEach((socketSupport) => {
                     cooler.socketCompatability.forEach((socket) => {
@@ -138,7 +143,6 @@ export class CoolerService {
                     });
                 });
             });
-            console.log(newCoolersArray);
             return newCoolersArray;
         }
     }

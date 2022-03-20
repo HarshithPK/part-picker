@@ -19,7 +19,6 @@ export class GraphicsCardsStartComponent implements OnInit {
     manufacturerNames: string[] = [];
 
     memorySize: number = 1;
-
     coreClock: number = 150;
     boostClock: number = 700;
     length: number = 65;
@@ -222,11 +221,33 @@ export class GraphicsCardsStartComponent implements OnInit {
 
     //Clear all filters
     clearFilters() {
+        this.memorySize = 1;
+        this.coreClock = 150;
+        this.boostClock = 700;
+        this.length = 65;
+        this.tdp = 15;
+        this.dviPorts = 0;
+        this.hdmiPorts = 0;
+        this.miniHdmiPorts = 0;
+        this.displayPortPorts = 0;
+        this.miniDisplayPortPorts = 0;
+        this.slotWidth = 1;
+
+        this.manufacturerCheckboxes = [];
+        this.chipsetCheckboxes = [];
+        this.interfaceCheckboxes = [];
+        this.frameSyncCheckboxes = [];
+        this.externalPowerCheckboxes = [];
+
+        this.applyFilters();
+
+        /*
         let currentUrl = this.router.url;
         this.router
             .navigateByUrl('/', { skipLocationChange: true })
             .then(() => {
                 this.router.navigate([currentUrl]);
             });
+        */
     }
 }

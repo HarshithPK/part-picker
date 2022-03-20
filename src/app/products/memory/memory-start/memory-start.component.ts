@@ -13,6 +13,8 @@ import { BuildSystemService } from 'src/app/build-system/build-system.service';
 export class MemoryStartComponent implements OnInit {
     memory: Memory[] = null!;
 
+    private selectedMemoryType: string = '';
+
     priceMin: number | undefined;
     priceMax: number | undefined;
 
@@ -33,9 +35,16 @@ export class MemoryStartComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.memory = this.memoryService.getMemory();
+        this.selectedMemoryType =
+            this.buildSystemService.motherboardSelectedMemoryType;
+        if (this.selectedMemoryType !== '') {
+            this.memoryTypeCheckboxes.push(this.selectedMemoryType);
+        }
+
+        this.memory = this.memoryService.getActiveMemory(
+            this.memoryTypeCheckboxes
+        );
         this.manufacturerNames = this.memoryService.getManufacturerNames();
-        console.log(this.manufacturerNames);
     }
 
     addRAM(index: number): void {
@@ -202,11 +211,23 @@ export class MemoryStartComponent implements OnInit {
 
     //Clear all filters
     clearFilters() {
+        this.memorySize = 4;
+
+        this.manufacturerCheckboxes = [];
+        this.memoryTypeCheckboxes = [];
+        this.memoryModuleCheckboxes = [];
+        this.memorySpeedCheckboxes = [];
+        this.formFactorCheckboxes = [];
+
+        this.applyFilters();
+
+        /*
         let currentUrl = this.router.url;
         this.router
             .navigateByUrl('/', { skipLocationChange: true })
             .then(() => {
                 this.router.navigate([currentUrl]);
             });
+        */
     }
 }

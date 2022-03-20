@@ -2368,37 +2368,39 @@
                     </button>
 
                     <mat-divider></mat-divider>
-
-                    <!-- Clear Filters. -->
-                    <div class="col-md-12 mt-1 d-flex justify-content-center">
-                        <button
-                            matRipple
-                            class="clear-filter-button btn btn-danger mt-2 mb-2"
-                            type="button"
-                            data-mdb-toggle="tooltip"
-                            data-mdb-placement="top"
-                            title="Clear Filters"
-                            routerLink="power-supplies"
-                            (click)="clearFilters()"
-                        >
-                            Clear Filters
-                        </button>
-                    </div>
                 </div>
             </ngx-simplebar>
 
-            <!-- Add Graphics Card button. -->
-            <button
-                type="button"
-                class="btn btn-primary mt-2 mb-5"
-                style="margin-right: 5px"
-                data-mdb-toggle="tooltip"
-                data-mdb-placement="top"
-                title="Add Graphics Card"
-                routerLink="add-graphics-card"
+            <div
+                class="col-md-12 mt-1 d-flex allign-items-center justify-content-center"
             >
-                Add Graphics Card
-            </button>
+                <!-- Clear Filters. -->
+                <button
+                    matRipple
+                    class="clear-filter-button btn btn-danger col-md-6 mt-2 mb-2"
+                    type="button"
+                    data-mdb-toggle="tooltip"
+                    data-mdb-placement="top"
+                    title="Clear Filters"
+                    routerLink="power-supplies"
+                    (click)="clearFilters()"
+                >
+                    Clear Filters
+                </button>
+
+                <!-- Add Graphics Card button. -->
+                <button
+                    type="button"
+                    class="btn btn-primary col-md-6 mt-2 mb-2"
+                    style="margin-right: 5px"
+                    data-mdb-toggle="tooltip"
+                    data-mdb-placement="top"
+                    title="Add Graphics Card"
+                    routerLink="add-graphics-card"
+                >
+                    Add Graphics Card
+                </button>
+            </div>
         </div>
 
         <!-- Content div. -->

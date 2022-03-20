@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BuildSystemService } from 'src/app/build-system/build-system.service';
 
@@ -9,6 +9,7 @@ import { StorageService } from '../storage.service';
     selector: 'app-storage-detail',
     templateUrl: './storage-detail.component.html',
     styleUrls: ['./storage-detail.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class StorageDetailComponent implements OnInit {
     id!: number;

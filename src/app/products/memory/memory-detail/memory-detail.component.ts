@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BuildSystemService } from 'src/app/build-system/build-system.service';
 
@@ -9,6 +9,7 @@ import { Memory } from '../momery.model';
     selector: 'app-memory-detail',
     templateUrl: './memory-detail.component.html',
     styleUrls: ['./memory-detail.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class MemoryDetailComponent implements OnInit {
     id!: number;

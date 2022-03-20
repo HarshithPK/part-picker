@@ -13,6 +13,9 @@ import { MotherboardService } from '../motherboard.service';
 export class MotherboardsStartComponent implements OnInit {
     motherboards: Motherboard[] = null!;
 
+    private selectedSocket: string = '';
+    private selectedMemoryType: string = '';
+
     priceMin: number | undefined;
     priceMax: number | undefined;
 
@@ -35,9 +38,20 @@ export class MotherboardsStartComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.motherboards = this.motherboardService.getMotherboards();
+        this.selectedSocket = this.buildSystemService.cpuSelectedSocket;
+        if (this.selectedSocket !== '') {
+            this.socketCheckboxes.push(this.selectedSocket);
+        }
+
+        this.selectedMemoryType =
+            this.buildSystemService.memorySelectedMemoryType;
+        if (this.selectedMemoryType !== '') {
+            this.memoryTypeCheckboxes.push(this.selectedMemoryType);
+        }
+
+        this.applyFilters();
+
         this.manufacturerNames = this.motherboardService.getManufacturerNames();
-        console.log(this.manufacturerNames);
     }
 
     addMotherboard(index: number): void {
@@ -255,11 +269,27 @@ export class MotherboardsStartComponent implements OnInit {
 
     //Clear all filters
     clearFilters() {
+        this.manufacturerCheckboxes = [];
+        this.formFactorCheckboxes = [];
+        this.chipsetCheckboxes = [];
+        this.socketCheckboxes = [];
+        this.multiGPUSupportCheckboxes = [];
+        this.wirelessNetworkingCheckboxes = [];
+        this.memoryTypeCheckboxes = [];
+
+        console.log(this.manufacturerCheckboxes);
+        console.log(this.memoryTypeCheckboxes);
+        console.log(this.socketCheckboxes);
+
+        this.applyFilters();
+
+        /*
         let currentUrl = this.router.url;
         this.router
             .navigateByUrl('/', { skipLocationChange: true })
             .then(() => {
                 this.router.navigate([currentUrl]);
             });
+        */
     }
 }

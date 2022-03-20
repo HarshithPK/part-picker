@@ -1,12 +1,11 @@
-<h1>Build System page</h1>
-<div class="table-responsive">
+<div class="table-responsive mt-5">
     <table class="table table-dark border-light">
         <thead>
             <tr class="component-headings">
-                <th scope="col">Components</th>
-                <th scope="col">Image</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
+                <th scope="col"><strong>Components</strong></th>
+                <th scope="col"><strong>Image</strong></th>
+                <th scope="col"><strong>Name</strong></th>
+                <th scope="col"><strong>Price</strong></th>
                 <th></th>
             </tr>
         </thead>
@@ -275,49 +274,6 @@
             </tr>
 
             <tr class="components">
-                <th scope="row">Cabinate</th>
-                <td *ngIf="!cabinateSelected">None</td>
-                <td *ngIf="cabinateSelected">
-                    <img
-                        [src]="cabinateSelected.imagePath"
-                        alt=""
-                        class="img-fluid"
-                        style="max-width: 150px; max-height: 100px"
-                    />
-                </td>
-                <td *ngIf="!cabinateSelected">None</td>
-                <td *ngIf="cabinateSelected">
-                    {{ cabinateSelected.name }}
-                </td>
-                <td *ngIf="!cabinateSelected">None</td>
-                <td *ngIf="cabinateSelected">₹ {{ cabinateSelected.price }}</td>
-                <td *ngIf="!cabinateSelected">
-                    <button
-                        matRipple
-                        class="btn btn-outline-primary"
-                        data-mdb-toggle="tooltip"
-                        data-mdb-placement="top"
-                        title="Add Cabinate"
-                        routerLink="/products/cabinates"
-                    >
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </td>
-                <td *ngIf="cabinateSelected">
-                    <button
-                        matRipple
-                        class="btn btn-outline-danger"
-                        data-mdb-toggle="tooltip"
-                        data-mdb-placement="top"
-                        title="Remove Cabinate"
-                        (click)="removeCabinate()"
-                    >
-                        X
-                    </button>
-                </td>
-            </tr>
-
-            <tr class="components">
                 <th scope="row">Power Supply</th>
                 <td *ngIf="!powerSupplySelected">None</td>
                 <td *ngIf="powerSupplySelected">
@@ -356,6 +312,49 @@
                         data-mdb-placement="top"
                         title="Remove Power Supply"
                         (click)="removePowerSupply()"
+                    >
+                        X
+                    </button>
+                </td>
+            </tr>
+
+            <tr class="components">
+                <th scope="row">Cabinate</th>
+                <td *ngIf="!cabinateSelected">None</td>
+                <td *ngIf="cabinateSelected">
+                    <img
+                        [src]="cabinateSelected.imagePath"
+                        alt=""
+                        class="img-fluid"
+                        style="max-width: 150px; max-height: 100px"
+                    />
+                </td>
+                <td *ngIf="!cabinateSelected">None</td>
+                <td *ngIf="cabinateSelected">
+                    {{ cabinateSelected.name }}
+                </td>
+                <td *ngIf="!cabinateSelected">None</td>
+                <td *ngIf="cabinateSelected">₹ {{ cabinateSelected.price }}</td>
+                <td *ngIf="!cabinateSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-primary"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Add Cabinate"
+                        routerLink="/products/cabinates"
+                    >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </td>
+                <td *ngIf="cabinateSelected">
+                    <button
+                        matRipple
+                        class="btn btn-outline-danger"
+                        data-mdb-toggle="tooltip"
+                        data-mdb-placement="top"
+                        title="Remove Cabinate"
+                        (click)="removeCabinate()"
                     >
                         X
                     </button>

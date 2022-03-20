@@ -1530,35 +1530,39 @@
                     </button>
 
                     <mat-divider></mat-divider>
-
-                    <!-- Clear Filters. -->
-                    <div class="col-md-12 mt-1 d-flex justify-content-center">
-                        <button
-                            matRipple
-                            class="clear-filter-button btn btn-danger mt-2 mb-2"
-                            type="button"
-                            data-mdb-toggle="tooltip"
-                            data-mdb-placement="top"
-                            title="Clear Filters"
-                            routerLink="power-supplies"
-                            (click)="clearFilters()"
-                        >
-                            Clear Filters
-                        </button>
-                    </div>
                 </div>
             </ngx-simplebar>
-            <button
-                type="button"
-                class="btn btn-primary mt-2"
-                style="margin-right: 5px"
-                data-mdb-toggle="tooltip"
-                data-mdb-placement="top"
-                title="Add Memory"
-                routerLink="add-memory"
+
+            <div
+                class="col-md-12 mt-1 d-flex allign-items-center justify-content-center"
             >
-                Add memory
-            </button>
+                <!-- Clear Filters. -->
+                <button
+                    matRipple
+                    class="clear-filter-button btn btn-danger col-md-6 mt-2 mb-2"
+                    type="button"
+                    data-mdb-toggle="tooltip"
+                    data-mdb-placement="top"
+                    title="Clear Filters"
+                    routerLink="power-supplies"
+                    (click)="clearFilters()"
+                >
+                    Clear Filters
+                </button>
+
+                <!-- Add Memory button. -->
+                <button
+                    type="button"
+                    class="btn btn-primary col-md-6 mt-2 mb-2"
+                    style="margin-right: 5px"
+                    data-mdb-toggle="tooltip"
+                    data-mdb-placement="top"
+                    title="Add Memory"
+                    routerLink="add-memory"
+                >
+                    Add memory
+                </button>
+            </div>
         </div>
 
         <!-- Content div. -->

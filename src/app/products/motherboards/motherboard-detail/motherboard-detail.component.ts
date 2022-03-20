@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BuildSystemService } from 'src/app/build-system/build-system.service';
 
@@ -9,6 +9,7 @@ import { MotherboardService } from '../motherboard.service';
     selector: 'app-motherboard-detail',
     templateUrl: './motherboard-detail.component.html',
     styleUrls: ['./motherboard-detail.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class MotherboardDetailComponent implements OnInit {
     id!: number;
